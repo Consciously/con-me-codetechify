@@ -4,22 +4,23 @@
 
 @layer base {
 	:root {
-		--background: 0, 0%, 96%;
+		/* hsl(hue, saturation, luminance) */
+		--background: 0, 0%, 95%;
 		--foreground: 12, 5%, 10%;
-		--card: 0 0% 96%;
-		--card-foreground: 22, 22%, 10%;
-		--popover: 0 0% 96%;
-		--popover-foreground: 22, 22%, 10%;
+		--card: 0 0% 95%;
+		--card-foreground: 22, 5%, 10%;
+		--popover: 0 0% 95%;
+		--popover-foreground: 22, 5%, 10%;
 		--primary: 20, 100%, 65%;
 		--primary-foreground: 0 0% 100%;
 		--secondary: 40, 100%, 65%;
 		--secondary-foreground: 0, 0, 100%;
-		--muted: 0 0% 96%;
-		--muted-foreground: 22, 22%, 10%;
+		--muted: 0 0% 95%;
+		--muted-foreground: 22, 5%, 10%;
 		--accent: 12, 50%, 90%;
-		--accent-foreground: 22, 22%, 10%;
+		--accent-foreground: 22, 5%, 10%;
 		--destructive: 0, 84%, 60%;
-		--destructive-foreground: 0 0% 98%;
+		--destructive-foreground: 0 0% 95%;
 		--success: 115, 84%, 60%;
 		--border: 240 5.9% 90%;
 		--input: 240 5.9% 90%;
@@ -29,21 +30,21 @@
 
 	.dark {
 		--background: 12, 5%, 10%;
-		--foreground: 0, 0%, 96%;
+		--foreground: 0, 0%, 95%;
 		--card: 22, 22%, 10%;
-		--card-foreground: 0, 0%, 96%;
-		--popover: 22, 22%, 10%;
-		--popover-foreground: 0, 0%, 96%;
+		--card-foreground: 0, 0%, 95%;
+		--popover: 22, 5%, 10%;
+		--popover-foreground: 0, 0%, 95%;
 		--primary: 15, 100%, 60%;
 		--primary-foreground: 0 0% 100%;
 		--secondary: 35, 100%, 60%;
 		--secondary-foreground: 0, 0, 100%;
-		--muted: 0 0% 96%;
-		--muted-foreground: 22, 22%, 10%;
+		--muted: 0 0% 95%;
+		--muted-foreground: 22, 5%, 10%;
 		--accent: 12, 50%, 10%;
-		--accent-foreground: 22, 22%, 10%;
+		--accent-foreground: 22, 5%, 10%;
 		--destructive: 0, 84%, 60%;
-		--destructive-foreground: 0 0% 98%;
+		--destructive-foreground: 0 0% 95%;
 		--success: 115, 84%, 60%;
 		--border: 240 5.9% 90%;
 		--input: 240 5.9% 90%;
