@@ -26,10 +26,10 @@ export default function Home() {
 								Tailwind CSS. It is a work in progress and will be updated
 							</p>
 							<div className='flex flex-col mt-12 gap-6'>
-								<Button className='flex-1 w-1/2 mx-auto lg:py-3 bg-transparent bg-gradient-to-tr from-primary to-secondary'>
+								<Button className='flex-1 w-1/2 mx-auto lg:py-3 bg-transparent bg-gradient-to-tr from-primary to-secondary shadow-zinc-900/60 dark:shadow-zinc-100/60'>
 									Reach Me <ArrowRight />
 								</Button>
-								<Button className='flex-1 w-1/2 mx-auto lg:py-3 bg-transparent bg-gradient-to-tr from-secondary to-primary'>
+								<Button className='flex-1 w-1/2 mx-auto lg:py-3 bg-transparent bg-gradient-to-tr from-secondary to-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60'>
 									My Stuff <ArrowRight />
 								</Button>
 							</div>
