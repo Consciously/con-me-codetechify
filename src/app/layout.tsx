@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { Inter, Albert_Sans } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import { ThemeProvider } from 'next-themes';
 
-const inter = Inter({ subsets: ['latin'] });
+const albertSans = Albert_Sans({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
 	title: 'Create Next App',
@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang='en'>
-			<body className={inter.className}>
+			<body className={albertSans.className}>
 				<ThemeProvider
 					attribute='class'
 					defaultTheme='system'
