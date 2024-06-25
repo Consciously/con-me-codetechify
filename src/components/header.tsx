@@ -2,7 +2,8 @@
 
 import MaxWidthWrapper from './max-width-wrapper';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import Image from 'next/image';
+import { usePathname, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
@@ -24,11 +25,22 @@ const NAVIGATION_DATA = [
 
 export default function Header() {
 	const activePathname = usePathname();
+	const router = useRouter();
 
 	return (
 		<nav className='h-16 w-full border-b-2 border-accent shadow-md shadow-zinc-900/15 dark:shadow-zinc-500/10'>
 			<MaxWidthWrapper className='flex items-center'>
-				<div className='flex justify-center items-center h-full'>Logo</div>
+				<div className='flex justify-center items-center h-full'>
+					<Link href='/' className='w-16 h-16'>
+						<Image
+							src='/images/logo2.webp'
+							alt='logo of codetechify'
+							width={1024}
+							height={1024}
+							className='h-full w-auto object-cover'
+						/>
+					</Link>
+				</div>
 				<ul className='hidden md:flex gap-x-6 items-center ml-auto h-full'>
 					{NAVIGATION_DATA.map((item, index) => (
 						<li

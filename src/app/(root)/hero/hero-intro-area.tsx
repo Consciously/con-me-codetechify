@@ -6,7 +6,10 @@ import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 
 export default function HeroIntroArea() {
 	return (
-		<Section.ContentContainer className='md:col-span-6'>
+		<Section.ContentContainer className='mt-12 lg:mt-24 xl:mt-48 md:col-span-6'>
+			<h4 className='text-xl/relaxed md:text-2xl/relaxed font-semibold tracking-tight text-balance text-center'>
+				My Developer Journey and Core Values
+			</h4>
 			<Card className='mt-12 bg-[#1B1918]/25 dark:bg-[#1B1918]/50 border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60'>
 				<CardContent>
 					<p className='text-lg/relaxed text-balance max-w-prose mx-auto pt-3'>

@@ -36,7 +36,7 @@ export default function HeroCtaArea() {
 	return (
 		<Section.ContentContainer className='md:col-span-6'>
 			<div
-				className='relative mt-12 z-10 w-fit mx-auto'
+				className='relative mt-12 lg:mt-24 xl:mt-48 z-10 w-fit mx-auto'
 				onMouseEnter={() => setIsHovered(true)}
 				onMouseLeave={() => setIsHovered(false)}
 			>
@@ -45,7 +45,7 @@ export default function HeroCtaArea() {
 					alt='Profile image from Stefan Ihle'
 					width={552}
 					height={736}
-					className='aspect-auto h-full lg:h-[420px] w-auto rounded-3xl object-cover object-center border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60'
+					className='aspect-auto h-full md:h-[420px] w-auto rounded-3xl object-cover object-center border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60'
 				/>
 				<AnimatePresence>
 					{isHovered && (
