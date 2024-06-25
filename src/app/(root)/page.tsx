@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import HeroSection from './hero/hero-section';
+import ServicesSection from './services/services-section';
 
 export default function Home() {
 	return (
@@ -15,7 +16,9 @@ export default function Home() {
 				<div className='absolute inset-0 bg-background opacity-85 -z-10'></div>
 				<HeroSection />
 			</section>
-			<section>Skills and Services</section>
+			<section>
+				<ServicesSection />
+			</section>
 			<section>Projects</section>
 			<section>Tech stuff</section>
 		</>
