@@ -3,7 +3,7 @@
 import MaxWidthWrapper from './max-width-wrapper';
 import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
@@ -25,10 +25,9 @@ const NAVIGATION_DATA = [
 
 export default function Header() {
 	const activePathname = usePathname();
-	const router = useRouter();
 
 	return (
-		<nav className='h-16 w-full border-b-2 border-accent shadow-md shadow-zinc-900/15 dark:shadow-zinc-500/10'>
+		<motion.nav className='sticky z-[100] h-16 inset-x-0 top-0 w-full border-b border-primary bg-background'>
 			<MaxWidthWrapper className='flex items-center'>
 				<div className='flex justify-center items-center h-full'>
 					<Link href='/' className='w-16 h-16'>
@@ -37,7 +36,7 @@ export default function Header() {
 							alt='logo of codetechify'
 							width={1024}
 							height={1024}
-							className='h-full w-auto object-cover'
+							className='h-full w-auto object-cover p-1'
 						/>
 					</Link>
 				</div>
@@ -77,12 +76,16 @@ export default function Header() {
 				<div className='ml-auto md:hidden'>
 					<Sheet>
 						<SheetTrigger asChild>
-							<Button size='icon' variant='outline'>
+							<Button
+								size='icon'
+								variant='outline'
+								className='text-primary border-primary hover:text-secondary hover:border-secondary hover:bg-transparent'
+							>
 								<MenuIcon className='w-6 h-6' />
 								<span className='sr-only'>Toggle navigation</span>
 							</Button>
 						</SheetTrigger>
-						<SheetContent className='w-[300px]' side='right'>
+						<SheetContent className='w-[300px]' side='left'>
 							{NAVIGATION_DATA.map(item => (
 								<div className='flex flex-col gap-4 p-6' key={item.name}>
 									<Link
@@ -97,6 +100,6 @@ export default function Header() {
 					</Sheet>
 				</div>
 			</MaxWidthWrapper>
-		</nav>
+		</motion.nav>
 	);
 }
