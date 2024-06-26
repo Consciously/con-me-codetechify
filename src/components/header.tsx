@@ -1,10 +1,11 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import MaxWidthWrapper from './max-width-wrapper';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { motion } from 'framer-motion';
+import { motion, useScroll } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
 import { Button } from './ui/button';
@@ -24,10 +25,31 @@ const NAVIGATION_DATA = [
 ];
 
 export default function Header() {
+	const { scrollY } = useScroll();
+	const [hasShadow, setHasShadow] = useState<boolean>(false);
+
+	useEffect(() => {
+		const unsubscribe = scrollY.on('change', latest => {
+			if (latest > 200) {
+				setHasShadow(true);
+			} else {
+				setHasShadow(false);
+			}
+		});
+		return () => unsubscribe();
+	}, [scrollY]);
+
 	const activePathname = usePathname();
 
 	return (
-		<motion.nav className='sticky z-[100] h-16 inset-x-0 top-0 w-full border-b border-primary bg-background'>
+		<motion.nav
+			className={cn(
+				'sticky z-[100] h-16 inset-x-0 top-0 w-full bg-background opacity-85 backdrop-blur-lg',
+				hasShadow
+					? 'border-b border-primary transition-all shadow-md shadow-[#1b1918]/15 dark:shadow-[#e6e6e6]]/15 duration-200'
+					: '',
+			)}
+		>
 			<MaxWidthWrapper className='flex items-center'>
 				<div className='flex justify-center items-center h-full'>
 					<Link href='/' className='w-16 h-16'>
