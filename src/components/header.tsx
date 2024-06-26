@@ -44,9 +44,9 @@ export default function Header() {
 	return (
 		<motion.nav
 			className={cn(
-				'sticky z-[100] h-16 inset-x-0 top-0 w-full bg-background opacity-85 backdrop-blur-lg',
+				'sticky z-[100] h-16 inset-x-0 top-0 w-full bg-background backdrop-blur-lg',
 				hasShadow
-					? 'border-b border-primary transition-all shadow-md shadow-[#1b1918]/15 dark:shadow-[#e6e6e6]]/15 duration-200'
+					? 'opacity-85 border-b border-primary transition-all shadow-md shadow-[#1b1918]/15 dark:shadow-[#e6e6e6]]/15 duration-200'
 					: '',
 			)}
 		>
