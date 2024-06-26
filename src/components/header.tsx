@@ -111,6 +111,9 @@ export default function Header() {
 							className='w-[300px] border-r-2 border-primary z-[100]'
 							side='left'
 						>
+							<div className='block md:hidden absolute top-4 left-4'>
+								<ThemeToggler />
+							</div>
 							<ul className='flex flex-col gap-y-12 justify-center items-center w-full mt-12'>
 								{NAVIGATION_DATA.map((item, index) => (
 									<li

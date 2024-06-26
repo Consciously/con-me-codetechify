@@ -5,7 +5,7 @@
 @layer base {
 	:root {
 		/* hsl(hue, saturation, luminance) */
-		--background: 0, 0%, 90%;
+		--background: 0, 0%, 85%;
 		--foreground: 12, 5%, 10%;
 		--card: 0, 0%, 85%;
 		--card-foreground: 22, 5%, 10%;
@@ -20,7 +20,7 @@
 		--accent: 22, 22%, 90%;
 		--accent-foreground: 22, 5%, 10%;
 		--destructive: 0, 84%, 60%;
-		--destructive-foreground: 0, 0%, 90%;
+		--destructive-foreground: 0, 0%, 85%;
 		--success: 115, 84%, 60%;
 		--border: 240 5.9% 90%;
 		--input: 240 5.9% 90%;
@@ -30,11 +30,11 @@
 
 	.dark {
 		--background: 12, 5%, 10%;
-		--foreground: 0, 0%, 90%;
+		--foreground: 0, 0%, 85%;
 		--card: 22, 22%, 10%;
-		--card-foreground: 0, 0%, 90%;
+		--card-foreground: 0, 0%, 85%;
 		--popover: 22, 5%, 10%;
-		--popover-foreground: 0, 0%, 90%;
+		--popover-foreground: 0, 0%, 85%;
 		--primary: 15, 100%, 60%;
 		--primary-foreground: 0 0% 100%;
 		--secondary: 35, 100%, 60%;
@@ -44,7 +44,7 @@
 		--accent: 12, 50%, 10%;
 		--accent-foreground: 22, 5%, 10%;
 		--destructive: 0, 84%, 60%;
-		--destructive-foreground: 0, 0%, 90%;
+		--destructive-foreground: 0, 0%, 85%;
 		--success: 115, 84%, 60%;
 		--border: 240 5.9% 90%;
 		--input: 240 5.9% 90%;
