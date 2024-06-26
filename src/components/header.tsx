@@ -51,15 +51,16 @@ export default function Header() {
 			)}
 		>
 			<MaxWidthWrapper className='flex items-center'>
-				<div className='flex justify-center items-center h-full'>
-					<Link href='/' className='w-16 h-16'>
-						<Image
-							src='/images/logo2.webp'
-							alt='logo of codetechify'
-							width={1024}
-							height={1024}
-							className='h-full w-auto object-cover p-1'
-						/>
+				<div className='flex justify-center items-center'>
+					<Link href='/'>
+						<div className='flex gap-x-6 justify-center items-center'>
+							<div className='bg-gradient-to-r from-primary to-secondary p-1 w-[50px] text-center skew-y-[20deg] skew-x-12 scale-[1.05] text-[#1b1918] font-semibold text-sm'>
+								me
+							</div>
+							<div className='bg-gradient-to-r from-secondary to-primary p-1 w-[100px] text-center -skew-y-[8deg] skew-x-6 text-[#1b1918] font-semibold text-sm'>
+								codetechify
+							</div>
+						</div>
 					</Link>
 				</div>
 				<ul className='hidden md:flex gap-x-6 items-center ml-auto h-full'>
