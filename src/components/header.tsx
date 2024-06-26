@@ -67,7 +67,7 @@ export default function Header() {
 						<li
 							key={index}
 							className={cn(
-								'flex items-center relative  text-sm font-semibold',
+								'flex items-center relative  text-base font-semibold',
 								{
 									'text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary':
 										activePathname === item.href,
@@ -82,7 +82,7 @@ export default function Header() {
 							{activePathname === item.href && (
 								<motion.div
 									layoutId='header-active-link'
-									className='bg-primary h-1 w-full absolute top-6'
+									className='bg-primary h-1 w-full absolute top-8'
 								></motion.div>
 							)}
 						</li>
@@ -111,12 +111,12 @@ export default function Header() {
 							className='w-[300px] border-r-2 border-primary z-[100]'
 							side='left'
 						>
-							<ul>
+							<ul className='flex flex-col gap-y-12 justify-center items-center w-full mt-12'>
 								{NAVIGATION_DATA.map((item, index) => (
 									<li
 										key={index}
 										className={cn(
-											'flex items-center relative text-sm font-semibold mb-6',
+											'relative w-full text-center text-base font-semibold',
 											{
 												'text-secondary': activePathname === item.href,
 												'text-primary': activePathname !== item.href,
@@ -126,6 +126,13 @@ export default function Header() {
 										<Link href={item.href} className='block'>
 											{item.name}
 										</Link>
+
+										{activePathname === item.href && (
+											<motion.div
+												layoutId='header-active-link'
+												className='bg-primary h-1 w-1/3 absolute inset-8 mx-auto'
+											></motion.div>
+										)}
 									</li>
 								))}
 							</ul>
