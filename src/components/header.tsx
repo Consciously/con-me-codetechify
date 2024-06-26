@@ -44,7 +44,7 @@ export default function Header() {
 	return (
 		<motion.nav
 			className={cn(
-				'sticky z-[100] h-16 inset-x-0 top-0 w-full bg-background backdrop-blur-lg',
+				'sticky z-[80] h-16 inset-x-0 top-0 w-full bg-background backdrop-blur-lg',
 				hasShadow
 					? 'opacity-85 border-b border-primary transition-all shadow-md shadow-[#1b1918]/15 dark:shadow-[#e6e6e6]]/15 duration-200'
 					: '',
@@ -107,17 +107,28 @@ export default function Header() {
 								<span className='sr-only'>Toggle navigation</span>
 							</Button>
 						</SheetTrigger>
-						<SheetContent className='w-[300px]' side='left'>
-							{NAVIGATION_DATA.map(item => (
-								<div className='flex flex-col gap-4 p-6' key={item.name}>
-									<Link
-										className='relative text-zinc-500 hover:text-zinc-900 active:text-zinc-900 before:absolute before:-bottom-2 before:left-0 before:h-[2px] before:w-0 before:rounded-full before:bg-zinc-900 before:transition-all before:duration-300 hover:before:w-full dark:before:bg-gray-50'
-										href={item.href}
+						<SheetContent
+							className='w-[300px] border-r-2 border-primary z-[100]'
+							side='left'
+						>
+							<ul>
+								{NAVIGATION_DATA.map((item, index) => (
+									<li
+										key={index}
+										className={cn(
+											'flex items-center relative text-sm font-semibold mb-6',
+											{
+												'text-secondary': activePathname === item.href,
+												'text-primary': activePathname !== item.href,
+											},
+										)}
 									>
-										{item.name}
-									</Link>
-								</div>
-							))}
+										<Link href={item.href} className='block'>
+											{item.name}
+										</Link>
+									</li>
+								))}
+							</ul>
 						</SheetContent>
 					</Sheet>
 				</div>
