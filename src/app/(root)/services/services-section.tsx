@@ -20,11 +20,11 @@ export default function ServicesSection() {
 					</h2>
 				</Section.ContentContainer>
 				<Section.ContentContainer className='mx-auto'>
-					<div className='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 w-full'>
+					<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
 						{SERVICES_DATA.map(services => (
 							<Card
 								key={services.id}
-								className='flex-1 w-[350px] border-2 border-primary bg-transparent'
+								className='flex-1 w-full border-2 border-primary bg-transparent'
 							>
 								<CardHeader>
 									<CardTitle className='text-lg/relaxed text-center text-balance font-semibold text-primary'>

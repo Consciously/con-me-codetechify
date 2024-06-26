@@ -32,8 +32,8 @@ export default function Home() {
 				<div className='diagonal-cover' />
 				<ServicesSection />
 			</section>
-			<section>Projects</section>
-			<section>Tech stuff</section>
+			{/* <section>Projects</section>
+			<section>Tech stuff</section> */}
 		</>
 	);
 }
