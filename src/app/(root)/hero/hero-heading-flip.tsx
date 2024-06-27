@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { delay, motion } from 'framer-motion';
 import H1 from '@/components/ui/h1';
 
 const phrases = [
@@ -13,18 +13,19 @@ const phrases = [
 	'Engineering High-Quality',
 ];
 
-const flipVariants = {
+const letterVariants = {
 	hidden: {
 		opacity: 0,
 		rotateY: 90,
 	},
-	visible: {
+	visible: (i: number) => ({
 		opacity: 1,
 		rotateY: 0,
 		transition: {
+			delay: i * 0.1,
 			duration: 0.8,
 		},
-	},
+	}),
 };
 
 export default function HeroHeadingFlip() {
@@ -38,25 +39,24 @@ export default function HeroHeadingFlip() {
 		return () => clearInterval(interval);
 	}, []);
 
+	const phrase = phrases[index];
+
 	return (
-		<div style={{ perspective: 1000 }}>
-			<motion.div
-				initial='hidden'
-				animate='visible'
-				variants={flipVariants}
-				key={index}
-				style={{
-					display: 'inline-block',
-					padding: '20px',
-					backgroundColor: '#fff',
-					borderRadius: '10px',
-					boxShadow: '0 10px 20px rgba(0,0,0,0.2)',
-				}}
-			>
-				<H1 className='text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary'>
-					{phrases[index]} Web Solutions with Heart and Skill
-				</H1>
-			</motion.div>
-		</div>
+		<H1 className='text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary flex'>
+			{phrase.split('').map((letter, i) => (
+				<motion.span
+					key={`${phrase}-${i}`}
+					custom={i}
+					initial='hidden'
+					animate='visible'
+					exit='hidden'
+					variants={letterVariants}
+					style={{ display: 'inline-block' }}
+				>
+					{letter}
+				</motion.span>
+			))}
+			{'Web Solutions with  Heart and Skill'}
+		</H1>
 	);
 }
