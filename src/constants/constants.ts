@@ -67,38 +67,38 @@ export const SERVICES_DATA = [
 		title: 'Custom Website Development',
 		description:
 			'Tailored, maintainable websites to meet unique business needs.',
-		icon: '<Code />',
+		icon: 'code',
 	},
 	{
 		id: 2,
 		title: 'Performance Optimization',
 		description: 'Enhance speed and user experience with efficient code.',
-		icon: '<Activity />',
+		icon: 'activity',
 	},
 	{
 		id: 3,
 		title: 'API Integration',
 		description:
 			'Seamless connectivity with third-party services and applications.',
-		icon: '<Link2 />',
+		icon: 'link2',
 	},
 	{
 		id: 4,
 		title: 'Code Quality Assurance',
 		description:
 			'Reliable applications through comprehensive testing and integration.',
-		icon: '<CheckSquare />',
+		icon: 'check-square',
 	},
 	{
 		id: 5,
 		title: 'Scalability Solutions',
 		description: 'Scalable architectures for future-proof business growth.',
-		icon: '<Layers />',
+		icon: 'layers',
 	},
 	{
 		id: 6,
 		title: 'Maintenance and Support',
 		description: 'Ongoing support with regular updates and code reviews.',
-		icon: '<Wrench />',
+		icon: 'wrench',
 	},
 ] as const;
