@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS "project_table" (
 	"description" text NOT NULL,
 	"technologies" text[] DEFAULT '{}'::text[] NOT NULL,
 	"client_name" varchar(255) NOT NULL,
-	"image" varchar(255) NOT NULL,
+	"images" text[] DEFAULT '{}'::text[] NOT NULL,
 	"features" text[] DEFAULT '{}'::text[] NOT NULL,
 	"github_repo" varchar(255) NOT NULL,
 	"live_demo" varchar(255) NOT NULL,

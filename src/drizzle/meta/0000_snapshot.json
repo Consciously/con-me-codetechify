@@ -1,5 +1,5 @@
 {
-  "id": "40da42ba-4512-4eec-ba00-bbee3cf08ffe",
+  "id": "16003dd7-e099-4f45-b9e9-bd1195dfe6a2",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -39,11 +39,12 @@
           "primaryKey": false,
           "notNull": true
         },
-        "image": {
-          "name": "image",
-          "type": "varchar(255)",
+        "images": {
+          "name": "images",
+          "type": "text[]",
           "primaryKey": false,
-          "notNull": true
+          "notNull": true,
+          "default": "'{}'::text[]"
         },
         "features": {
           "name": "features",

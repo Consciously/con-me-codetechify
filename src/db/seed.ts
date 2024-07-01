@@ -1,6 +1,7 @@
 import { config } from 'dotenv';
 import { db } from '@/db/drizzle';
 import { projectTable, InsertProject } from '@/db/schema';
+import { sql } from 'drizzle-orm';
 
 config({ path: '.env' });
 
@@ -12,7 +13,10 @@ const projectData: InsertProject[] = [
 			'A comprehensive e-commerce platform with integrated payment systems and product management.',
 		technologies: ['Next.js', 'TypeScript', 'TailwindCSS', 'Prisma'],
 		clientName: 'ABC Retail',
-		image: '/images/projects/ecommerce-platform.webp',
+		images: [
+			'/images/projects/ecommerce-platform-1.webp',
+			'/images/projects/ecommerce-platform-2.webp',
+		],
 		features: [
 			'Integrated Payment Gateway',
 			'Real-time Data Sync',
@@ -30,7 +34,10 @@ const projectData: InsertProject[] = [
 			'A personal portfolio website showcasing projects, skills, and contact information.',
 		technologies: ['React', 'TypeScript', 'TailwindCSS'],
 		clientName: 'Self',
-		image: '/images/projects/portfolio-website.webp',
+		images: [
+			'/images/projects/portfolio-website-1.webp',
+			'/images/projects/portfolio-website-2.webp',
+		],
 		features: ['Responsive Design', 'Dynamic Project Showcase', 'Contact Form'],
 		githubRepo: 'https://github.com/username/portfolio-website',
 		liveDemo: 'https://example.com/portfolio',
@@ -44,7 +51,10 @@ const projectData: InsertProject[] = [
 			'A scalable blog platform with user authentication and content management.',
 		technologies: ['Gatsby', 'GraphQL', 'TailwindCSS'],
 		clientName: 'Tech Blog Inc.',
-		image: '/images/projects/blog-platform.webp',
+		images: [
+			'/images/projects/blog-platform-1.webp',
+			'/images/projects/blog-platform-2.webp',
+		],
 		features: ['User Authentication', 'Content Management System'],
 		githubRepo: 'https://github.com/username/blog-platform',
 		liveDemo: 'https://example.com/blog-platform',
@@ -58,7 +68,10 @@ const projectData: InsertProject[] = [
 			'A social media application with real-time messaging and post sharing features.',
 		technologies: ['React Native', 'TypeScript', 'GraphQL', 'Firebase'],
 		clientName: 'Socially',
-		image: '/images/projects/social-media-app.webp',
+		images: [
+			'/images/projects/social-media-app-1.webp',
+			'/images/projects/social-media-app-2.webp',
+		],
 		features: ['Real-time Messaging', 'Post Sharing', 'Notifications'],
 		githubRepo: 'https://github.com/username/social-media-app',
 		liveDemo: 'https://example.com/social-media-app',
@@ -72,7 +85,10 @@ const projectData: InsertProject[] = [
 			'A project management tool with task tracking, collaboration, and reporting features.',
 		technologies: ['Vue.js', 'TypeScript', 'Vuetify', 'Node.js'],
 		clientName: 'ManageIt',
-		image: '/images/projects/project-management-tool.webp',
+		images: [
+			'/images/projects/project-management-tool-1.webp',
+			'/images/projects/project-management-tool-2.webp',
+		],
 		features: ['Task Tracking', 'Collaboration', 'Reporting'],
 		githubRepo: 'https://github.com/username/project-management-tool',
 		liveDemo: 'https://example.com/project-management-tool',
@@ -86,7 +102,10 @@ const projectData: InsertProject[] = [
 			'An online learning platform with video courses, quizzes, and certification.',
 		technologies: ['Next.js', 'TypeScript', 'GraphQL', 'Hasura'],
 		clientName: 'LearnOnline',
-		image: '/images/projects/online-learning-platform.webp',
+		images: [
+			'/images/projects/online-learning-platform-1.webp',
+			'/images/projects/online-learning-platform-2.webp',
+		],
 		features: ['Video Courses', 'Quizzes', 'Certification'],
 		githubRepo: 'https://github.com/username/online-learning-platform',
 		liveDemo: 'https://example.com/online-learning-platform',
@@ -100,7 +119,10 @@ const projectData: InsertProject[] = [
 			'A fitness tracker app with workout logging, progress tracking, and social sharing.',
 		technologies: ['React Native', 'TypeScript', 'Redux', 'Firebase'],
 		clientName: 'FitLife',
-		image: '/images/projects/fitness-tracker-app.webp',
+		images: [
+			'/images/projects/fitness-tracker-app-1.webp',
+			'/images/projects/fitness-tracker-app-2.webp',
+		],
 		features: ['Workout Logging', 'Progress Tracking', 'Social Sharing'],
 		githubRepo: 'https://github.com/username/fitness-tracker-app',
 		liveDemo: 'https://example.com/fitness-tracker-app',
@@ -114,7 +136,10 @@ const projectData: InsertProject[] = [
 			'An event management system with ticketing, scheduling, and attendee management.',
 		technologies: ['Angular', 'TypeScript', 'Material Design', 'Node.js'],
 		clientName: 'EventMaster',
-		image: '/images/projects/event-management-system.webp',
+		images: [
+			'/images/projects/event-management-system-1.webp',
+			'/images/projects/event-management-system-2.webp',
+		],
 		features: ['Ticketing', 'Scheduling', 'Attendee Management'],
 		githubRepo: 'https://github.com/username/event-management-system',
 		liveDemo: 'https://example.com/event-management-system',
@@ -128,7 +153,10 @@ const projectData: InsertProject[] = [
 			'A mobile e-commerce app with product browsing, cart, and checkout features.',
 		technologies: ['React Native', 'TypeScript', 'GraphQL', 'Stripe'],
 		clientName: 'ShopEasy',
-		image: '/images/projects/ecommerce-mobile-app.webp',
+		images: [
+			'/images/projects/ecommerce-mobile-app-1.webp',
+			'/images/projects/ecommerce-mobile-app-2.webp',
+		],
 		features: ['Product Browsing', 'Cart', 'Checkout'],
 		githubRepo: 'https://github.com/username/ecommerce-mobile-app',
 		liveDemo: 'https://example.com/ecommerce-mobile-app',
@@ -142,7 +170,10 @@ const projectData: InsertProject[] = [
 			'A job board platform with job listings, applications, and employer management.',
 		technologies: ['Next.js', 'TypeScript', 'TailwindCSS', 'Prisma'],
 		clientName: 'JobFinder',
-		image: '/images/projects/job-board-platform.webp',
+		images: [
+			'/images/projects/job-board-platform-1.webp',
+			'/images/projects/job-board-platform-2.webp',
+		],
 		features: ['Job Listings', 'Applications', 'Employer Management'],
 		githubRepo: 'https://github.com/username/job-board-platform',
 		liveDemo: 'https://example.com/job-board-platform',
@@ -156,7 +187,10 @@ const projectData: InsertProject[] = [
 			'A recipe sharing app with user-generated content, ratings, and comments.',
 		technologies: ['Vue.js', 'TypeScript', 'GraphQL', 'Apollo'],
 		clientName: 'CookTogether',
-		image: '/images/projects/recipe-sharing-app.webp',
+		images: [
+			'/images/projects/recipe-sharing-app-1.webp',
+			'/images/projects/recipe-sharing-app-2.webp',
+		],
 		features: ['User-generated Content', 'Ratings', 'Comments'],
 		githubRepo: 'https://github.com/username/recipe-sharing-app',
 		liveDemo: 'https://example.com/recipe-sharing-app',
@@ -170,7 +204,10 @@ const projectData: InsertProject[] = [
 			'A personal finance app with budgeting, expense tracking, and financial planning features.',
 		technologies: ['React Native', 'TypeScript', 'Redux', 'Firebase'],
 		clientName: 'FinancePro',
-		image: '/images/projects/personal-finance-app.webp',
+		images: [
+			'/images/projects/personal-finance-app-1.webp',
+			'/images/projects/personal-finance-app-2.webp',
+		],
 		features: ['Budgeting', 'Expense Tracking', 'Financial Planning'],
 		githubRepo: 'https://github.com/username/personal-finance-app',
 		liveDemo: 'https://example.com/personal-finance-app',
@@ -184,7 +221,10 @@ const projectData: InsertProject[] = [
 			'A travel booking website with flight, hotel, and car rental bookings.',
 		technologies: ['Next.js', 'TypeScript', 'TailwindCSS', 'Prisma'],
 		clientName: 'TravelEasy',
-		image: '/images/projects/travel-booking-website.webp',
+		images: [
+			'/images/projects/travel-booking-website-1.webp',
+			'/images/projects/travel-booking-website-2.webp',
+		],
 		features: ['Flight Booking', 'Hotel Booking', 'Car Rental'],
 		githubRepo: 'https://github.com/username/travel-booking-website',
 		liveDemo: 'https://example.com/travel-booking-website',
@@ -198,7 +238,10 @@ const projectData: InsertProject[] = [
 			'A music streaming app with playlists, offline listening, and social features.',
 		technologies: ['React Native', 'TypeScript', 'GraphQL', 'Apollo'],
 		clientName: 'StreamMusic',
-		image: '/images/projects/music-streaming-app.webp',
+		images: [
+			'/images/projects/music-streaming-app-1.webp',
+			'/images/projects/music-streaming-app-2.webp',
+		],
 		features: ['Playlists', 'Offline Listening', 'Social Features'],
 		githubRepo: 'https://github.com/username/music-streaming-app',
 		liveDemo: 'https://example.com/music-streaming-app',
@@ -212,7 +255,10 @@ const projectData: InsertProject[] = [
 			'A health tracking app with daily activity logging, diet tracking, and health metrics.',
 		technologies: ['React Native', 'TypeScript', 'Redux', 'Firebase'],
 		clientName: 'HealthTrack',
-		image: '/images/projects/health-tracking-app.webp',
+		images: [
+			'/images/projects/health-tracking-app-1.webp',
+			'/images/projects/health-tracking-app-2.webp',
+		],
 		features: ['Activity Logging', 'Diet Tracking', 'Health Metrics'],
 		githubRepo: 'https://github.com/username/health-tracking-app',
 		liveDemo: 'https://example.com/health-tracking-app',
@@ -226,7 +272,10 @@ const projectData: InsertProject[] = [
 			'An online marketplace with product listings, reviews, and secure payments.',
 		technologies: ['Vue.js', 'TypeScript', 'GraphQL', 'Stripe'],
 		clientName: 'MarketPlace',
-		image: '/images/projects/online-marketplace.webp',
+		images: [
+			'/images/projects/online-marketplace-1.webp',
+			'/images/projects/online-marketplace-2.webp',
+		],
 		features: ['Product Listings', 'Reviews', 'Secure Payments'],
 		githubRepo: 'https://github.com/username/online-marketplace',
 		liveDemo: 'https://example.com/online-marketplace',
@@ -240,7 +289,10 @@ const projectData: InsertProject[] = [
 			'An educational game with interactive lessons, quizzes, and progress tracking.',
 		technologies: ['React', 'TypeScript', 'GraphQL', 'Hasura'],
 		clientName: 'EduGame',
-		image: '/images/projects/educational-game.webp',
+		images: [
+			'/images/projects/educational-game-1.webp',
+			'/images/projects/educational-game-2.webp',
+		],
 		features: ['Interactive Lessons', 'Quizzes', 'Progress Tracking'],
 		githubRepo: 'https://github.com/username/educational-game',
 		liveDemo: 'https://example.com/educational-game',
@@ -254,7 +306,10 @@ const projectData: InsertProject[] = [
 			'A customer relationship management system with contact management, sales tracking, and reporting.',
 		technologies: ['Angular', 'TypeScript', 'Material Design', 'Node.js'],
 		clientName: 'CRMPro',
-		image: '/images/projects/crm-system.webp',
+		images: [
+			'/images/projects/crm-system-1.webp',
+			'/images/projects/crm-system-2.webp',
+		],
 		features: ['Contact Management', 'Sales Tracking', 'Reporting'],
 		githubRepo: 'https://github.com/username/crm-system',
 		liveDemo: 'https://example.com/crm-system',
@@ -268,7 +323,10 @@ const projectData: InsertProject[] = [
 			'A photo editing app with filters, effects, and social sharing.',
 		technologies: ['React Native', 'TypeScript', 'Redux', 'Firebase'],
 		clientName: 'PhotoEdit',
-		image: '/images/projects/photo-editing-app.webp',
+		images: [
+			'/images/projects/photo-editing-app-1.webp',
+			'/images/projects/photo-editing-app-2.webp',
+		],
 		features: ['Filters', 'Effects', 'Social Sharing'],
 		githubRepo: 'https://github.com/username/photo-editing-app',
 		liveDemo: 'https://example.com/photo-editing-app',
@@ -282,7 +340,10 @@ const projectData: InsertProject[] = [
 			'A news aggregator with customizable feeds, notifications, and article saving.',
 		technologies: ['Next.js', 'TypeScript', 'TailwindCSS', 'GraphQL'],
 		clientName: 'NewsNow',
-		image: '/images/projects/news-aggregator.webp',
+		images: [
+			'/images/projects/news-aggregator-1.webp',
+			'/images/projects/news-aggregator-2.webp',
+		],
 		features: ['Customizable Feeds', 'Notifications', 'Article Saving'],
 		githubRepo: 'https://github.com/username/news-aggregator',
 		liveDemo: 'https://example.com/news-aggregator',
@@ -294,6 +355,21 @@ const projectData: InsertProject[] = [
 async function main() {
 	console.log('Seeding database...');
 
+	// Check if any data exists in the table
+	const existingData = await db.select().from(projectTable);
+
+	if (existingData.length > 0) {
+		console.log('Data found in the table, truncating...');
+		// Truncate the table before inserting new data
+		await db.execute(
+			sql`TRUNCATE TABLE ${projectTable} RESTART IDENTITY CASCADE`,
+		);
+		console.log('Table truncated successfully.');
+	} else {
+		console.log('No data found in the table.');
+	}
+
+	// Insert new data
 	await db.insert(projectTable).values(projectData);
 
 	console.log('Database seeded successfully.');

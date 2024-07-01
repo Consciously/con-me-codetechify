@@ -1,5 +1,3 @@
-// drizzleSchema.ts
-
 import { sql } from 'drizzle-orm';
 import { pgTable, serial, text, varchar, timestamp } from 'drizzle-orm/pg-core';
 
@@ -12,7 +10,10 @@ export const projectTable = pgTable('project_table', {
 		.notNull()
 		.default(sql`'{}'::text[]`),
 	clientName: varchar('client_name', { length: 255 }).notNull(),
-	image: varchar('image', { length: 255 }).notNull(),
+	images: text('images')
+		.array()
+		.notNull()
+		.default(sql`'{}'::text[]`),
 	features: text('features')
 		.array()
 		.notNull()
