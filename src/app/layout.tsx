@@ -4,6 +4,7 @@ import './globals.css';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import { ThemeProvider } from 'next-themes';
+import Provider from '@/components/provider';
 
 const albertSans = Albert_Sans({ subsets: ['latin'] });
 
@@ -28,7 +29,9 @@ export default function RootLayout({
 				>
 					<Header />
 					<main className='flex flex-col min-h-[calc(100vh-4rem-1px)]'>
-						<div className='flex-1 flex flex-col h-full'>{children}</div>
+						<div className='flex-1 flex flex-col h-full'>
+							<Provider>{children}</Provider>
+						</div>
 					</main>
 					<Footer />
 				</ThemeProvider>

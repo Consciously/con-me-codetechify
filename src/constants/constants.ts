@@ -102,3 +102,14 @@ export const SERVICES_DATA = [
 		icon: 'wrench',
 	},
 ] as const;
+
+const TILE_SIZES = {
+	1: 'extraBig',
+	2: 'big',
+	3: 'big',
+	4: 'normal',
+	5: 'normal',
+	6: 'normal',
+	7: 'normal',
+	8: 'normal',
+} as const;
