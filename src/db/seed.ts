@@ -1,6 +1,6 @@
 import { config } from 'dotenv';
-import { db } from '@/db/drizzle';
-import { projectTable, InsertProject } from '@/db/schema';
+import db from '@/db/drizzle';
+import { project, InsertProject } from '@/db/schema';
 import { sql } from 'drizzle-orm';
 
 config({ path: '.env' });
@@ -356,21 +356,19 @@ async function main() {
 	console.log('Seeding database...');
 
 	// Check if any data exists in the table
-	const existingData = await db.select().from(projectTable);
+	const existingData = await db.select().from(project);
 
 	if (existingData.length > 0) {
 		console.log('Data found in the table, truncating...');
 		// Truncate the table before inserting new data
-		await db.execute(
-			sql`TRUNCATE TABLE ${projectTable} RESTART IDENTITY CASCADE`,
-		);
+		await db.execute(sql`TRUNCATE TABLE ${project} RESTART IDENTITY CASCADE`);
 		console.log('Table truncated successfully.');
 	} else {
 		console.log('No data found in the table.');
 	}
 
 	// Insert new data
-	await db.insert(projectTable).values(projectData);
+	await db.insert(project).values(projectData);
 
 	console.log('Database seeded successfully.');
 }

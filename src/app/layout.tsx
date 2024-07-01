@@ -27,13 +27,13 @@ export default function RootLayout({
 					enableSystem
 					disableTransitionOnChange
 				>
-					<Header />
-					<main className='flex flex-col min-h-[calc(100vh-4rem-1px)]'>
-						<div className='flex-1 flex flex-col h-full'>
-							<Provider>{children}</Provider>
-						</div>
-					</main>
-					<Footer />
+					<Provider>
+						<Header />
+						<main className='flex flex-col min-h-[calc(100vh-4rem-1px)]'>
+							<div className='flex-1 flex flex-col h-full'>{children}</div>
+						</main>
+						<Footer />
+					</Provider>
 				</ThemeProvider>
 			</body>
 		</html>
