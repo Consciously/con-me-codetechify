@@ -103,13 +103,13 @@ export const SERVICES_DATA = [
 	},
 ] as const;
 
-const TILE_SIZES = {
-	1: 'extraBig',
-	2: 'big',
-	3: 'big',
-	4: 'normal',
-	5: 'normal',
-	6: 'normal',
-	7: 'normal',
-	8: 'normal',
-} as const;
+export const TILE_LAYOUTS = [
+	{ id: 1, className: 'col-span-full row-span-3 md:col-span-3 lg:col-span-8' },
+	{ id: 2, className: 'col-span-full md:col-span-3 lg:col-span-4 row-span-2' },
+	{ id: 3, className: 'col-span-full md:col-span-3 lg:col-span-4 row-span-2' },
+	{ id: 4, className: 'col-span-full row-span-1 md:col-span-3 lg:col-span-4' },
+	{ id: 5, className: 'col-span-full row-span-1 md:col-span-3 lg:col-span-4' },
+	{ id: 6, className: 'col-span-full row-span-1 md:col-span-3 lg:col-span-4' },
+	{ id: 7, className: 'col-span-full row-span-1 md:col-span-3 lg:col-span-4' },
+	{ id: 8, className: 'col-span-full row-span-1 md:col-span-3 lg:col-span-4' },
+] as const;

@@ -1,7 +1,8 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import { getProjects } from '@/action/action';
+import { getProjects } from '@/app/(root)/projects/action/action';
+import { TILE_LAYOUTS } from '@/constants/constants';
 
 export default function ProjectsData() {
 	const { data, isLoading, error } = useQuery({
@@ -9,22 +10,25 @@ export default function ProjectsData() {
 		queryFn: async () => await getProjects(),
 	});
 
-	if (isLoading) {
-		return <div>Loading...</div>;
-	}
+	if (isLoading) return <div>Loading...</div>;
 
-	if (error) return <p>Error: {error.message}</p>;
+	if (error) return <div>Error: {error.message}</div>;
 
 	return (
 		<div className='grid grid-cols-1 grid-rows-12 md:grid-cols-6 lg:grid-cols-12 gap-6'>
-			<ul className='col-span-full'>
-				{data?.map(project => (
-					<li key={project.id}>
+			{data?.map((project, index) => {
+				const layout = TILE_LAYOUTS[index] || {
+					className: 'col-span-full row-span-1',
+				};
+
+				return (
+					<div key={project.id} className={layout.className}>
 						<h2>{project.title}</h2>
 						<p>{project.description}</p>
-					</li>
-				))}
-			</ul>
+					</div>
+				);
+			})}
+
 			{/* <div className='col-span-full row-span-3 md:col-span-3 lg:col-span-8'>
 				Tile 1
 			</div>
