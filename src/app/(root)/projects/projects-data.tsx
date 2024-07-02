@@ -6,7 +6,7 @@ import { getProjects } from '@/action/action';
 export default function ProjectsData() {
 	const { data, isLoading, error } = useQuery({
 		queryKey: ['projects'],
-		queryFn: getProjects,
+		queryFn: async () => await getProjects(),
 	});
 
 	if (isLoading) {
