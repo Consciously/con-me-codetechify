@@ -1,6 +1,6 @@
 import { config } from 'dotenv';
 import db from '@/db/drizzle';
-import { project, InsertProject } from '@/db/schema';
+import { projectTable, InsertProject } from '@/db/schema';
 import { sql } from 'drizzle-orm';
 
 config({ path: '.env' });
@@ -24,6 +24,7 @@ const projectData: InsertProject[] = [
 		],
 		githubRepo: 'https://github.com/username/ecommerce-platform',
 		liveDemo: 'https://example.com/ecommerce-platform',
+		importance: 5,
 		createdAt: new Date('2024-01-01'),
 		updatedAt: new Date('2024-01-02'),
 	},
@@ -41,6 +42,7 @@ const projectData: InsertProject[] = [
 		features: ['Responsive Design', 'Dynamic Project Showcase', 'Contact Form'],
 		githubRepo: 'https://github.com/username/portfolio-website',
 		liveDemo: 'https://example.com/portfolio',
+		importance: 4,
 		createdAt: new Date('2024-01-15'),
 		updatedAt: new Date('2024-01-16'),
 	},
@@ -58,6 +60,7 @@ const projectData: InsertProject[] = [
 		features: ['User Authentication', 'Content Management System'],
 		githubRepo: 'https://github.com/username/blog-platform',
 		liveDemo: 'https://example.com/blog-platform',
+		importance: 3,
 		createdAt: new Date('2024-02-01'),
 		updatedAt: new Date('2024-02-02'),
 	},
@@ -75,6 +78,7 @@ const projectData: InsertProject[] = [
 		features: ['Real-time Messaging', 'Post Sharing', 'Notifications'],
 		githubRepo: 'https://github.com/username/social-media-app',
 		liveDemo: 'https://example.com/social-media-app',
+		importance: 3,
 		createdAt: new Date('2024-02-15'),
 		updatedAt: new Date('2024-02-16'),
 	},
@@ -92,6 +96,7 @@ const projectData: InsertProject[] = [
 		features: ['Task Tracking', 'Collaboration', 'Reporting'],
 		githubRepo: 'https://github.com/username/project-management-tool',
 		liveDemo: 'https://example.com/project-management-tool',
+		importance: 4,
 		createdAt: new Date('2024-03-01'),
 		updatedAt: new Date('2024-03-02'),
 	},
@@ -109,6 +114,7 @@ const projectData: InsertProject[] = [
 		features: ['Video Courses', 'Quizzes', 'Certification'],
 		githubRepo: 'https://github.com/username/online-learning-platform',
 		liveDemo: 'https://example.com/online-learning-platform',
+		importance: 3,
 		createdAt: new Date('2024-03-15'),
 		updatedAt: new Date('2024-03-16'),
 	},
@@ -126,6 +132,7 @@ const projectData: InsertProject[] = [
 		features: ['Workout Logging', 'Progress Tracking', 'Social Sharing'],
 		githubRepo: 'https://github.com/username/fitness-tracker-app',
 		liveDemo: 'https://example.com/fitness-tracker-app',
+		importance: 2,
 		createdAt: new Date('2024-04-01'),
 		updatedAt: new Date('2024-04-02'),
 	},
@@ -143,6 +150,7 @@ const projectData: InsertProject[] = [
 		features: ['Ticketing', 'Scheduling', 'Attendee Management'],
 		githubRepo: 'https://github.com/username/event-management-system',
 		liveDemo: 'https://example.com/event-management-system',
+		importance: 2,
 		createdAt: new Date('2024-04-15'),
 		updatedAt: new Date('2024-04-16'),
 	},
@@ -160,6 +168,7 @@ const projectData: InsertProject[] = [
 		features: ['Product Browsing', 'Cart', 'Checkout'],
 		githubRepo: 'https://github.com/username/ecommerce-mobile-app',
 		liveDemo: 'https://example.com/ecommerce-mobile-app',
+		importance: 4,
 		createdAt: new Date('2024-05-01'),
 		updatedAt: new Date('2024-05-02'),
 	},
@@ -177,6 +186,7 @@ const projectData: InsertProject[] = [
 		features: ['Job Listings', 'Applications', 'Employer Management'],
 		githubRepo: 'https://github.com/username/job-board-platform',
 		liveDemo: 'https://example.com/job-board-platform',
+		importance: 4,
 		createdAt: new Date('2024-05-15'),
 		updatedAt: new Date('2024-05-16'),
 	},
@@ -194,6 +204,7 @@ const projectData: InsertProject[] = [
 		features: ['User-generated Content', 'Ratings', 'Comments'],
 		githubRepo: 'https://github.com/username/recipe-sharing-app',
 		liveDemo: 'https://example.com/recipe-sharing-app',
+		importance: 3,
 		createdAt: new Date('2024-06-01'),
 		updatedAt: new Date('2024-06-02'),
 	},
@@ -211,6 +222,7 @@ const projectData: InsertProject[] = [
 		features: ['Budgeting', 'Expense Tracking', 'Financial Planning'],
 		githubRepo: 'https://github.com/username/personal-finance-app',
 		liveDemo: 'https://example.com/personal-finance-app',
+		importance: 3,
 		createdAt: new Date('2024-06-15'),
 		updatedAt: new Date('2024-06-16'),
 	},
@@ -228,6 +240,7 @@ const projectData: InsertProject[] = [
 		features: ['Flight Booking', 'Hotel Booking', 'Car Rental'],
 		githubRepo: 'https://github.com/username/travel-booking-website',
 		liveDemo: 'https://example.com/travel-booking-website',
+		importance: 4,
 		createdAt: new Date('2024-07-01'),
 		updatedAt: new Date('2024-07-02'),
 	},
@@ -245,6 +258,7 @@ const projectData: InsertProject[] = [
 		features: ['Playlists', 'Offline Listening', 'Social Features'],
 		githubRepo: 'https://github.com/username/music-streaming-app',
 		liveDemo: 'https://example.com/music-streaming-app',
+		importance: 4,
 		createdAt: new Date('2024-07-15'),
 		updatedAt: new Date('2024-07-16'),
 	},
@@ -262,6 +276,7 @@ const projectData: InsertProject[] = [
 		features: ['Activity Logging', 'Diet Tracking', 'Health Metrics'],
 		githubRepo: 'https://github.com/username/health-tracking-app',
 		liveDemo: 'https://example.com/health-tracking-app',
+		importance: 3,
 		createdAt: new Date('2024-08-01'),
 		updatedAt: new Date('2024-08-02'),
 	},
@@ -279,6 +294,7 @@ const projectData: InsertProject[] = [
 		features: ['Product Listings', 'Reviews', 'Secure Payments'],
 		githubRepo: 'https://github.com/username/online-marketplace',
 		liveDemo: 'https://example.com/online-marketplace',
+		importance: 3,
 		createdAt: new Date('2024-08-15'),
 		updatedAt: new Date('2024-08-16'),
 	},
@@ -296,6 +312,7 @@ const projectData: InsertProject[] = [
 		features: ['Interactive Lessons', 'Quizzes', 'Progress Tracking'],
 		githubRepo: 'https://github.com/username/educational-game',
 		liveDemo: 'https://example.com/educational-game',
+		importance: 2,
 		createdAt: new Date('2024-09-01'),
 		updatedAt: new Date('2024-09-02'),
 	},
@@ -313,6 +330,7 @@ const projectData: InsertProject[] = [
 		features: ['Contact Management', 'Sales Tracking', 'Reporting'],
 		githubRepo: 'https://github.com/username/crm-system',
 		liveDemo: 'https://example.com/crm-system',
+		importance: 3,
 		createdAt: new Date('2024-09-15'),
 		updatedAt: new Date('2024-09-16'),
 	},
@@ -330,6 +348,7 @@ const projectData: InsertProject[] = [
 		features: ['Filters', 'Effects', 'Social Sharing'],
 		githubRepo: 'https://github.com/username/photo-editing-app',
 		liveDemo: 'https://example.com/photo-editing-app',
+		importance: 2,
 		createdAt: new Date('2024-10-01'),
 		updatedAt: new Date('2024-10-02'),
 	},
@@ -347,6 +366,7 @@ const projectData: InsertProject[] = [
 		features: ['Customizable Feeds', 'Notifications', 'Article Saving'],
 		githubRepo: 'https://github.com/username/news-aggregator',
 		liveDemo: 'https://example.com/news-aggregator',
+		importance: 5, // Most important
 		createdAt: new Date('2024-10-15'),
 		updatedAt: new Date('2024-10-16'),
 	},
@@ -356,19 +376,21 @@ async function main() {
 	console.log('Seeding database...');
 
 	// Check if any data exists in the table
-	const existingData = await db.select().from(project);
+	const existingData = await db.select().from(projectTable);
 
 	if (existingData.length > 0) {
 		console.log('Data found in the table, truncating...');
 		// Truncate the table before inserting new data
-		await db.execute(sql`TRUNCATE TABLE ${project} RESTART IDENTITY CASCADE`);
+		await db.execute(
+			sql`TRUNCATE TABLE ${projectTable} RESTART IDENTITY CASCADE`,
+		);
 		console.log('Table truncated successfully.');
 	} else {
 		console.log('No data found in the table.');
 	}
 
 	// Insert new data
-	await db.insert(project).values(projectData);
+	await db.insert(projectTable).values(projectData);
 
 	console.log('Database seeded successfully.');
 }

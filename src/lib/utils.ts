@@ -1,5 +1,6 @@
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { format } from 'date-fns';
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -11,4 +12,10 @@ export const generateRange = (start: number, end: number) => {
 		range.push(i);
 	}
 	return range;
+};
+
+export const formatDate = (date: Date | string, dateFormat = 'yyyy-MM-dd') => {
+	const dateObj = typeof date === 'string' ? new Date(date) : date;
+
+	return format(dateObj, dateFormat);
 };
