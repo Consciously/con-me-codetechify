@@ -16,7 +16,9 @@ Section.GridContainer = function SectionGridContainer({
 	children,
 	className,
 }: SectionPropsType) {
-	return <div className={cn('grid grid-cols-12', className)}>{children}</div>;
+	return (
+		<div className={cn('grid grid-cols-12 w-full', className)}>{children}</div>
+	);
 };
 
 Section.ContentContainer = function SectionContentContainer({
