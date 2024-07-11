@@ -106,38 +106,38 @@ export const SERVICES_DATA = [
 export const TILE_LAYOUTS = [
 	{
 		size: 'very-big',
-		className: 'lg:col-span-8 lg:row-span-2',
+		className: 'col-span-full lg:col-span-8 row-span-2',
 	},
 	{
 		size: 'big',
-		className: 'lg:col-span-4 lg:row-span-3',
+		className: 'md:col-span-3 lg:col-span-4 row-span-3',
 	},
 	{
 		size: 'big',
-		className: 'lg:col-span-4 lg:row-span-2',
+		className: 'md:col-span-3 lg:col-span-4 md:row-span-3 lg:row-span-2',
 	},
 	{
 		size: 'normal',
-		className: 'lg:col-span-4 lg:row-span-1',
+		className: 'md:col-span-3 lg:col-span-4 row-span-1',
 	},
 	{
 		size: 'normal',
-		className: 'lg:col-span-4 lg:row-span-1',
+		className: 'md:col-span-3 lg:col-span-4 row-span-1',
 	},
 	{
 		size: 'normal',
-		className: 'lg:col-span-4 lg:row-span-1',
+		className: 'md:col-span-3 lg:col-span-4 row-span-1',
 	},
 	{
 		size: 'normal',
-		className: 'lg:col-span-4 lg:row-span-1',
+		className: 'md:col-span-3 lg:col-span-4 row-span-1',
 	},
 	{
 		size: 'normal',
-		className: 'lg:col-span-4 lg:row-span-1',
+		className: 'md:col-span-3 lg:col-span-4 row-span-1',
 	},
 	{
 		size: 'normal',
-		className: 'lg:col-span-4 lg:row-span-1',
+		className: 'md:col-span-3 lg:col-span-4 row-span-1',
 	},
 ] as const;

@@ -11,6 +11,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from '@/components/ui/card';
+import { buttonVariants } from '@/components/ui/button';
 
 export default function ProjectsData() {
 	const { data, isLoading, error } = useQuery({
@@ -40,21 +41,54 @@ export default function ProjectsData() {
 					>
 						{layout.size === 'very-big' && (
 							<Card className='bg-[#1B1918]/25 dark:bg-[#1B1918]/50 border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60 h-full'>
-								<CardHeader>
-									<CardTitle className='text-transparent bg-clip-text bg-gradient-to-r from-foreground to-secondary text-xl/relaxed md:text-3xl/relaxed font-semibold tracking-tight text-center'>
-										{project.title}
-									</CardTitle>
-								</CardHeader>
+								<div className='grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12'>
+									<div className='col-span-full'>
+										<CardHeader>
+											<CardTitle className='text-transparent bg-clip-text bg-gradient-to-r from-foreground to-secondary text-xl/relaxed md:text-3xl/relaxed font-semibold tracking-tight text-center'>
+												{project.title}
+											</CardTitle>
+										</CardHeader>
+									</div>
+									<div className='col-span-full'>
+										<CardDescription className='text-lg/relaxed text-primary-foreground text-center'>
+											{project.description}
+										</CardDescription>
+									</div>
+								</div>
 								<CardContent>
-									<div className='grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6'>
-										<div className='col-span-full lg:col-span-6'>
-											<CardDescription className='text-lg/relaxed text-primary-foreground'>
-												{project.description}
-												{index + 1}
-											</CardDescription>
+									<div className='grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12'>
+										<div className='col-span-full mx-auto pt-12'>
+											<div>
+												<h4 className='text-xl/relaxed md:text-2xl/relaxed font-semibold tracking-tight text-balance text-center'>
+													Features
+												</h4>
+											</div>
+											<div>
+												<h4 className='text-xl/relaxed md:text-2xl/relaxed font-semibold tracking-tight text-balance text-center'>
+													Technologies
+												</h4>
+											</div>
 										</div>
-										<div className='col-span-full lg:col-span-6'>
-											Right side content
+
+										<div className='col-span-full mx-auto pt-12 space-x-6'>
+											<a
+												href={project.liveDemo}
+												className={cn(
+													buttonVariants(),
+													'bg-transparent bg-gradient-to-tr from-primary to-secondary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60',
+												)}
+											>
+												Live Demo
+											</a>
+											<a
+												href={project.githubRepo}
+												className={cn(
+													buttonVariants(),
+													'bg-transparent bg-gradient-to-tr from-secondary to-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60',
+												)}
+											>
+												GitHub Repo
+											</a>
 										</div>
 									</div>
 								</CardContent>
@@ -72,7 +106,6 @@ export default function ProjectsData() {
 										<div className='col-span-full lg:col-span-6'>
 											<CardDescription className='text-lg/relaxed text-primary-foreground'>
 												{project.description}
-												{index + 1}
 											</CardDescription>
 										</div>
 										<div className='col-span-full lg:col-span-6'>
@@ -94,7 +127,6 @@ export default function ProjectsData() {
 										<div className='col-span-full'>
 											<CardDescription className='text-lg/relaxed text-primary-foreground'>
 												{project.description}
-												{index + 1}
 											</CardDescription>
 										</div>
 										<div className='col-span-full'>Right side content</div>
