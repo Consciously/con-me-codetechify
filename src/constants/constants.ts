@@ -102,3 +102,42 @@ export const SERVICES_DATA = [
 		icon: 'wrench',
 	},
 ] as const;
+
+export const TILE_LAYOUTS = [
+	{
+		size: 'very-big',
+		className: 'col-span-full lg:col-span-8 row-span-2',
+	},
+	{
+		size: 'big',
+		className: 'md:col-span-3 lg:col-span-4 row-span-3',
+	},
+	{
+		size: 'big',
+		className: 'md:col-span-3 lg:col-span-4 md:row-span-3 lg:row-span-2',
+	},
+	{
+		size: 'normal',
+		className: 'md:col-span-3 lg:col-span-4 row-span-1',
+	},
+	{
+		size: 'normal',
+		className: 'md:col-span-3 lg:col-span-4 row-span-1',
+	},
+	{
+		size: 'normal',
+		className: 'md:col-span-3 lg:col-span-4 row-span-1',
+	},
+	{
+		size: 'normal',
+		className: 'md:col-span-3 lg:col-span-4 row-span-1',
+	},
+	{
+		size: 'normal',
+		className: 'md:col-span-3 lg:col-span-4 row-span-1',
+	},
+	{
+		size: 'normal',
+		className: 'md:col-span-3 lg:col-span-4 row-span-1',
+	},
+] as const;
