@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import Section from '@/components/ui/custom-section';
 import { Button } from '@/components/ui/button';
-import { generateRange } from '@/lib/utils';
+import { cn, generateRange } from '@/lib/utils';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 
 const buttonAnimationVariants = {
@@ -70,7 +70,15 @@ export default function HeroCtaArea() {
 										variants={buttonAnimationVariants}
 										className='w-1/2 mb-4'
 									>
-										<Button className='w-full bg-transparent bg-gradient-to-tr from-primary to-secondary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60'>
+										<Button
+											className={cn(
+												'w-full bg-transparent bg-gradient-to-tr shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60',
+												{
+													'from-primary to-secondary': i === 0,
+													'from-secondary to-primary': i === 1,
+												},
+											)}
+										>
 											{i === 0 ? (
 												<>
 													<ArrowLeft />
