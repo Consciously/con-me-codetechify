@@ -12,6 +12,7 @@ import {
 	CardTitle,
 } from '@/components/ui/card';
 import { buttonVariants } from '@/components/ui/button';
+import Container from '@/components/ui/custom-container';
 
 export default function ProjectsData() {
 	const { data, isLoading, error } = useQuery({
@@ -24,21 +25,14 @@ export default function ProjectsData() {
 	if (error) return <div>Error: {error.message}</div>;
 
 	return (
-		<div
-			className='grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6'
-			style={{ gridAutoRows: 'minmax(150px, auto)' }}
-		>
+		<Container.Layout className='auto-rows-150 gap-6'>
 			{data?.map((project, index) => {
 				const layout = TILE_LAYOUTS[index] || {
 					className: 'col-span-full row-span-1',
 				};
 
 				return (
-					<div
-						key={project.id}
-						className={cn(layout.className, 'h-full')}
-						style={{ gridAutoRows: 'minmax(150px, auto)' }}
-					>
+					<div key={project.id} className={cn(layout.className, 'h-full')}>
 						{layout.size === 'very-big' && (
 							<Card className='bg-[#1B1918]/25 dark:bg-[#1B1918]/50 border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60 h-full'>
 								<div className='grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12'>
@@ -137,6 +131,6 @@ export default function ProjectsData() {
 					</div>
 				);
 			})}
-		</div>
+		</Container.Layout>
 	);
 }

@@ -1,19 +1,19 @@
-import Section from '@/components/ui/custom-section';
 import HeroHeadingArea from './hero-heading-area';
 import HeroCtaArea from './hero-cta-area';
 import HeroIntroArea from './hero-intro-area';
 import Spacer from '@/components/ui/spacer';
+import Container from '@/components/ui/custom-container';
 
 export default function HeroSection() {
 	return (
-		<Section>
+		<Container>
 			<Spacer>
-				<Section.GridContainer className='gap-y-6'>
+				<Container.Layout className='gap-y-6'>
 					<HeroHeadingArea />
 					<HeroCtaArea />
 					<HeroIntroArea />
-				</Section.GridContainer>
+				</Container.Layout>
 			</Spacer>
-		</Section>
+		</Container>
 	);
 }

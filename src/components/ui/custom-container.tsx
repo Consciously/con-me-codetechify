@@ -1,29 +1,29 @@
 import { cn } from '@/lib/utils';
 import MaxWidthWrapper from '../max-width-wrapper';
 
-type SectionPropsType = {
+type ContainerPropsType = {
 	children: React.ReactNode;
 	className?: string;
 };
 
-export default function Section({ children, className }: SectionPropsType) {
+export default function Container({ children, className }: ContainerPropsType) {
 	return (
 		<MaxWidthWrapper className={cn('', className)}>{children}</MaxWidthWrapper>
 	);
 }
 
-Section.GridContainer = function SectionGridContainer({
+Container.Layout = function ContainerLayout({
 	children,
 	className,
-}: SectionPropsType) {
+}: ContainerPropsType) {
 	return (
 		<div className={cn('grid grid-cols-12 w-full', className)}>{children}</div>
 	);
 };
 
-Section.ContentContainer = function SectionContentContainer({
+Container.Content = function ContainerContent({
 	children,
 	className,
-}: SectionPropsType) {
+}: ContainerPropsType) {
 	return <div className={cn('col-span-full', className)}>{children}</div>;
 };

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import Section from '@/components/ui/custom-section';
+import Container from '@/components/ui/custom-container';
 import { Button } from '@/components/ui/button';
 import { cn, generateRange } from '@/lib/utils';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
@@ -35,7 +35,7 @@ export default function HeroCtaArea() {
 	const [isHovered, setIsHovered] = useState(false);
 
 	return (
-		<Section.ContentContainer className='md:col-span-6'>
+		<Container.Content className='md:col-span-6'>
 			<Spacer>
 				<div
 					className='relative z-10 w-fit mx-auto'
@@ -101,6 +101,6 @@ export default function HeroCtaArea() {
 					</AnimatePresence>
 				</div>
 			</Spacer>
-		</Section.ContentContainer>
+		</Container.Content>
 	);
 }
