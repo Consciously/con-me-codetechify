@@ -35,23 +35,23 @@ export default function ProjectsData() {
 					<div key={project.id} className={cn(layout.className, 'h-full')}>
 						{layout.size === 'very-big' && (
 							<Card className='bg-[#1B1918]/25 dark:bg-[#1B1918]/50 border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60 h-full'>
-								<div className='grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12'>
-									<div className='col-span-full'>
+								<Container.Layout>
+									<Container.Content>
 										<CardHeader>
 											<CardTitle className='text-transparent bg-clip-text bg-gradient-to-r from-foreground to-secondary text-xl/relaxed md:text-3xl/relaxed font-semibold tracking-tight text-center'>
 												{project.title}
 											</CardTitle>
 										</CardHeader>
-									</div>
-									<div className='col-span-full'>
+									</Container.Content>
+									<Container.Content>
 										<CardDescription className='text-lg/relaxed text-primary-foreground text-center'>
 											{project.description}
 										</CardDescription>
-									</div>
-								</div>
+									</Container.Content>
+								</Container.Layout>
 								<CardContent>
-									<div className='grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12'>
-										<div className='col-span-full mx-auto pt-12'>
+									<Container.Layout>
+										<Container.Content className='mx-auto pt-12'>
 											<div>
 												<h4 className='text-xl/relaxed md:text-2xl/relaxed font-semibold tracking-tight text-balance text-center'>
 													Features
@@ -62,9 +62,9 @@ export default function ProjectsData() {
 													Technologies
 												</h4>
 											</div>
-										</div>
+										</Container.Content>
 
-										<div className='col-span-full mx-auto pt-12 space-x-6'>
+										<Container.Content className='mx-auto pt-12 space-x-6'>
 											<a
 												href={project.liveDemo}
 												className={cn(
@@ -83,8 +83,8 @@ export default function ProjectsData() {
 											>
 												GitHub Repo
 											</a>
-										</div>
-									</div>
+										</Container.Content>
+									</Container.Layout>
 								</CardContent>
 							</Card>
 						)}
@@ -96,16 +96,16 @@ export default function ProjectsData() {
 									</CardTitle>
 								</CardHeader>
 								<CardContent>
-									<div className='grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6'>
-										<div className='col-span-full lg:col-span-6'>
+									<Container.Layout className='gap-6'>
+										<Container.Content className='lg:col-span-6'>
 											<CardDescription className='text-lg/relaxed text-primary-foreground'>
 												{project.description}
 											</CardDescription>
-										</div>
-										<div className='col-span-full lg:col-span-6'>
+										</Container.Content>
+										<Container.Content className='lg:col-span-6'>
 											Right side content
-										</div>
-									</div>
+										</Container.Content>
+									</Container.Layout>
 								</CardContent>
 							</Card>
 						)}
@@ -117,14 +117,14 @@ export default function ProjectsData() {
 									</CardTitle>
 								</CardHeader>
 								<CardContent>
-									<div className='grid grid-cols-1 md:grid-cols-6 lg:grid-cols-12 gap-6'>
-										<div className='col-span-full'>
+									<Container.Layout className='gap-6'>
+										<Container.Content>
 											<CardDescription className='text-lg/relaxed text-primary-foreground'>
 												{project.description}
 											</CardDescription>
-										</div>
+										</Container.Content>
 										<div className='col-span-full'>Right side content</div>
-									</div>
+									</Container.Layout>
 								</CardContent>
 							</Card>
 						)}
