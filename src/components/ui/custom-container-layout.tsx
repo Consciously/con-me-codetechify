@@ -15,7 +15,7 @@ export default function ContainerStruct({
 	);
 }
 
-ContainerStruct.Layout = function ContainerLayout({
+ContainerStruct.Layout = function ContainerStructLayout({
 	children,
 	className,
 }: ContainerPropsType) {
@@ -24,7 +24,7 @@ ContainerStruct.Layout = function ContainerLayout({
 	);
 };
 
-ContainerStruct.Content = function ContainerContent({
+ContainerStruct.Content = function ContainerStructContent({
 	children,
 	className,
 }: ContainerPropsType) {

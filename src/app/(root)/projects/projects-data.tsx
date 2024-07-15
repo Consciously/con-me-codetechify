@@ -4,12 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getProjects } from '@/app/(root)/projects/action/action';
 import { TILE_LAYOUTS } from '@/constants/constants';
 import { cn, formatDate } from '@/lib/utils';
-import {
-	CardContent,
-	CardDescription,
-	CardHeader,
-	CardTitle,
-} from '@/components/ui/card';
+import { CardContent, CardDescription } from '@/components/ui/card';
 import { buttonVariants } from '@/components/ui/button';
 import ContainerStruct from '@/components/ui/custom-container-layout';
 import ProjectStruct from '@/components/ui/project/custom-project-layout';
@@ -37,11 +32,11 @@ export default function ProjectsData() {
 							<ProjectStruct.Container className='bg-[#1B1918]/25 dark:bg-[#1B1918]/50 border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60 h-full'>
 								<ContainerStruct.Layout>
 									<ContainerStruct.Content>
-										<CardHeader>
-											<CardTitle className='text-transparent bg-clip-text bg-gradient-to-r from-foreground to-secondary text-xl/relaxed md:text-3xl/relaxed font-semibold tracking-tight text-center'>
+										<ProjectStruct.Header>
+											<ProjectStruct.Title className='text-transparent bg-clip-text bg-gradient-to-r from-foreground to-secondary text-xl/relaxed md:text-3xl/relaxed font-semibold tracking-tight text-center'>
 												{project.title}
-											</CardTitle>
-										</CardHeader>
+											</ProjectStruct.Title>
+										</ProjectStruct.Header>
 									</ContainerStruct.Content>
 									<ContainerStruct.Content>
 										<CardDescription className='text-lg/relaxed text-primary-foreground text-center'>
@@ -90,11 +85,11 @@ export default function ProjectsData() {
 						)}
 						{layout.size === 'big' && (
 							<ProjectStruct.Container className='bg-[#1B1918]/25 dark:bg-[#1B1918]/50 border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60 h-full'>
-								<CardHeader>
-									<CardTitle className='text-transparent bg-clip-text bg-gradient-to-r from-foreground to-secondary text-xl/relaxed md:text-3xl/relaxed font-semibold tracking-tight text-center'>
+								<ProjectStruct.Header>
+									<ProjectStruct.Title className='text-transparent bg-clip-text bg-gradient-to-r from-foreground to-secondary text-xl/relaxed md:text-3xl/relaxed font-semibold tracking-tight text-center'>
 										{project.title}
-									</CardTitle>
-								</CardHeader>
+									</ProjectStruct.Title>
+								</ProjectStruct.Header>
 								<CardContent>
 									<ContainerStruct.Layout className='gap-6'>
 										<ContainerStruct.Content className='lg:col-span-6'>
@@ -111,11 +106,11 @@ export default function ProjectsData() {
 						)}
 						{layout.size === 'normal' && (
 							<ProjectStruct.Container className='bg-[#1B1918]/25 dark:bg-[#1B1918]/50 border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60 h-full'>
-								<CardHeader>
-									<CardTitle className='text-transparent bg-clip-text bg-gradient-to-r from-foreground to-secondary text-xl/relaxed md:text-3xl/relaxed font-semibold tracking-tight text-center'>
+								<ProjectStruct.Header>
+									<ProjectStruct.Title className='text-transparent bg-clip-text bg-gradient-to-r from-foreground to-secondary text-xl/relaxed md:text-3xl/relaxed font-semibold tracking-tight text-center'>
 										{project.title}
-									</CardTitle>
-								</CardHeader>
+									</ProjectStruct.Title>
+								</ProjectStruct.Header>
 								<CardContent>
 									<ContainerStruct.Layout className='gap-6'>
 										<ContainerStruct.Content>
