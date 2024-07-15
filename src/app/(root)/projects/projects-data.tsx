@@ -4,7 +4,6 @@ import { useQuery } from '@tanstack/react-query';
 import { getProjects } from '@/app/(root)/projects/action/action';
 import { TILE_LAYOUTS } from '@/constants/constants';
 import { cn, formatDate } from '@/lib/utils';
-import { CardContent, CardDescription } from '@/components/ui/card';
 import { buttonVariants } from '@/components/ui/button';
 import ContainerStruct from '@/components/ui/custom-container-layout';
 import ProjectStruct from '@/components/ui/project/custom-project-layout';
@@ -39,12 +38,12 @@ export default function ProjectsData() {
 										</ProjectStruct.Header>
 									</ContainerStruct.Content>
 									<ContainerStruct.Content>
-										<CardDescription className='text-lg/relaxed text-primary-foreground text-center'>
+										<ProjectStruct.Description className='text-lg/relaxed text-primary-foreground text-center'>
 											{project.description}
-										</CardDescription>
+										</ProjectStruct.Description>
 									</ContainerStruct.Content>
 								</ContainerStruct.Layout>
-								<CardContent>
+								<ProjectStruct.Content>
 									<ContainerStruct.Layout>
 										<ContainerStruct.Content className='mx-auto pt-12'>
 											<div>
@@ -80,7 +79,7 @@ export default function ProjectsData() {
 											</a>
 										</ContainerStruct.Content>
 									</ContainerStruct.Layout>
-								</CardContent>
+								</ProjectStruct.Content>
 							</ProjectStruct.Container>
 						)}
 						{layout.size === 'big' && (
@@ -90,18 +89,18 @@ export default function ProjectsData() {
 										{project.title}
 									</ProjectStruct.Title>
 								</ProjectStruct.Header>
-								<CardContent>
+								<ProjectStruct.Content>
 									<ContainerStruct.Layout className='gap-6'>
 										<ContainerStruct.Content className='lg:col-span-6'>
-											<CardDescription className='text-lg/relaxed text-primary-foreground'>
+											<ProjectStruct.Description className='text-lg/relaxed text-primary-foreground'>
 												{project.description}
-											</CardDescription>
+											</ProjectStruct.Description>
 										</ContainerStruct.Content>
 										<ContainerStruct.Content className='lg:col-span-6'>
 											Right side content
 										</ContainerStruct.Content>
 									</ContainerStruct.Layout>
-								</CardContent>
+								</ProjectStruct.Content>
 							</ProjectStruct.Container>
 						)}
 						{layout.size === 'normal' && (
@@ -111,16 +110,16 @@ export default function ProjectsData() {
 										{project.title}
 									</ProjectStruct.Title>
 								</ProjectStruct.Header>
-								<CardContent>
+								<ProjectStruct.Content>
 									<ContainerStruct.Layout className='gap-6'>
 										<ContainerStruct.Content>
-											<CardDescription className='text-lg/relaxed text-primary-foreground'>
+											<ProjectStruct.Description className='text-lg/relaxed text-primary-foreground'>
 												{project.description}
-											</CardDescription>
+											</ProjectStruct.Description>
 										</ContainerStruct.Content>
 										<div className='col-span-full'>Right side content</div>
 									</ContainerStruct.Layout>
-								</CardContent>
+								</ProjectStruct.Content>
 							</ProjectStruct.Container>
 						)}
 					</div>

@@ -1,5 +1,11 @@
 import { cn } from '@/lib/utils';
-import { Card, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+	Card,
+	CardContent,
+	CardDescription,
+	CardHeader,
+	CardTitle,
+} from '@/components/ui/card';
 
 type CustomProjectLayoutProps = {
 	children: React.ReactNode;
@@ -29,4 +35,20 @@ ProjectStruct.Title = function ProjectStructTitle({
 	className,
 }: CustomProjectLayoutProps) {
 	return <CardTitle className={cn('', className)}>{children}</CardTitle>;
+};
+
+ProjectStruct.Description = function ProjectStructDescription({
+	children,
+	className,
+}: CustomProjectLayoutProps) {
+	return (
+		<CardDescription className={cn('', className)}>{children}</CardDescription>
+	);
+};
+
+ProjectStruct.Content = function ProjectStructContent({
+	children,
+	className,
+}: CustomProjectLayoutProps) {
+	return <CardContent className={cn('', className)}>{children}</CardContent>;
 };
