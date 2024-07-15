@@ -1,19 +1,19 @@
 import ProjectsData from './projects-data';
 import Spacer from '@/components/ui/spacer';
-import Container from '@/components/ui/custom-container';
+import ContainerStruct from '@/components/ui/custom-container-layout';
 import ProjectHeaderArea from './project-header-area';
 
 export default function ProjectsSection() {
 	return (
-		<Container>
+		<ContainerStruct>
 			<Spacer>
-				<Container.Layout className='gap-6'>
+				<ContainerStruct.Layout className='gap-6'>
 					<ProjectHeaderArea />
-					<Container.Content>
+					<ContainerStruct.Content>
 						<ProjectsData />
-					</Container.Content>
-				</Container.Layout>
+					</ContainerStruct.Content>
+				</ContainerStruct.Layout>
 			</Spacer>
-		</Container>
+		</ContainerStruct>
 	);
 }

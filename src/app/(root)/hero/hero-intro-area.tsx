@@ -1,4 +1,4 @@
-import Container from '@/components/ui/custom-container';
+import ContainerStruct from '@/components/ui/custom-container-layout';
 import { Card, CardContent, CardHeader } from '../../../components/ui/card';
 import { HERO_DATA } from '@/constants/constants';
 import Image from 'next/image';
@@ -7,7 +7,7 @@ import Spacer from '@/components/ui/spacer';
 
 export default function HeroIntroArea() {
 	return (
-		<Container.Content className='md:col-span-6'>
+		<ContainerStruct.Content className='md:col-span-6'>
 			<Spacer variant='large'>
 				<h4 className='text-xl/relaxed md:text-2xl/relaxed font-semibold tracking-tight text-balance text-center'>
 					My Developer Journey and Core Values
@@ -24,7 +24,7 @@ export default function HeroIntroArea() {
 						</p>
 					</CardContent>
 				</Card>
-				<Container.Content>
+				<ContainerStruct.Content>
 					<Spacer variant='small'>
 						<ScrollArea className='w-full whitespace-nowrap'>
 							<div className='flex w-max gap-6'>
@@ -54,8 +54,8 @@ export default function HeroIntroArea() {
 							<ScrollBar orientation='horizontal' />
 						</ScrollArea>
 					</Spacer>
-				</Container.Content>
+				</ContainerStruct.Content>
 			</Spacer>
-		</Container.Content>
+		</ContainerStruct.Content>
 	);
 }

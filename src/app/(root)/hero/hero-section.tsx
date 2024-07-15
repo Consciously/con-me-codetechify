@@ -2,18 +2,18 @@ import HeroHeadingArea from './hero-heading-area';
 import HeroCtaArea from './hero-cta-area';
 import HeroIntroArea from './hero-intro-area';
 import Spacer from '@/components/ui/spacer';
-import Container from '@/components/ui/custom-container';
+import ContainerStruct from '@/components/ui/custom-container-layout';
 
 export default function HeroSection() {
 	return (
-		<Container>
+		<ContainerStruct>
 			<Spacer>
-				<Container.Layout className='gap-y-6'>
+				<ContainerStruct.Layout className='gap-y-6'>
 					<HeroHeadingArea />
 					<HeroCtaArea />
 					<HeroIntroArea />
-				</Container.Layout>
+				</ContainerStruct.Layout>
 			</Spacer>
-		</Container>
+		</ContainerStruct>
 	);
 }

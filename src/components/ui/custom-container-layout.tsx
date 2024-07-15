@@ -6,13 +6,16 @@ type ContainerPropsType = {
 	className?: string;
 };
 
-export default function Container({ children, className }: ContainerPropsType) {
+export default function ContainerStruct({
+	children,
+	className,
+}: ContainerPropsType) {
 	return (
 		<MaxWidthWrapper className={cn('', className)}>{children}</MaxWidthWrapper>
 	);
 }
 
-Container.Layout = function ContainerLayout({
+ContainerStruct.Layout = function ContainerLayout({
 	children,
 	className,
 }: ContainerPropsType) {
@@ -21,7 +24,7 @@ Container.Layout = function ContainerLayout({
 	);
 };
 
-Container.Content = function ContainerContent({
+ContainerStruct.Content = function ContainerContent({
 	children,
 	className,
 }: ContainerPropsType) {

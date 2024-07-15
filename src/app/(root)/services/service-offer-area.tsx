@@ -1,4 +1,4 @@
-import Container from '@/components/ui/custom-container';
+import ContainerStruct from '@/components/ui/custom-container-layout';
 import { SERVICES_DATA } from '@/constants/constants';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
@@ -12,7 +12,7 @@ import {
 
 export default function ServiceOfferArea() {
 	return (
-		<Container.Content className='mx-auto'>
+		<ContainerStruct.Content className='mx-auto'>
 			<div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
 				{SERVICES_DATA.map(services => (
 					<Card
@@ -52,6 +52,6 @@ export default function ServiceOfferArea() {
 					</Card>
 				))}
 			</div>
-		</Container.Content>
+		</ContainerStruct.Content>
 	);
 }

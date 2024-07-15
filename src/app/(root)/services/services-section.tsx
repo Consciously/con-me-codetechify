@@ -2,17 +2,17 @@ import Spacer from '@/components/ui/spacer';
 
 import ServicesHeadingArea from './services-heading-area';
 import ServiceOfferArea from './service-offer-area';
-import Container from '@/components/ui/custom-container';
+import ContainerStruct from '@/components/ui/custom-container-layout';
 
 export default function ServicesSection() {
 	return (
-		<Container>
+		<ContainerStruct>
 			<Spacer>
-				<Container.Layout className='gap-6'>
+				<ContainerStruct.Layout className='gap-6'>
 					<ServicesHeadingArea />
 					<ServiceOfferArea />
-				</Container.Layout>
+				</ContainerStruct.Layout>
 			</Spacer>
-		</Container>
+		</ContainerStruct>
 	);
 }
