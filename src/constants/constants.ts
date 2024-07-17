@@ -106,38 +106,38 @@ export const SERVICES_DATA = [
 export const TILE_LAYOUTS = [
 	{
 		size: 'very-big',
-		className: 'col-span-full lg:col-span-8 row-span-2',
+		className: 'col-span-full xl:col-span-8 row-span-1',
 	},
 	{
 		size: 'big',
-		className: 'md:col-span-3 lg:col-span-4 row-span-3',
+		className: 'col-span-full md:col-span-6 xl:col-span-4 row-span-1',
 	},
 	{
 		size: 'big',
-		className: 'md:col-span-3 lg:col-span-4 md:row-span-3 lg:row-span-2',
+		className: 'col-span-full md:col-span-6 xl:col-span-4 row-span-1',
 	},
 	{
 		size: 'normal',
-		className: 'md:col-span-3 lg:col-span-4 row-span-1',
+		className: 'col-span-full md:col-span-6 lg:col-span-4 row-span-1',
 	},
 	{
 		size: 'normal',
-		className: 'md:col-span-3 lg:col-span-4 row-span-1',
+		className: 'col-span-full md:col-span-6 lg:col-span-4 row-span-1',
 	},
 	{
 		size: 'normal',
-		className: 'md:col-span-3 lg:col-span-4 row-span-1',
+		className: 'col-span-full md:col-span-6 lg:col-span-4 row-span-1',
 	},
 	{
 		size: 'normal',
-		className: 'md:col-span-3 lg:col-span-4 row-span-1',
+		className: 'col-span-full md:col-span-6 lg:col-span-4 row-span-1',
 	},
 	{
 		size: 'normal',
-		className: 'md:col-span-3 lg:col-span-4 row-span-1',
+		className: 'col-span-full md:col-span-6 lg:col-span-4 row-span-1',
 	},
 	{
 		size: 'normal',
-		className: 'md:col-span-3 lg:col-span-4 row-span-1',
+		className: 'col-span-full md:col-span-6 lg:col-span-4 row-span-1',
 	},
 ] as const;

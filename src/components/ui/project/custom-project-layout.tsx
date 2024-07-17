@@ -3,9 +3,11 @@ import {
 	Card,
 	CardContent,
 	CardDescription,
+	CardFooter,
 	CardHeader,
 	CardTitle,
 } from '@/components/ui/card';
+import { Fragment } from 'react';
 
 type CustomProjectLayoutProps = {
 	children: React.ReactNode;
@@ -20,7 +22,16 @@ ProjectStruct.Container = function ProjectStructContainer({
 	children,
 	className,
 }: CustomProjectLayoutProps) {
-	return <Card className={cn('', className)}>{children}</Card>;
+	return (
+		<Card
+			className={cn(
+				'bg-[#1B1918]/25 dark:bg-[#1B1918]/50 border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60',
+				className,
+			)}
+		>
+			{children}
+		</Card>
+	);
 };
 
 ProjectStruct.Header = function ProjectStructHeader({
@@ -34,7 +45,16 @@ ProjectStruct.Title = function ProjectStructTitle({
 	children,
 	className,
 }: CustomProjectLayoutProps) {
-	return <CardTitle className={cn('', className)}>{children}</CardTitle>;
+	return (
+		<CardTitle
+			className={cn(
+				'text-transparent bg-clip-text bg-gradient-to-r from-foreground to-secondary text-xl/relaxed md:text-3xl/relaxed font-semibold tracking-tight text-center',
+				className,
+			)}
+		>
+			{children}
+		</CardTitle>
+	);
 };
 
 ProjectStruct.Description = function ProjectStructDescription({
@@ -42,7 +62,14 @@ ProjectStruct.Description = function ProjectStructDescription({
 	className,
 }: CustomProjectLayoutProps) {
 	return (
-		<CardDescription className={cn('', className)}>{children}</CardDescription>
+		<CardDescription
+			className={cn(
+				'text-lg/relaxed text-primary-foreground text-center',
+				className,
+			)}
+		>
+			{children}
+		</CardDescription>
 	);
 };
 
@@ -51,4 +78,32 @@ ProjectStruct.Content = function ProjectStructContent({
 	className,
 }: CustomProjectLayoutProps) {
 	return <CardContent className={cn('', className)}>{children}</CardContent>;
+};
+
+ProjectStruct.Meta = function ProjectStructMeta({
+	children,
+	className,
+}: CustomProjectLayoutProps) {
+	return <div className={cn('', className)}>{children}</div>;
+};
+
+ProjectStruct.Stack = function ProjectStructStack({
+	children,
+	className,
+}: CustomProjectLayoutProps) {
+	return <div className={cn('w-full', className)}>{children}</div>;
+};
+
+ProjectStruct.Images = function ProjectStructImages({
+	children,
+	className,
+}: CustomProjectLayoutProps) {
+	return <div className={cn('', className)}>{children}</div>;
+};
+
+ProjectStruct.Footer = function ProjectStructFooter({
+	children,
+	className,
+}: CustomProjectLayoutProps) {
+	return <CardFooter className={cn('', className)}>{children}</CardFooter>;
 };

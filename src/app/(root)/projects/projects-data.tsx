@@ -8,6 +8,15 @@ import { buttonVariants } from '@/components/ui/button';
 import ContainerStruct from '@/components/ui/custom-container-layout';
 import ProjectStruct from '@/components/ui/project/custom-project-layout';
 
+const FEATURE_LIST = [
+	'Feature 1',
+	'Feature 2',
+	'Feature 3',
+	'Feature 4',
+	'Feature 5',
+	'Feature 6',
+];
+
 export default function ProjectsData() {
 	const { data, isLoading, error } = useQuery({
 		queryKey: ['projects'],
@@ -28,34 +37,52 @@ export default function ProjectsData() {
 				return (
 					<div key={project.id} className={cn(layout.className, 'h-full')}>
 						{layout.size === 'very-big' && (
-							<ProjectStruct.Container className='bg-[#1B1918]/25 dark:bg-[#1B1918]/50 border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60 h-full'>
+							<ProjectStruct.Container>
 								<ContainerStruct.Layout>
 									<ContainerStruct.Content>
 										<ProjectStruct.Header>
-											<ProjectStruct.Title className='text-transparent bg-clip-text bg-gradient-to-r from-foreground to-secondary text-xl/relaxed md:text-3xl/relaxed font-semibold tracking-tight text-center'>
-												{project.title}
-											</ProjectStruct.Title>
+											<ProjectStruct.Title>{project.title}</ProjectStruct.Title>
 										</ProjectStruct.Header>
 									</ContainerStruct.Content>
 									<ContainerStruct.Content>
-										<ProjectStruct.Description className='text-lg/relaxed text-primary-foreground text-center'>
+										<ProjectStruct.Description>
 											{project.description}
 										</ProjectStruct.Description>
 									</ContainerStruct.Content>
 								</ContainerStruct.Layout>
 								<ProjectStruct.Content>
 									<ContainerStruct.Layout>
-										<ContainerStruct.Content className='mx-auto pt-12'>
-											<div>
+										<ContainerStruct.Content className='pt-12 mx-auto'>
+											<ProjectStruct.Stack>
 												<h4 className='text-xl/relaxed md:text-2xl/relaxed font-semibold tracking-tight text-balance text-center'>
 													Features
 												</h4>
-											</div>
-											<div>
+												<ul className='flex flex-col md:flex-row items-center gap-6 my-6 flex-wrap'>
+													{project.features.map(feature => (
+														<li
+															key={project.id}
+															className='flex-auto text-primary-foreground bg-gradient-to-r from-primary to-secondary p-0.5 md:p-1 text-center'
+														>
+															{feature}
+														</li>
+													))}
+												</ul>
+											</ProjectStruct.Stack>
+											<ProjectStruct.Stack>
 												<h4 className='text-xl/relaxed md:text-2xl/relaxed font-semibold tracking-tight text-balance text-center'>
 													Technologies
 												</h4>
-											</div>
+												<ul className='flex flex-col md:flex-row items-center gap-6 my-6 flex-wrap'>
+													{project.technologies.map(technology => (
+														<li
+															key={project.id}
+															className='flex-auto text-primary-foreground bg-gradient-to-r from-secondary to-primary p-0.5 md:p-1 text-center'
+														>
+															{technology}
+														</li>
+													))}
+												</ul>
+											</ProjectStruct.Stack>
 										</ContainerStruct.Content>
 
 										<ContainerStruct.Content className='mx-auto pt-12 space-x-6'>
