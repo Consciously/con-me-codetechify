@@ -19,3 +19,7 @@ export const formatDate = (date: Date | string, dateFormat = 'yyyy-MM-dd') => {
 
 	return format(dateObj, dateFormat);
 };
+
+export const separateWords = (text: string) => {
+	return text.replace(/([a-z0-9])([A-Z])/g, '$1 $2');
+};

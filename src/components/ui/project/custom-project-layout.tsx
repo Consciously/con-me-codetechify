@@ -84,7 +84,16 @@ ProjectStruct.Meta = function ProjectStructMeta({
 	children,
 	className,
 }: CustomProjectLayoutProps) {
-	return <div className={cn('', className)}>{children}</div>;
+	return (
+		<div
+			className={cn(
+				'text-base/relaxed text-primary-foreground text-center',
+				className,
+			)}
+		>
+			{children}
+		</div>
+	);
 };
 
 ProjectStruct.Stack = function ProjectStructStack({

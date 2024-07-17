@@ -3,19 +3,10 @@
 import { useQuery } from '@tanstack/react-query';
 import { getProjects } from '@/app/(root)/projects/action/action';
 import { TILE_LAYOUTS } from '@/constants/constants';
-import { cn, formatDate } from '@/lib/utils';
+import { cn, formatDate, separateWords } from '@/lib/utils';
 import { buttonVariants } from '@/components/ui/button';
 import ContainerStruct from '@/components/ui/custom-container-layout';
 import ProjectStruct from '@/components/ui/project/custom-project-layout';
-
-const FEATURE_LIST = [
-	'Feature 1',
-	'Feature 2',
-	'Feature 3',
-	'Feature 4',
-	'Feature 5',
-	'Feature 6',
-];
 
 export default function ProjectsData() {
 	const { data, isLoading, error } = useQuery({
@@ -42,6 +33,16 @@ export default function ProjectsData() {
 									<ContainerStruct.Content>
 										<ProjectStruct.Header>
 											<ProjectStruct.Title>{project.title}</ProjectStruct.Title>
+											<ProjectStruct.Meta>
+												<p className='flex gap-3 justify-center items-center'>
+													<span className='text-primary'>
+														{separateWords(project.clientName)}
+													</span>
+													<span className='text-secondary'>
+														{formatDate(project.createdAt)}
+													</span>
+												</p>
+											</ProjectStruct.Meta>
 										</ProjectStruct.Header>
 									</ContainerStruct.Content>
 									<ContainerStruct.Content>
