@@ -29,7 +29,9 @@ ProjectStruct.Container = function ProjectStructContainer({
 				className,
 			)}
 		>
-			{children}
+			<div className='flex flex-col items-center justify-center w-full'>
+				{children}
+			</div>
 		</Card>
 	);
 };
@@ -38,7 +40,26 @@ ProjectStruct.Header = function ProjectStructHeader({
 	children,
 	className,
 }: CustomProjectLayoutProps) {
-	return <CardHeader className={cn('', className)}>{children}</CardHeader>;
+	return (
+		<CardHeader className={cn('flex-1', className)}>{children}</CardHeader>
+	);
+};
+
+ProjectStruct.Content = function ProjectStructContent({
+	children,
+	className,
+}: CustomProjectLayoutProps) {
+	return (
+		<CardContent className={cn('flex-1', className)}>{children}</CardContent>
+	);
+};
+ProjectStruct.Footer = function ProjectStructFooter({
+	children,
+	className,
+}: CustomProjectLayoutProps) {
+	return (
+		<CardFooter className={cn('flex-1', className)}>{children}</CardFooter>
+	);
 };
 
 ProjectStruct.Title = function ProjectStructTitle({
@@ -73,13 +94,6 @@ ProjectStruct.Description = function ProjectStructDescription({
 	);
 };
 
-ProjectStruct.Content = function ProjectStructContent({
-	children,
-	className,
-}: CustomProjectLayoutProps) {
-	return <CardContent className={cn('', className)}>{children}</CardContent>;
-};
-
 ProjectStruct.Meta = function ProjectStructMeta({
 	children,
 	className,
@@ -108,11 +122,4 @@ ProjectStruct.Images = function ProjectStructImages({
 	className,
 }: CustomProjectLayoutProps) {
 	return <div className={cn('', className)}>{children}</div>;
-};
-
-ProjectStruct.Footer = function ProjectStructFooter({
-	children,
-	className,
-}: CustomProjectLayoutProps) {
-	return <CardFooter className={cn('', className)}>{children}</CardFooter>;
 };

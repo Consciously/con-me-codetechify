@@ -28,86 +28,79 @@ export default function ProjectsData() {
 				return (
 					<div key={project.id} className={cn(layout.className, 'h-full')}>
 						{layout.size === 'very-big' && (
+							// project container
 							<ProjectStruct.Container>
-								<ContainerStruct.Layout>
-									<ContainerStruct.Content>
-										<ProjectStruct.Header>
-											<ProjectStruct.Title>{project.title}</ProjectStruct.Title>
-											<ProjectStruct.Meta>
-												<p className='flex gap-3 justify-center items-center'>
-													<span className='text-primary'>
-														{separateWords(project.clientName)}
-													</span>
-													<span className='text-secondary'>
-														{formatDate(project.createdAt)}
-													</span>
-												</p>
-											</ProjectStruct.Meta>
-										</ProjectStruct.Header>
-									</ContainerStruct.Content>
-									<ContainerStruct.Content>
-										<ProjectStruct.Description>
-											{project.description}
-										</ProjectStruct.Description>
-									</ContainerStruct.Content>
-								</ContainerStruct.Layout>
+								{/* project header */}
+								<ProjectStruct.Header>
+									<ProjectStruct.Title>{project.title}</ProjectStruct.Title>
+									<ProjectStruct.Meta>
+										<p className='flex gap-3 justify-center items-center'>
+											<span className='text-primary'>
+												{separateWords(project.clientName)}
+											</span>
+											<span className='text-secondary'>
+												{formatDate(project.createdAt)}
+											</span>
+										</p>
+									</ProjectStruct.Meta>
+								</ProjectStruct.Header>
+								{/* project content */}
 								<ProjectStruct.Content>
-									<ContainerStruct.Layout>
-										<ContainerStruct.Content className='pt-12 mx-auto'>
-											<ProjectStruct.Stack>
-												<h4 className='text-xl/relaxed md:text-2xl/relaxed font-semibold tracking-tight text-balance text-center'>
-													Features
-												</h4>
-												<ul className='flex flex-col md:flex-row items-center gap-6 my-6 flex-wrap'>
-													{project.features.map(feature => (
-														<li
-															key={project.id}
-															className='flex-auto text-primary-foreground bg-gradient-to-r from-primary to-secondary p-0.5 md:p-1 text-center'
-														>
-															{feature}
-														</li>
-													))}
-												</ul>
-											</ProjectStruct.Stack>
-											<ProjectStruct.Stack>
-												<h4 className='text-xl/relaxed md:text-2xl/relaxed font-semibold tracking-tight text-balance text-center'>
-													Technologies
-												</h4>
-												<ul className='flex flex-col md:flex-row items-center gap-6 my-6 flex-wrap'>
-													{project.technologies.map(technology => (
-														<li
-															key={project.id}
-															className='flex-auto text-primary-foreground bg-gradient-to-r from-secondary to-primary p-0.5 md:p-1 text-center'
-														>
-															{technology}
-														</li>
-													))}
-												</ul>
-											</ProjectStruct.Stack>
-										</ContainerStruct.Content>
-
-										<ContainerStruct.Content className='mx-auto pt-12 space-x-6'>
-											<a
-												href={project.liveDemo}
-												className={cn(
-													buttonVariants(),
-													'bg-transparent bg-gradient-to-tr from-primary to-secondary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60',
-												)}
-											>
-												Live Demo
-											</a>
-											<a
-												href={project.githubRepo}
-												className={cn(
-													buttonVariants(),
-													'bg-transparent bg-gradient-to-tr from-secondary to-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60',
-												)}
-											>
-												GitHub Repo
-											</a>
-										</ContainerStruct.Content>
-									</ContainerStruct.Layout>
+									<ProjectStruct.Description>
+										{project.description}
+									</ProjectStruct.Description>
+									<ProjectStruct.Stack>
+										<h4 className='text-xl/relaxed md:text-2xl/relaxed font-semibold tracking-tight text-balance text-center'>
+											Features
+										</h4>
+										<ul className='flex gap-6 my-6 flex-wrap'>
+											{project.features.map(feature => (
+												<li
+													key={project.id}
+													className='flex-auto text-primary-foreground bg-gradient-to-r from-primary to-secondary p-0.5 md:p-1 text-center'
+												>
+													{feature}
+												</li>
+											))}
+										</ul>
+									</ProjectStruct.Stack>
+									<ProjectStruct.Stack>
+										<h4 className='text-xl/relaxed md:text-2xl/relaxed font-semibold tracking-tight text-balance text-center'>
+											Technologies
+										</h4>
+										<ul className='flex gap-6 my-6 flex-wrap'>
+											{project.technologies.map(technology => (
+												<li
+													key={project.id}
+													className='flex-auto text-primary-foreground bg-gradient-to-r from-primary to-secondary p-0.5 md:p-1 text-center'
+												>
+													{technology}
+												</li>
+											))}
+										</ul>
+									</ProjectStruct.Stack>
 								</ProjectStruct.Content>
+								{/* project footer */}
+								<ProjectStruct.Footer>
+									<a
+										href={project.liveDemo}
+										className={cn(
+											buttonVariants(),
+											'bg-transparent bg-gradient-to-tr from-primary to-secondary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60',
+										)}
+									>
+										Live Demo
+									</a>
+									<a
+										href={project.githubRepo}
+										className={cn(
+											buttonVariants(),
+											'bg-transparent bg-gradient-to-tr from-secondary to-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60',
+										)}
+									>
+										GitHub Repo
+									</a>
+								</ProjectStruct.Footer>
 							</ProjectStruct.Container>
 						)}
 						{layout.size === 'big' && (
@@ -118,16 +111,10 @@ export default function ProjectsData() {
 									</ProjectStruct.Title>
 								</ProjectStruct.Header>
 								<ProjectStruct.Content>
-									<ContainerStruct.Layout className='gap-6'>
-										<ContainerStruct.Content className='lg:col-span-6'>
-											<ProjectStruct.Description className='text-lg/relaxed text-primary-foreground'>
-												{project.description}
-											</ProjectStruct.Description>
-										</ContainerStruct.Content>
-										<ContainerStruct.Content className='lg:col-span-6'>
-											Right side content
-										</ContainerStruct.Content>
-									</ContainerStruct.Layout>
+									<ProjectStruct.Description className='text-lg/relaxed text-primary-foreground'>
+										{project.description}
+									</ProjectStruct.Description>
+									<div>Right side content</div>
 								</ProjectStruct.Content>
 							</ProjectStruct.Container>
 						)}
@@ -139,14 +126,11 @@ export default function ProjectsData() {
 									</ProjectStruct.Title>
 								</ProjectStruct.Header>
 								<ProjectStruct.Content>
-									<ContainerStruct.Layout className='gap-6'>
-										<ContainerStruct.Content>
-											<ProjectStruct.Description className='text-lg/relaxed text-primary-foreground'>
-												{project.description}
-											</ProjectStruct.Description>
-										</ContainerStruct.Content>
-										<div className='col-span-full'>Right side content</div>
-									</ContainerStruct.Layout>
+									<ProjectStruct.Description className='text-lg/relaxed text-primary-foreground'>
+										{project.description}
+									</ProjectStruct.Description>
+
+									<div className='col-span-full'>Right side content</div>
 								</ProjectStruct.Content>
 							</ProjectStruct.Container>
 						)}
