@@ -1,7 +1,11 @@
+'use client';
+
 import ProjectStruct from '@/components/ui/project/custom-project-layout';
 import { buttonVariants } from '@/components/ui/button';
 import { cn, formatDate, separateWords } from '@/lib/utils';
 import type { SelectProject } from '@/db/schema';
+import { useState } from 'react';
+import Image from 'next/image';
 
 type ProjectItemPropsType = {
 	project: SelectProject;
@@ -11,13 +15,28 @@ type ProjectItemPropsType = {
 };
 
 export default function ProjectItem({ project, layout }: ProjectItemPropsType) {
+	const [selectedImage, setSelectedImage] = useState(project.images[0]);
+	const [smallImages, setSmallImages] = useState(
+		project.images.filter(image => image !== selectedImage).slice(0, 3),
+	);
+
+	const handleImageClick = (image: string) => {
+		const newSelectedImage = image;
+		const newSmallImages = project.images
+			.filter(img => img !== newSelectedImage)
+			.slice(0, 3);
+
+		setSelectedImage(newSelectedImage);
+		setSmallImages(newSmallImages);
+	};
+
 	return (
 		<>
 			{layout.size === 'very-big' && (
 				// project container
 				<ProjectStruct.Container>
 					{/* project header */}
-					<ProjectStruct.Header>
+					<ProjectStruct.Header className='w-1/2'>
 						<ProjectStruct.Title>{project.title}</ProjectStruct.Title>
 						<ProjectStruct.Meta>
 							<p className='flex gap-3 justify-center items-center'>
@@ -65,6 +84,32 @@ export default function ProjectItem({ project, layout }: ProjectItemPropsType) {
 								))}
 							</ul>
 						</ProjectStruct.Stack>
+						<ProjectStruct.ImagesContainer>
+							<ProjectStruct.Image className='w-full h-[256px]'>
+								<Image
+									src={selectedImage}
+									alt={project.title}
+									fill
+									className='object-cover'
+								/>
+							</ProjectStruct.Image>
+							<div className='flex flex-col gap-6'>
+								{smallImages.map((image, idx) => (
+									<ProjectStruct.Image
+										key={idx}
+										className='w-[96px] h-[96px] cursor-pointer'
+										onClick={() => handleImageClick(image)}
+									>
+										<Image
+											src={image}
+											fill
+											className='w-full h-auto object-cover'
+											alt={`Thumbnail ${idx + 1}`}
+										/>
+									</ProjectStruct.Image>
+								))}
+							</div>
+						</ProjectStruct.ImagesContainer>
 					</ProjectStruct.Content>
 					{/* project footer */}
 					<ProjectStruct.Footer>

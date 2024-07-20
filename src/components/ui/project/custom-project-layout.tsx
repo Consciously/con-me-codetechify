@@ -126,9 +126,21 @@ ProjectStruct.Stack = function ProjectStructStack({
 	return <div className={cn('', className)}>{children}</div>;
 };
 
-ProjectStruct.Images = function ProjectStructImages({
+ProjectStruct.ImagesContainer = function ProjectStructImagesContainer({
 	children,
 	className,
 }: CustomProjectLayoutProps) {
-	return <div className={cn('', className)}>{children}</div>;
+	return <div className={cn('flex gap-6', className)}>{children}</div>;
+};
+
+ProjectStruct.Image = function ProjectStructImage({
+	children,
+	className,
+	onClick,
+}: CustomProjectLayoutProps & { onClick?: () => void }) {
+	return (
+		<div className={cn('flex-1 relative', className)} onClick={onClick}>
+			{children}
+		</div>
+	);
 };
