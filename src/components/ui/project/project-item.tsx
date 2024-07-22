@@ -37,7 +37,7 @@ export default function ProjectItem({ project, layout }: ProjectItemPropsType) {
 				// project container
 				<ProjectStruct.Container>
 					{/* project header */}
-					<ProjectStruct.Header className='w-1/2'>
+					<ProjectStruct.Header className='w-1/2 my-3 md:my-6 xl:my-12'>
 						<ProjectStruct.Title>{project.title}</ProjectStruct.Title>
 						<ProjectStruct.Meta>
 							<p className='flex gap-3 justify-center items-center'>
@@ -55,7 +55,7 @@ export default function ProjectItem({ project, layout }: ProjectItemPropsType) {
 						<ProjectStruct.Description>
 							{project.description}
 						</ProjectStruct.Description>
-						<div className='flex flex-col md:flex-row md:gap-x-12'>
+						<div className='flex flex-col md:flex-row md:gap-x-12 my-3 md:my-6 xl:my-12'>
 							<ProjectStruct.Stack>
 								<h4 className='text-xl/relaxed md:text-2xl/relaxed font-semibold tracking-tight text-balance text-center'>
 									Features
@@ -64,7 +64,7 @@ export default function ProjectItem({ project, layout }: ProjectItemPropsType) {
 									{project.features.map(feature => (
 										<li
 											key={project.id}
-											className='flex-auto text-primary-foreground bg-gradient-to-r from-primary to-secondary p-0.5 md:p-1 text-center'
+											className='flex-auto text-primary-foreground bg-gradient-to-r from-primary to-secondary p-0.5 md:p-1 text-center '
 										>
 											{feature}
 										</li>
@@ -79,7 +79,7 @@ export default function ProjectItem({ project, layout }: ProjectItemPropsType) {
 									{project.technologies.map(technology => (
 										<li
 											key={project.id}
-											className='flex-auto text-primary-foreground bg-gradient-to-r from-secondary to-primary p-0.5 md:p-1 text-center'
+											className='flex-auto text-primary-foreground bg-gradient-to-r from-secondary to-primary p-0.5 md:p-1 text-center  '
 										>
 											{technology}
 										</li>
@@ -87,7 +87,7 @@ export default function ProjectItem({ project, layout }: ProjectItemPropsType) {
 								</ul>
 							</ProjectStruct.Stack>
 						</div>
-						<ProjectStruct.ImagesContainer className='w-full'>
+						<ProjectStruct.ImagesContainer className='w-full my-3 md:my-6 xl:my-12'>
 							<div className='w-full flex gap-3 md:w-2/3 md:mx-auto'>
 								<ProjectStruct.Image className='w-full h-[256px]'>
 									<Image
