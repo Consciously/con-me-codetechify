@@ -35,7 +35,7 @@ export default function ProjectItem({ project, layout }: ProjectItemPropsType) {
 		<>
 			{layout.size === 'very-big' && (
 				// project container
-				<ProjectStruct.Container>
+				<ProjectStruct.Container className='h-full'>
 					{/* project header */}
 					<ProjectStruct.Header className='w-1/2 my-3 md:my-6 xl:my-12'>
 						<ProjectStruct.Title>{project.title}</ProjectStruct.Title>
@@ -52,10 +52,10 @@ export default function ProjectItem({ project, layout }: ProjectItemPropsType) {
 					</ProjectStruct.Header>
 					{/* project content */}
 					<ProjectStruct.Content>
-						<ProjectStruct.Description>
+						<ProjectStruct.Description className='w-full md:w-[650px] mx-auto'>
 							{project.description}
 						</ProjectStruct.Description>
-						<div className='flex flex-col md:flex-row md:gap-x-12 my-3 md:my-6 xl:my-12'>
+						<div className='flex flex-col w-full mx-auto md:w-[650px] md:flex-row md:gap-x-12 my-12 md:my-24 xl:my-48'>
 							<ProjectStruct.Stack>
 								<h4 className='text-xl/relaxed md:text-2xl/relaxed font-semibold tracking-tight text-balance text-center'>
 									Features
@@ -88,7 +88,7 @@ export default function ProjectItem({ project, layout }: ProjectItemPropsType) {
 							</ProjectStruct.Stack>
 						</div>
 						<ProjectStruct.ImagesContainer className='w-full my-3 md:my-6 xl:my-12'>
-							<div className='w-full flex gap-3 md:w-2/3 md:mx-auto'>
+							<div className='w-full flex gap-3 md:w-[650px] md:mx-auto'>
 								<ProjectStruct.Image className='w-full h-[256px]'>
 									<Image
 										src={selectedImage}
@@ -150,8 +150,88 @@ export default function ProjectItem({ project, layout }: ProjectItemPropsType) {
 						<ProjectStruct.Description className='text-lg/relaxed text-primary-foreground'>
 							{project.description}
 						</ProjectStruct.Description>
-						<div>Right side content</div>
+						<div className='hidden md:flex md:flex-col my-3 md:my-6 xl:my-12'>
+							<ProjectStruct.Stack>
+								<h4 className='text-xl/relaxed md:text-2xl/relaxed font-semibold tracking-tight text-balance text-center'>
+									Features
+								</h4>
+								<ul className='flex gap-6 my-6 flex-wrap'>
+									{project.features.map(feature => (
+										<li
+											key={project.id}
+											className='flex-auto text-primary-foreground bg-gradient-to-r from-primary to-secondary p-0.5 md:p-1 text-center '
+										>
+											{feature}
+										</li>
+									))}
+								</ul>
+							</ProjectStruct.Stack>
+							<ProjectStruct.Stack>
+								<h4 className='text-xl/relaxed md:text-2xl/relaxed font-semibold tracking-tight text-balance text-center'>
+									Technologies
+								</h4>
+								<ul className='flex gap-6 my-6 flex-wrap'>
+									{project.technologies.map(technology => (
+										<li
+											key={project.id}
+											className='flex-auto text-primary-foreground bg-gradient-to-r from-secondary to-primary p-0.5 md:p-1 text-center  '
+										>
+											{technology}
+										</li>
+									))}
+								</ul>
+							</ProjectStruct.Stack>
+						</div>
+						<ProjectStruct.ImagesContainer className='w-full my-3 md:my-6 xl:my-12'>
+							<div className='w-full flex gap-3 md:w-full md:mx-auto'>
+								<ProjectStruct.Image className='w-full h-[256px]'>
+									<Image
+										src={selectedImage}
+										alt={project.title}
+										fill
+										className='object-cover'
+									/>
+								</ProjectStruct.Image>
+								<div className='flex flex-col gap-3'>
+									{smallImages.map((image, idx) => (
+										<ProjectStruct.Image
+											key={idx}
+											className='w-[96px] h-[96px] cursor-pointer'
+											onClick={() => handleImageClick(image)}
+										>
+											<Image
+												src={image}
+												fill
+												className='w-full h-auto object-cover'
+												alt={`Thumbnail ${idx + 1}`}
+											/>
+										</ProjectStruct.Image>
+									))}
+								</div>
+							</div>
+						</ProjectStruct.ImagesContainer>
 					</ProjectStruct.Content>
+					{/* project footer */}
+					<ProjectStruct.Footer>
+						<a
+							href={project.liveDemo}
+							className={cn(
+								buttonVariants(),
+								'bg-transparent bg-gradient-to-tr from-primary to-secondary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60',
+							)}
+						>
+							Live Demo
+						</a>
+						<a
+							href={project.githubRepo}
+							className={cn(
+								buttonVariants(),
+								'bg-transparent bg-gradient-to-tr from-secondary to-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60',
+							)}
+						>
+							GitHub Repo
+						</a>
+					</ProjectStruct.Footer>
 				</ProjectStruct.Container>
 			)}
 			{layout.size === 'normal' && (
