@@ -37,7 +37,7 @@ export default function ProjectItem({ project, layout }: ProjectItemPropsType) {
 				// project container
 				<ProjectStruct.Container className='h-full'>
 					{/* project header */}
-					<ProjectStruct.Header className='w-1/2 my-3 md:my-6 xl:my-12'>
+					<ProjectStruct.Header className='w-full md:w-[650px] my-3 md:my-6 xl:my-12'>
 						<ProjectStruct.Title>{project.title}</ProjectStruct.Title>
 						<ProjectStruct.Meta>
 							<p className='flex gap-3 justify-center items-center'>
@@ -89,7 +89,7 @@ export default function ProjectItem({ project, layout }: ProjectItemPropsType) {
 						</div>
 						<ProjectStruct.ImagesContainer className='w-full my-3 md:my-6 xl:my-12'>
 							<div className='w-full flex gap-3 md:w-[650px] md:mx-auto'>
-								<ProjectStruct.Image className='w-full h-[256px]'>
+								<ProjectStruct.Image className='w-full h-[256px] xl:h-[512px]'>
 									<Image
 										src={selectedImage}
 										alt={project.title}
@@ -101,7 +101,7 @@ export default function ProjectItem({ project, layout }: ProjectItemPropsType) {
 									{smallImages.map((image, idx) => (
 										<ProjectStruct.Image
 											key={idx}
-											className='w-[96px] h-[96px] cursor-pointer'
+											className='w-[128px] h-[128px] xl:w-[128px] xl:h-[128px] cursor-pointer'
 											onClick={() => handleImageClick(image)}
 										>
 											<Image
@@ -117,12 +117,12 @@ export default function ProjectItem({ project, layout }: ProjectItemPropsType) {
 						</ProjectStruct.ImagesContainer>
 					</ProjectStruct.Content>
 					{/* project footer */}
-					<ProjectStruct.Footer>
+					<ProjectStruct.Footer className='w-full md:w-[650px]'>
 						<a
 							href={project.liveDemo}
 							className={cn(
 								buttonVariants(),
-								'bg-transparent bg-gradient-to-tr from-primary to-secondary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60',
+								'block w-full bg-transparent bg-gradient-to-tr from-primary to-secondary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60 text-center',
 							)}
 						>
 							Live Demo
@@ -131,7 +131,7 @@ export default function ProjectItem({ project, layout }: ProjectItemPropsType) {
 							href={project.githubRepo}
 							className={cn(
 								buttonVariants(),
-								'bg-transparent bg-gradient-to-tr from-secondary to-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60',
+								'block w-full bg-transparent bg-gradient-to-tr from-secondary to-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60 text-center',
 							)}
 						>
 							GitHub Repo
@@ -140,8 +140,8 @@ export default function ProjectItem({ project, layout }: ProjectItemPropsType) {
 				</ProjectStruct.Container>
 			)}
 			{layout.size === 'big' && (
-				<ProjectStruct.Container className='bg-[#1B1918]/25 dark:bg-[#1B1918]/50 border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60 h-full'>
-					<ProjectStruct.Header>
+				<ProjectStruct.Container className='h-full'>
+					<ProjectStruct.Header className='w-full my-3 md:my-6 xl:my-12'>
 						<ProjectStruct.Title className='text-transparent bg-clip-text bg-gradient-to-r from-foreground to-secondary text-xl/relaxed md:text-3xl/relaxed font-semibold tracking-tight text-center'>
 							{project.title}
 						</ProjectStruct.Title>
@@ -150,7 +150,7 @@ export default function ProjectItem({ project, layout }: ProjectItemPropsType) {
 						<ProjectStruct.Description className='text-lg/relaxed text-primary-foreground'>
 							{project.description}
 						</ProjectStruct.Description>
-						<div className='hidden md:flex md:flex-col my-3 md:my-6 xl:my-12'>
+						<div className='hidden md:flex md:flex-col my-12 md:my-24 xl:my-48'>
 							<ProjectStruct.Stack>
 								<h4 className='text-xl/relaxed md:text-2xl/relaxed font-semibold tracking-tight text-balance text-center'>
 									Features
@@ -212,12 +212,12 @@ export default function ProjectItem({ project, layout }: ProjectItemPropsType) {
 						</ProjectStruct.ImagesContainer>
 					</ProjectStruct.Content>
 					{/* project footer */}
-					<ProjectStruct.Footer>
+					<ProjectStruct.Footer className='w-full'>
 						<a
 							href={project.liveDemo}
 							className={cn(
 								buttonVariants(),
-								'bg-transparent bg-gradient-to-tr from-primary to-secondary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60',
+								'block w-full bg-transparent bg-gradient-to-tr from-primary to-secondary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60 text-center',
 							)}
 						>
 							Live Demo
@@ -226,7 +226,7 @@ export default function ProjectItem({ project, layout }: ProjectItemPropsType) {
 							href={project.githubRepo}
 							className={cn(
 								buttonVariants(),
-								'bg-transparent bg-gradient-to-tr from-secondary to-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60',
+								'block w-full bg-transparent bg-gradient-to-tr from-secondary to-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60 text-center',
 							)}
 						>
 							GitHub Repo
@@ -235,7 +235,7 @@ export default function ProjectItem({ project, layout }: ProjectItemPropsType) {
 				</ProjectStruct.Container>
 			)}
 			{layout.size === 'normal' && (
-				<ProjectStruct.Container className='bg-[#1B1918]/25 dark:bg-[#1B1918]/50 border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60 h-full'>
+				<ProjectStruct.Container className='h-full'>
 					<ProjectStruct.Header>
 						<ProjectStruct.Title className='text-transparent bg-clip-text bg-gradient-to-r from-foreground to-secondary text-xl/relaxed md:text-3xl/relaxed font-semibold tracking-tight text-center'>
 							{project.title}

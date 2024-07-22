@@ -60,7 +60,7 @@ ProjectStruct.Footer = function ProjectStructFooter({
 	return (
 		<CardFooter
 			className={cn(
-				'flex flex-auto items-center justify-center gap-x-6',
+				'flex flex-col md:flex-row flex-1 items-center justify-center gap-6',
 				className,
 			)}
 		>
