@@ -36,7 +36,7 @@ export default function HeroCtaArea() {
 
 	return (
 		<ContainerStruct.Content className='md:col-span-6'>
-			<Spacer>
+			<Spacer variant='x-large'>
 				<div
 					className='relative z-10 w-fit mx-auto'
 					onMouseEnter={() => setIsHovered(true)}
