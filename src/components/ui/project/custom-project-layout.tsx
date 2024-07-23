@@ -137,7 +137,7 @@ ProjectStruct.Image = function ProjectStructImage({
 	onClick,
 }: CustomProjectLayoutProps & { onClick?: () => void }) {
 	return (
-		<div className={cn('flex-1 relative', className)} onClick={onClick}>
+		<div className={cn('flex-auto', className)} onClick={onClick}>
 			{children}
 		</div>
 	);

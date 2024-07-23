@@ -21,7 +21,7 @@ export default function ProjectsData() {
 		<ContainerStruct.Layout className='auto-rows-150 gap-6'>
 			{data?.map(project => {
 				return (
-					<div key={project.id} className='col-span-full row-span-1'>
+					<div key={project.id} className='col-span-full'>
 						<ProjectItem project={project} />
 					</div>
 				);
