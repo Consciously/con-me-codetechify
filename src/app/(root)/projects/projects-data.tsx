@@ -2,7 +2,6 @@
 
 import { useQuery } from '@tanstack/react-query';
 import { getProjects } from '@/app/(root)/projects/action/action';
-import { TILE_LAYOUTS } from '@/constants/constants';
 import { cn } from '@/lib/utils';
 
 import ContainerStruct from '@/components/ui/custom-container-layout';
@@ -20,14 +19,10 @@ export default function ProjectsData() {
 
 	return (
 		<ContainerStruct.Layout className='auto-rows-150 gap-6'>
-			{data?.map((project, index) => {
-				const layout = TILE_LAYOUTS[index] || {
-					className: 'col-span-full row-span-1',
-				};
-
+			{data?.map(project => {
 				return (
-					<div key={project.id} className={cn(layout.className, 'h-full')}>
-						<ProjectItem project={project} layout={layout} />
+					<div key={project.id} className='col-span-full row-span-1'>
+						<ProjectItem project={project} />
 					</div>
 				);
 			})}
