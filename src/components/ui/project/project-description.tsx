@@ -1,13 +1,18 @@
 import { SelectProject } from '@/db/schema';
 import ProjectStruct from './custom-project-layout';
+import { cn } from '@/lib/utils';
+
+type ProjectDescriptionPropsType = {
+	project: SelectProject;
+	className?: string;
+};
 
 export default function ProjectDescription({
 	project,
-}: {
-	project: SelectProject;
-}) {
+	className,
+}: ProjectDescriptionPropsType) {
 	return (
-		<ProjectStruct.Description className='w-full md:w-[650px] mx-auto'>
+		<ProjectStruct.Description className={cn('w-full', className)}>
 			{project.description}
 		</ProjectStruct.Description>
 	);

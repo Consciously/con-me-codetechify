@@ -19,9 +19,9 @@ export default function ProjectItem({ project }: ProjectItemPropsType) {
 		<ProjectStruct.Container className='h-full'>
 			<ProjectHeader project={project} />
 			<ProjectStruct.Content className='grid grid-cols-2 gap-12'>
-				<div className='col-span-full sm:col-span-1'>
-					<ProjectDescription project={project} />
-					<ProjectImagesContainer project={project} />
+				<div className='col-span-full sm:col-span-1 grid grid-cols-2'>
+					<ProjectDescription project={project} className='col-span-full' />
+					<ProjectImagesContainer project={project} className='col-span-full' />
 				</div>
 				<div className='hidden sm:block sm:col-span-1'>
 					<ProjectStack project={project} />
