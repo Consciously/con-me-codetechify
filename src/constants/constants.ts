@@ -114,7 +114,8 @@ export const TILE_LAYOUTS = [
 	},
 	{
 		size: 'big',
-		className: 'col-span-full md:col-span-6 xl:col-span-4 row-span-1',
+		className:
+			'col-span-full md:col-span-6 xl:col-span-4 row-span-1 xl:row-span-3',
 	},
 	{
 		size: 'normal',
