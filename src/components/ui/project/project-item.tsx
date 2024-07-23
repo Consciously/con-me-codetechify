@@ -236,7 +236,7 @@ export default function ProjectItem({ project, layout }: ProjectItemPropsType) {
 			)}
 			{layout.size === 'normal' && (
 				<ProjectStruct.Container className='h-full'>
-					<ProjectStruct.Header>
+					<ProjectStruct.Header className='w-full my-3 md:my-6 xl:my-12'>
 						<ProjectStruct.Title className='text-transparent bg-clip-text bg-gradient-to-r from-foreground to-secondary text-xl/relaxed md:text-3xl/relaxed font-semibold tracking-tight text-center'>
 							{project.title}
 						</ProjectStruct.Title>
@@ -245,8 +245,34 @@ export default function ProjectItem({ project, layout }: ProjectItemPropsType) {
 						<ProjectStruct.Description className='text-lg/relaxed text-primary-foreground'>
 							{project.description}
 						</ProjectStruct.Description>
-
-						<div className='col-span-full'>Right side content</div>
+						<ProjectStruct.ImagesContainer className='w-full my-3 md:my-6 xl:my-12'>
+							<div className='w-full flex gap-3 md:w-full md:mx-auto'>
+								<ProjectStruct.Image className='w-full h-[256px]'>
+									<Image
+										src={selectedImage}
+										alt={project.title}
+										fill
+										className='object-cover'
+									/>
+								</ProjectStruct.Image>
+								<div className='flex flex-col gap-3'>
+									{smallImages.map((image, idx) => (
+										<ProjectStruct.Image
+											key={idx}
+											className='w-[96px] h-[96px] cursor-pointer'
+											onClick={() => handleImageClick(image)}
+										>
+											<Image
+												src={image}
+												fill
+												className='w-full h-auto object-cover'
+												alt={`Thumbnail ${idx + 1}`}
+											/>
+										</ProjectStruct.Image>
+									))}
+								</div>
+							</div>
+						</ProjectStruct.ImagesContainer>
 					</ProjectStruct.Content>
 				</ProjectStruct.Container>
 			)}
