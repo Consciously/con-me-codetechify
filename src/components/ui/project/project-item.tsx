@@ -29,7 +29,7 @@ export default function ProjectItem({ project }: ProjectItemPropsType) {
 			</ProjectStruct.Content>
 
 			{/* project footer */}
-			<ProjectStruct.Footer className='w-full'>
+			<ProjectStruct.Footer className='w-1/2 md:absolute md:bottom-0 md:right-0 xl:-translate-y-40 xl:-translate-x-1/3'>
 				<a
 					href={project.liveDemo}
 					className={cn(
