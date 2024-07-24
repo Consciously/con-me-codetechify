@@ -22,8 +22,10 @@ export default function ProjectImagesContainer({
 	};
 
 	return (
-		<ProjectStruct.ImagesContainer className={cn('w-full', className)}>
-			<div className='grid grid-cols-8 gap-3 w-full lg:w-2/3 lg:mx-auto'>
+		<ProjectStruct.ImagesContainer
+			className={cn('w-2/3 h-2/3 xl:w-full xl:h-full m-auto', className)}
+		>
+			<div className='grid grid-cols-8 gap-3 w-full'>
 				<div className='col-span-6 my-auto'>
 					<ProjectStruct.Image className='w-full h-full'>
 						<Image
@@ -31,7 +33,7 @@ export default function ProjectImagesContainer({
 							alt={project.title}
 							width={1024}
 							height={1024}
-							className='aspect-square w-full h-auto object-cover object-center'
+							className='aspect-square w-full h-auto object-cover object-center rounded-md'
 						/>
 					</ProjectStruct.Image>
 				</div>
@@ -39,7 +41,12 @@ export default function ProjectImagesContainer({
 					{project.images.map((image, idx) => (
 						<div className='col-span-1' key={idx}>
 							<ProjectStruct.Image
-								className='w-full h-full cursor-pointer'
+								className={cn(
+									'w-full h-full cursor-pointer p-0.5 border-2 border-secondary rounded-md',
+									{
+										'border-primary': image === selectedImage,
+									},
+								)}
 								onClick={() => handleImageClick(image)}
 							>
 								<Image

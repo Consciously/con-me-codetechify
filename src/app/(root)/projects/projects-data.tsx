@@ -18,7 +18,7 @@ export default function ProjectsData() {
 	if (error) return <div>Error: {error.message}</div>;
 
 	return (
-		<ContainerStruct.Layout className='auto-rows-150 gap-6'>
+		<ContainerStruct.Layout className='auto-rows-150 gap-12'>
 			{data?.map(project => {
 				return (
 					<div key={project.id} className='col-span-full'>

@@ -50,7 +50,9 @@ ProjectStruct.Content = function ProjectStructContent({
 	className,
 }: CustomProjectLayoutProps) {
 	return (
-		<CardContent className={cn('flex-1', className)}>{children}</CardContent>
+		<CardContent className={cn('flex-1 relative', className)}>
+			{children}
+		</CardContent>
 	);
 };
 ProjectStruct.Footer = function ProjectStructFooter({
@@ -128,7 +130,11 @@ ProjectStruct.ImagesContainer = function ProjectStructImagesContainer({
 	children,
 	className,
 }: CustomProjectLayoutProps) {
-	return <div className={cn('flex gap-6', className)}>{children}</div>;
+	return (
+		<div className={cn('flex justify-center items-center gap-6', className)}>
+			{children}
+		</div>
+	);
 };
 
 ProjectStruct.Image = function ProjectStructImage({
