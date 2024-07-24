@@ -18,12 +18,12 @@ export default function ProjectItem({ project }: ProjectItemPropsType) {
 	return (
 		<ProjectStruct.Container className='h-full'>
 			<ProjectHeader project={project} />
-			<ProjectStruct.Content className='grid grid-cols-2 gap-12'>
-				<div className='col-span-full sm:col-span-1 grid grid-cols-2'>
+			<ProjectStruct.Content className='grid grid-cols-6 gap-12'>
+				<div className='col-span-full sm:col-span-3 xl:col-span-2 grid grid-cols-2'>
 					<ProjectDescription project={project} className='col-span-full' />
 					<ProjectImagesContainer project={project} className='col-span-full' />
 				</div>
-				<div className='hidden sm:block sm:col-span-1'>
+				<div className='hidden sm:block sm:col-span-3 xl:col-span-4'>
 					<ProjectStack project={project} />
 				</div>
 			</ProjectStruct.Content>

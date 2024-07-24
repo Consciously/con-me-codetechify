@@ -3,8 +3,8 @@ import ProjectStruct from './custom-project-layout';
 
 export default function ProjectStack({ project }: { project: SelectProject }) {
 	return (
-		<>
-			<ProjectStruct.Stack>
+		<div className='grid grid-cols-4 gap-6'>
+			<ProjectStruct.Stack className='col-span-full xl:col-span-2'>
 				<h4 className='text-xl/relaxed md:text-2xl/relaxed font-semibold tracking-tight text-balance text-center'>
 					Features
 				</h4>
@@ -19,7 +19,7 @@ export default function ProjectStack({ project }: { project: SelectProject }) {
 					))}
 				</ul>
 			</ProjectStruct.Stack>
-			<ProjectStruct.Stack>
+			<ProjectStruct.Stack className='col-span-full xl:col-span-2'>
 				<h4 className='text-xl/relaxed md:text-2xl/relaxed font-semibold tracking-tight text-balance text-center'>
 					Technologies
 				</h4>
@@ -34,6 +34,6 @@ export default function ProjectStack({ project }: { project: SelectProject }) {
 					))}
 				</ul>
 			</ProjectStruct.Stack>
-		</>
+		</div>
 	);
 }

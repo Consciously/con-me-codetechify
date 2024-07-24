@@ -23,7 +23,7 @@ export default function ProjectImagesContainer({
 
 	return (
 		<ProjectStruct.ImagesContainer className={cn('w-full', className)}>
-			<div className='grid grid-cols-8 gap-3 w-full'>
+			<div className='grid grid-cols-8 gap-3 w-full lg:w-2/3 lg:mx-auto'>
 				<div className='col-span-6 my-auto'>
 					<ProjectStruct.Image className='w-full h-full'>
 						<Image
