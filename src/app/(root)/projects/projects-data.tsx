@@ -2,7 +2,6 @@
 
 import { useQuery } from '@tanstack/react-query';
 import { getProjects } from '@/app/(root)/projects/action/action';
-import { cn } from '@/lib/utils';
 
 import ContainerStruct from '@/components/ui/custom-container-layout';
 import ProjectItem from '@/components/ui/project/project-item';
@@ -22,7 +21,7 @@ export default function ProjectsData() {
 			{data?.map(project => {
 				return (
 					<div key={project.id} className='col-span-full'>
-						<ProjectItem project={project} />
+						<ProjectItem project={project} projects={data} />
 					</div>
 				);
 			})}
