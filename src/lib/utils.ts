@@ -25,16 +25,22 @@ export const separateWords = (text: string) => {
 	return text.replace(/([a-z0-9])([A-Z])/g, '$1 $2');
 };
 
+// Arrow function to determine if a project is large or small
 export const getProjectSize = (
 	projects: SelectProject[],
 ): ((project: SelectProject) => 'large' | 'small') => {
-	const latestImportantProject = projects
-		.filter(project => project.importance === 5)
-		.sort(
-			(a, b) =>
-				new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
-		)[0];
+	if (!projects || projects.length === 0) {
+		return () => 'small'; // Default to 'small' if projects is undefined or empty
+	}
+
+	// Find the project with the highest importance and latest date
+	const latestImportantProject = projects.sort((a, b) => {
+		if (b.importance !== a.importance) {
+			return b.importance - a.importance;
+		}
+		return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+	})[0];
 
 	return (project: SelectProject) =>
-		project.id === latestImportantProject.id ? 'large' : 'small';
+		project.id === latestImportantProject?.id ? 'large' : 'small';
 };

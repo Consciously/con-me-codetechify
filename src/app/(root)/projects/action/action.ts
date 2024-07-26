@@ -13,7 +13,7 @@ export const getProjects = async (): Promise<SelectProject[]> => {
 			sql`${projectTable.importance} DESC`,
 			sql`${projectTable.createdAt} DESC`,
 		)
-		.limit(9);
+		.limit(5);
 
 	return projects;
 };
