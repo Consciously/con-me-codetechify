@@ -11,7 +11,7 @@ export default function ProjectContainer({
 	className,
 }: ProjectContainerPropsType) {
 	return (
-		<ProjectStruct.Container className={cn('', className)}>
+		<ProjectStruct.Container className={cn(className)}>
 			{children}
 		</ProjectStruct.Container>
 	);

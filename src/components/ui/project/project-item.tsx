@@ -72,12 +72,15 @@ export default function ProjectItem({
 				</ProjectContainer>
 			) : (
 				<ProjectContainer className='w-full h-full'>
-					<ProjectHeader project={project} className='mb-3 md:mb-6 xl:mb-12' />
+					<ProjectHeader
+						project={project}
+						className='max-h-32 mb-3 md:mb-6 xl:mb-12'
+					/>
 					<ProjectContent className='grid grid-cols-1'>
 						<div className='col-span-full'>
 							<ProjectDescription
 								project={project}
-								className='mb-3 md:mb-6 xl:mb-12'
+								className='mb-3 md:mb-6 xl:mb-12 line-clamp-8'
 							/>
 							<ProjectImagesContainer project={project} />
 						</div>
