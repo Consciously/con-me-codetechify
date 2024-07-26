@@ -47,7 +47,7 @@ export default function HeroCtaArea() {
 					alt='Profile image from Stefan Ihle'
 					width={552}
 					height={736}
-					className='aspect-auto h-full md:h-[420px] w-auto rounded-3xl object-cover object-center border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60'
+					className='aspect-auto h-[620px] md:h-[420px] w-auto rounded-3xl object-cover object-center border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60'
 				/>
 				<AnimatePresence>
 					{isHovered && (

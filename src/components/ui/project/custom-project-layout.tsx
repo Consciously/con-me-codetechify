@@ -25,7 +25,7 @@ ProjectStruct.Container = function ProjectStructContainer({
 	return (
 		<Card
 			className={cn(
-				'bg-[#1B1918]/25 dark:bg-[#1B1918]/50 border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60',
+				'bg-[#1B1918]/25 dark:bg-[#1B1918]/50 border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60 relative',
 				className,
 			)}
 		>
@@ -50,23 +50,16 @@ ProjectStruct.Content = function ProjectStructContent({
 	className,
 }: CustomProjectLayoutProps) {
 	return (
-		<CardContent className={cn('flex-1', className)}>{children}</CardContent>
+		<CardContent className={cn('flex-1 relative', className)}>
+			{children}
+		</CardContent>
 	);
 };
 ProjectStruct.Footer = function ProjectStructFooter({
 	children,
 	className,
 }: CustomProjectLayoutProps) {
-	return (
-		<CardFooter
-			className={cn(
-				'flex flex-col md:flex-row flex-1 items-center justify-center gap-6',
-				className,
-			)}
-		>
-			{children}
-		</CardFooter>
-	);
+	return <CardFooter className={cn('flex', className)}>{children}</CardFooter>;
 };
 
 ProjectStruct.Title = function ProjectStructTitle({
@@ -128,7 +121,11 @@ ProjectStruct.ImagesContainer = function ProjectStructImagesContainer({
 	children,
 	className,
 }: CustomProjectLayoutProps) {
-	return <div className={cn('flex gap-6', className)}>{children}</div>;
+	return (
+		<div className={cn('flex justify-center items-center gap-6', className)}>
+			{children}
+		</div>
+	);
 };
 
 ProjectStruct.Image = function ProjectStructImage({
@@ -137,7 +134,7 @@ ProjectStruct.Image = function ProjectStructImage({
 	onClick,
 }: CustomProjectLayoutProps & { onClick?: () => void }) {
 	return (
-		<div className={cn('flex-1 relative', className)} onClick={onClick}>
+		<div className={cn('flex-auto', className)} onClick={onClick}>
 			{children}
 		</div>
 	);
