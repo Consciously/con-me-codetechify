@@ -59,16 +59,7 @@ ProjectStruct.Footer = function ProjectStructFooter({
 	children,
 	className,
 }: CustomProjectLayoutProps) {
-	return (
-		<CardFooter
-			className={cn(
-				'flex flex-col md:flex-row flex-1 items-center justify-center gap-6',
-				className,
-			)}
-		>
-			{children}
-		</CardFooter>
-	);
+	return <CardFooter className={cn('flex', className)}>{children}</CardFooter>;
 };
 
 ProjectStruct.Title = function ProjectStructTitle({

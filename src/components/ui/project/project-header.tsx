@@ -1,10 +1,17 @@
-import { formatDate, separateWords } from '@/lib/utils';
+import { cn, formatDate, separateWords } from '@/lib/utils';
 import ProjectStruct from './custom-project-layout';
 import { SelectProject } from '@/db/schema';
 
-export default function ProjectHeader({ project }: { project: SelectProject }) {
+type ProjectHeaderPropsType = {
+	className?: string;
+};
+
+export default function ProjectHeader({
+	project,
+	className,
+}: ProjectHeaderPropsType & { project: SelectProject }) {
 	return (
-		<ProjectStruct.Header className='w-full mb-6 md:mb-12 xl:mb-24'>
+		<ProjectStruct.Header className={cn(className)}>
 			<ProjectStruct.Title>{project.title}</ProjectStruct.Title>
 			<ProjectStruct.Meta>
 				<p className='flex gap-3 justify-center items-center'>

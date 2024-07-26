@@ -9,6 +9,9 @@ import ProjectHeader from './project-header';
 import ProjectDescription from './project-description';
 import ProjectImagesContainer from './project-images-container';
 import ProjectStack from './project-stack';
+import ProjectContainer from './project-container';
+import ProjectContent from './project-content';
+import ProjectFooter from './project-footer';
 
 type ProjectItemPropsType = {
 	project: SelectProject;
@@ -22,26 +25,27 @@ export default function ProjectItem({
 	return (
 		<>
 			{projectSize(project) === 'large' ? (
-				<ProjectStruct.Container className='w-full h-full'>
-					<ProjectHeader project={project} />
-					<ProjectStruct.Content className='grid grid-cols-8 gap-12 mb-6 md:mb-12 xl:mb-24'>
+				<ProjectContainer className='w-full h-full'>
+					<ProjectHeader
+						project={project}
+						className='w-full mb-6 md:mb-12 xl:mb-24'
+					/>
+					<ProjectContent className='grid grid-cols-8 gap-12 mb-6 md:mb-12 xl:mb-24'>
 						<div className='col-span-full sm:col-span-4 xl:col-span-2 grid grid-cols-2'>
 							<ProjectDescription
 								project={project}
-								className='col-span-full xl:absolute xl:-top-28 xl:w-2/3 xl:left-1/4'
+								className='col-span-full xl:absolute xl:-top-28 xl:w-2/3 xl:left-1/4 w-full mb-6 md:mb-12 xl:mb-24'
 							/>
 							<ProjectImagesContainer
 								project={project}
-								className='col-span-full'
+								className='col-span-full w-2/3 h-2/3 xl:w-full xl:h-full m-auto'
 							/>
 						</div>
 						<div className='hidden sm:block sm:col-span-4 xl:col-span-6'>
 							<ProjectStack project={project} />
 						</div>
-					</ProjectStruct.Content>
-
-					{/* project footer */}
-					<ProjectStruct.Footer className='w-1/2 md:absolute md:bottom-0 xl:left-1/3'>
+					</ProjectContent>
+					<ProjectFooter className='flex-col md:flex-row flex-1 items-center justify-center gap-6 w-1/2 md:absolute md:bottom-0 xl:left-1/3'>
 						<a
 							href={project.liveDemo}
 							className={cn(
@@ -64,24 +68,21 @@ export default function ProjectItem({
 						>
 							GitHub Repo
 						</a>
-					</ProjectStruct.Footer>
-				</ProjectStruct.Container>
+					</ProjectFooter>
+				</ProjectContainer>
 			) : (
-				<ProjectStruct.Container className='w-full h-full'>
-					<ProjectHeader project={project} />
-					<ProjectStruct.Content className='grid grid-cols-8 gap-12 mb-6 md:mb-12 xl:mb-24'>
-						<div className='col-span-full sm:col-span-4 xl:col-span-2 grid grid-cols-2'>
+				<ProjectContainer className='w-full h-full'>
+					<ProjectHeader project={project} className='mb-3 md:mb-6 xl:mb-12' />
+					<ProjectContent className='grid grid-cols-1'>
+						<div className='col-span-full'>
 							<ProjectDescription
 								project={project}
-								className='col-span-full xl:absolute xl:-top-28 xl:w-2/3 xl:left-1/4'
+								className='mb-3 md:mb-6 xl:mb-12'
 							/>
-							<ProjectImagesContainer
-								project={project}
-								className='col-span-full'
-							/>
+							<ProjectImagesContainer project={project} />
 						</div>
-					</ProjectStruct.Content>
-				</ProjectStruct.Container>
+					</ProjectContent>
+				</ProjectContainer>
 			)}
 		</>
 	);

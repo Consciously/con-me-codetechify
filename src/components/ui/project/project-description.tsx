@@ -12,9 +12,7 @@ export default function ProjectDescription({
 	className,
 }: ProjectDescriptionPropsType) {
 	return (
-		<ProjectStruct.Description
-			className={cn('w-full mb-6 md:mb-12 xl:mb-24', className)}
-		>
+		<ProjectStruct.Description className={cn(className)}>
 			{project.description}
 		</ProjectStruct.Description>
 	);

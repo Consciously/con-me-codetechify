@@ -20,7 +20,7 @@ export default function ProjectsData() {
 	if (error) return <div>Error: {error.message}</div>;
 
 	return (
-		<ContainerStruct.Layout className='auto-rows-150 gap-12'>
+		<ContainerStruct.Layout className='gap-y-12 md:gap-x-12'>
 			{data?.map(project => {
 				return (
 					<div
