@@ -14,7 +14,7 @@ import { usePathname } from 'next/navigation';
 
 type ProjectItemPropsType = {
 	project: SelectProject;
-	projectSize: (project: SelectProject) => 'large' | 'small';
+	projectSize?: (project: SelectProject) => 'large' | 'small';
 };
 
 export default function ProjectItem({
@@ -25,7 +25,7 @@ export default function ProjectItem({
 
 	return (
 		<>
-			{projectSize(project) === 'large' && pathname == '/' ? (
+			{projectSize && projectSize(project) === 'large' ? (
 				<ProjectContainer className='w-full h-full'>
 					<ProjectHeader
 						project={project}
@@ -71,7 +71,7 @@ export default function ProjectItem({
 						</a>
 					</ProjectFooter>
 				</ProjectContainer>
-			) : projectSize(project) === 'small' || pathname === '/projects' ? (
+			) : (
 				<ProjectContainer className='w-full h-full'>
 					<ProjectHeader
 						project={project}
@@ -87,7 +87,7 @@ export default function ProjectItem({
 						</div>
 					</ProjectContent>
 				</ProjectContainer>
-			) : null}
+			)}
 		</>
 	);
 }
