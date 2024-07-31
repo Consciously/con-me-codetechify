@@ -14,9 +14,6 @@ export default function ProjectsSection() {
 				<ContainerStruct.Content>
 					<ProjectsData />
 				</ContainerStruct.Content>
-				<ContainerStruct.Content>
-					<UploadImages />
-				</ContainerStruct.Content>
 			</ContainerStruct.Layout>
 			{/* </Spacer> */}
 		</ContainerStruct>
