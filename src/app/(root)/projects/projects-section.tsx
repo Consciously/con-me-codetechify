@@ -2,6 +2,8 @@ import ProjectsData from './projects-data';
 // import Spacer from '@/components/ui/spacer';
 import ContainerStruct from '@/components/ui/custom-container-layout';
 import ProjectHeaderArea from './project-header-area';
+import { UploadButton } from '@/lib/utils';
+import UploadImages from '@/components/upload-images';
 
 export default function ProjectsSection() {
 	return (
