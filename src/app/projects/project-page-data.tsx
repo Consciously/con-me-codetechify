@@ -1,13 +1,11 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import { getProjects } from '@/app/(root)/projects/action/action';
-
-import ContainerStruct from '@/components/ui/custom-container-layout';
+import { getProjects } from '@/app/projects/actions/actions';
 import ProjectItem from '@/components/ui/project/project-item';
 import { cn, getProjectSize } from '@/lib/utils';
 
-export default function ProjectsData() {
+export default function ProjectsPageData() {
 	const { data, isLoading, error } = useQuery({
 		queryKey: ['projects'],
 		queryFn: async () => await getProjects(),
@@ -20,20 +18,19 @@ export default function ProjectsData() {
 	if (error) return <div>Error: {error.message}</div>;
 
 	return (
-		<ContainerStruct.Layout className='gap-y-12 md:gap-x-12'>
+		<>
 			{data?.map(project => {
 				return (
 					<div
 						key={project.id}
-						className={cn('col-span-full', {
-							'md:col-span-6 lg:col-span-4 xl:col-span-3':
-								projectSize(project) === 'small',
-						})}
+						className={cn(
+							'col-span-full md:col-span-6 lg:col-span-4 xl:col-span-3',
+						)}
 					>
 						<ProjectItem project={project} projectSize={projectSize!} />
 					</div>
 				);
 			})}
-		</ContainerStruct.Layout>
+		</>
 	);
 }
