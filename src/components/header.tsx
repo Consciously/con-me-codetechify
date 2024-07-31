@@ -58,7 +58,7 @@ export default function Header() {
 								me
 							</div>
 							<div className='bg-gradient-to-r from-secondary to-primary p-1 w-[100px] text-center -skew-y-[8deg] skew-x-6 text-[#1b1918] font-semibold text-sm'>
-								codetechify!
+								codetechify
 							</div>
 						</div>
 					</Link>
