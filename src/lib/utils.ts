@@ -1,11 +1,6 @@
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { format } from 'date-fns';
-import {
-	generateUploadButton,
-	generateUploadDropzone,
-} from '@uploadthing/react';
-import type { OurFileRouter } from '@/app/api/uploadthing/core';
 import type { SelectProject } from '@/db/schema';
 
 export function cn(...inputs: ClassValue[]) {
@@ -48,6 +43,3 @@ export const getProjectSize = (
 	return (project: SelectProject) =>
 		project.id === latestImportantProject?.id ? 'large' : 'small';
 };
-
-export const UploadButton = generateUploadButton<OurFileRouter>();
-export const UploadDropzone = generateUploadDropzone<OurFileRouter>();
