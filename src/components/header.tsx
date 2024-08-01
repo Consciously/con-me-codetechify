@@ -3,15 +3,16 @@
 import { useState, useEffect } from 'react';
 import MaxWidthWrapper from './max-width-wrapper';
 import Link from 'next/link';
-import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { motion, useScroll } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
 import { Button } from './ui/button';
-import { MenuIcon } from 'lucide-react';
+import { MenuIcon, LogIn, LogOut } from 'lucide-react';
 import { ThemeToggler } from './theme-toggler';
 import { Separator } from './ui/separator';
+import { LoginLink, LogoutLink } from '@kinde-oss/kinde-auth-nextjs/components';
+import { useKindeBrowserClient } from '@kinde-oss/kinde-auth-nextjs';
 
 const NAVIGATION_DATA = [
 	{
@@ -27,6 +28,7 @@ const NAVIGATION_DATA = [
 export default function Header() {
 	const { scrollY } = useScroll();
 	const [hasShadow, setHasShadow] = useState<boolean>(false);
+	const { isAuthenticated } = useKindeBrowserClient();
 
 	useEffect(() => {
 		const unsubscribe = scrollY.on('change', latest => {
@@ -88,11 +90,45 @@ export default function Header() {
 							)}
 						</li>
 					))}
+					{isAuthenticated && (
+						<li
+							className={cn(
+								'flex items-center relative  text-base font-semibold',
+								{
+									'text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary':
+										activePathname === '/admin',
+									'text-primary': activePathname !== '/admin',
+								},
+							)}
+						>
+							<Link href='/admin' className='block'>
+								Admin
+							</Link>
+
+							{activePathname === '/admin' && (
+								<motion.div
+									layoutId='header-active-link'
+									className='bg-primary h-1 w-full absolute top-8'
+								></motion.div>
+							)}
+						</li>
+					)}
 				</ul>
 				<Separator
 					orientation='vertical'
 					className='hidden md:block bg-accent ml-3'
 				/>
+				<div className='ml-3 py-3'>
+					{isAuthenticated ? (
+						<LogoutLink className='text-primary'>
+							<LogOut className='w-6 h-6' />
+						</LogoutLink>
+					) : (
+						<LoginLink className='text-primary'>
+							<LogIn className='w-6 h-6' />
+						</LoginLink>
+					)}
+				</div>
 				<div className='hidden md:block ml-3 py-3'>
 					<ThemeToggler />
 				</div>
