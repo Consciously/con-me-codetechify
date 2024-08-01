@@ -1,10 +1,8 @@
 'use client';
 
-import ProjectStruct from '@/components/ui/project/custom-project-layout';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import type { SelectProject } from '@/db/schema';
-import Spacer from '../spacer';
 import ProjectHeader from './project-header';
 import ProjectDescription from './project-description';
 import ProjectImagesContainer from './project-images-container';
@@ -12,19 +10,22 @@ import ProjectStack from './project-stack';
 import ProjectContainer from './project-container';
 import ProjectContent from './project-content';
 import ProjectFooter from './project-footer';
+import { usePathname } from 'next/navigation';
 
 type ProjectItemPropsType = {
 	project: SelectProject;
-	projectSize: (project: SelectProject) => 'large' | 'small';
+	projectSize?: (project: SelectProject) => 'large' | 'small';
 };
 
 export default function ProjectItem({
 	project,
 	projectSize,
 }: ProjectItemPropsType) {
+	const pathname = usePathname();
+
 	return (
 		<>
-			{projectSize(project) === 'large' ? (
+			{projectSize && projectSize(project) === 'large' ? (
 				<ProjectContainer className='w-full h-full'>
 					<ProjectHeader
 						project={project}
