@@ -34,10 +34,9 @@ export const separateWords = (text: string) => {
 export const getProjectSize = (
 	projects: SelectProject[],
 ): ((project: SelectProject) => 'large' | 'small') => {
-	if (!projects || projects.length === 0) {
-		return () => 'small'; // Default to 'small' if projects is undefined or empty
+	if (!Array.isArray(projects) || projects.length === 0) {
+		return () => 'small';
 	}
-
 	// Find the project with the highest importance and latest date
 	const latestImportantProject = projects.sort((a, b) => {
 		if (b.importance !== a.importance) {

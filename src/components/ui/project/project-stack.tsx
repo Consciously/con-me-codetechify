@@ -9,9 +9,9 @@ export default function ProjectStack({ project }: { project: SelectProject }) {
 					Features
 				</h4>
 				<ul className='grid grid-cols-2 gap-3 xl:gap-6 mt-3 md:mt-6 xl:mt-12'>
-					{project.features.map(feature => (
+					{project.features.map((feature, featureIndex) => (
 						<li
-							key={project.id}
+							key={`${project.id}-${featureIndex}`}
 							className='flex justify-center items-center col-span-full md:col-span-1 text-primary-foreground bg-gradient-to-r from-primary to-secondary p-px text-center rounded-md'
 						>
 							{feature}
@@ -24,9 +24,9 @@ export default function ProjectStack({ project }: { project: SelectProject }) {
 					Technologies
 				</h4>
 				<ul className='grid grid-cols-2 gap-3 xl:gap-6 mt-3 md:mt-6 xl:mt-12'>
-					{project.technologies.map(technology => (
+					{project.technologies.map((technology, technologyIndex) => (
 						<li
-							key={project.id}
+							key={`${project.id}-${technologyIndex}`}
 							className='flex justify-center items-center col-span-full md:col-span-1 text-primary-foreground bg-gradient-to-r from-secondary to-primary p-px text-center rounded-md'
 						>
 							{technology}

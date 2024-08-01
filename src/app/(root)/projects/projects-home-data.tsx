@@ -11,7 +11,8 @@ export default function ProjectsHomeData() {
 		queryFn: async () => await getProjects(),
 	});
 
-	const projectSize = getProjectSize(data!);
+	const projects = data || [];
+	const projectSize = getProjectSize(data || []);
 
 	if (isLoading) return <div>Loading...</div>;
 
@@ -19,19 +20,23 @@ export default function ProjectsHomeData() {
 
 	return (
 		<>
-			{data?.map(project => {
-				return (
-					<div
-						key={project.id}
-						className={cn('col-span-full', {
-							'md:col-span-6 lg:col-span-4 xl:col-span-3':
-								projectSize(project) === 'small',
-						})}
-					>
-						<ProjectItem project={project} projectSize={projectSize!} />
-					</div>
-				);
-			})}
+			{projects.length > 0 ? (
+				data?.map(project => {
+					return (
+						<div
+							key={project.id}
+							className={cn('col-span-full', {
+								'md:col-span-6 lg:col-span-4 xl:col-span-3':
+									projectSize(project) === 'small',
+							})}
+						>
+							<ProjectItem project={project} projectSize={projectSize} />
+						</div>
+					);
+				})
+			) : (
+				<div>No projects found</div>
+			)}
 		</>
 	);
 }
