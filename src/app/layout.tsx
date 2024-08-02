@@ -5,6 +5,7 @@ import Header from '@/components/header';
 import Footer from '@/components/footer';
 import { ThemeProvider } from 'next-themes';
 import Provider from '@/components/provider';
+import { Toaster } from '@/components/ui/toaster';
 
 const albertSans = Albert_Sans({ subsets: ['latin'] });
 
@@ -32,6 +33,7 @@ export default function RootLayout({
 						<main className='flex flex-col min-h-[calc(100vh-4rem-1px)]'>
 							<div className='flex-1 flex flex-col h-full'>{children}</div>
 						</main>
+						<Toaster />
 						<Footer />
 					</Provider>
 				</ThemeProvider>
