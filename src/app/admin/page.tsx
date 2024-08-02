@@ -1,5 +1,6 @@
 import ContainerStruct from '@/components/ui/custom-container-layout';
 import H1 from '@/components/ui/h1';
+import DropzoneUploader from './dropzone-uploader';
 
 export default function AdminPage() {
 	return (
@@ -10,7 +11,9 @@ export default function AdminPage() {
 						Admin Dashboard
 					</H1>
 				</ContainerStruct.Content>
-				<ContainerStruct.Content>Admin Page</ContainerStruct.Content>
+				<ContainerStruct.Content>
+					<DropzoneUploader />
+				</ContainerStruct.Content>
 			</ContainerStruct.Layout>
 		</ContainerStruct>
 	);
