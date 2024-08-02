@@ -1,6 +1,6 @@
 import ContainerStruct from '@/components/ui/custom-container-layout';
 import H1 from '@/components/ui/h1';
-import DropzoneUploader from './dropzone-uploader';
+import DropzoneUploader from '@/app/admin/dropzone-uploader';
 
 export default function AdminPage() {
 	return (

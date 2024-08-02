@@ -1,3 +1,5 @@
+'use client';
+
 import { cn } from '@/lib/utils';
 import {
 	Card,
@@ -7,7 +9,6 @@ import {
 	CardHeader,
 	CardTitle,
 } from '@/components/ui/card';
-import { Fragment } from 'react';
 
 type CustomProjectLayoutProps = {
 	children: React.ReactNode;
@@ -139,3 +140,24 @@ ProjectStruct.Image = function ProjectStructImage({
 		</div>
 	);
 };
+
+// ProjectStruct.Redirect = function ProjectStructRedirect({
+// 	children,
+// 	className,
+// 	onClick,
+// }: CustomProjectLayoutProps & { onClick?: () => void }) {
+// 	const router = useRouter();
+// 	const pathname = usePathname();
+
+// 	return (
+// 		<Button
+// 			className={cn(
+// 				'w-full bg-transparent from-primary to-secondary bg-gradient-to-tr shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60',
+// 				className,
+// 			)}
+// 			onClick={onClick}
+// 		>
+// 			{children}
+// 		</Button>
+// 	);
+// };
