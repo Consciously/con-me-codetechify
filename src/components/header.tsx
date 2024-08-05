@@ -23,12 +23,18 @@ const NAVIGATION_DATA = [
 		name: 'Projects',
 		href: '/projects',
 	},
+	{
+		name: 'Admin Dashboard',
+		href: '/admin',
+		requiredPermissions: ['access:admin_dashboard'],
+	},
 ];
 
 export default function Header() {
 	const { scrollY } = useScroll();
 	const [hasShadow, setHasShadow] = useState<boolean>(false);
-	const { isAuthenticated } = useKindeBrowserClient();
+	const { isAuthenticated, getPermissions } = useKindeBrowserClient();
+	const { permissions } = getPermissions();
 
 	useEffect(() => {
 		const unsubscribe = scrollY.on('change', latest => {
@@ -66,53 +72,37 @@ export default function Header() {
 					</Link>
 				</div>
 				<ul className='hidden md:flex gap-x-6 items-center ml-auto h-full'>
-					{NAVIGATION_DATA.map((item, index) => (
-						<li
-							key={index}
-							className={cn(
-								'flex items-center relative  text-base font-semibold',
-								{
-									'text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary':
-										activePathname === item.href,
-									'text-primary': activePathname !== item.href,
-								},
-							)}
-						>
-							<Link href={item.href} className='block'>
-								{item.name}
-							</Link>
+					{NAVIGATION_DATA.map(({ href, name, requiredPermissions }) => {
+						if (
+							!requiredPermissions ||
+							requiredPermissions.every(p => permissions?.includes(p))
+						) {
+							return (
+								<li
+									key={href}
+									className={cn(
+										'flex items-center relative  text-base font-semibold',
+										{
+											'text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary':
+												activePathname === href,
+											'text-primary': activePathname !== href,
+										},
+									)}
+								>
+									<Link href={href} className='block'>
+										{name}
+									</Link>
 
-							{activePathname === item.href && (
-								<motion.div
-									layoutId='header-active-link'
-									className='bg-primary h-1 w-full absolute top-8'
-								></motion.div>
-							)}
-						</li>
-					))}
-					{isAuthenticated && (
-						<li
-							className={cn(
-								'flex items-center relative  text-base font-semibold',
-								{
-									'text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary':
-										activePathname === '/admin',
-									'text-primary': activePathname !== '/admin',
-								},
-							)}
-						>
-							<Link href='/admin' className='block'>
-								Admin
-							</Link>
-
-							{activePathname === '/admin' && (
-								<motion.div
-									layoutId='header-active-link'
-									className='bg-primary h-1 w-full absolute top-8'
-								></motion.div>
-							)}
-						</li>
-					)}
+									{activePathname === href && (
+										<motion.div
+											layoutId='header-active-link'
+											className='bg-primary h-1 w-full absolute top-8'
+										></motion.div>
+									)}
+								</li>
+							);
+						}
+					})}
 				</ul>
 				<Separator
 					orientation='vertical'

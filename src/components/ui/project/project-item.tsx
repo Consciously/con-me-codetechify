@@ -10,7 +10,6 @@ import ProjectStack from './project-stack';
 import ProjectContainer from './project-container';
 import ProjectContent from './project-content';
 import ProjectFooter from './project-footer';
-import { usePathname } from 'next/navigation';
 
 type ProjectItemPropsType = {
 	project: SelectProject;
@@ -21,15 +20,14 @@ export default function ProjectItem({
 	project,
 	projectSize,
 }: ProjectItemPropsType) {
-	const pathname = usePathname();
-
 	return (
 		<>
 			{projectSize && projectSize(project) === 'large' ? (
 				<ProjectContainer className='w-full h-full'>
 					<ProjectHeader
 						project={project}
-						className='w-full mb-6 md:mb-12 xl:mb-24'
+						projectSize={projectSize}
+						className='w-full md:w-auto mb-12 md:mb-24 xl:mb-48'
 					/>
 					<ProjectContent className='grid grid-cols-8 gap-12 mb-6 md:mb-12 xl:mb-24'>
 						<div className='col-span-full sm:col-span-4 xl:col-span-2 grid grid-cols-2'>
@@ -75,7 +73,7 @@ export default function ProjectItem({
 				<ProjectContainer className='w-full h-full'>
 					<ProjectHeader
 						project={project}
-						className='max-h-32 mb-3 md:mb-6 xl:mb-12'
+						className='w-full max-h-32 mb-12 md:mb-24 xl:mb-48'
 					/>
 					<ProjectContent className='grid grid-cols-1'>
 						<div className='col-span-full'>
