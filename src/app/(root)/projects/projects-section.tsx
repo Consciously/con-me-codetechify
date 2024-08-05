@@ -2,8 +2,6 @@ import ProjectsData from './projects-home-data';
 // import Spacer from '@/components/ui/spacer';
 import ContainerStruct from '@/components/ui/custom-container-layout';
 import ProjectHeaderArea from './project-header-area';
-import { UploadButton } from '@/lib/utils';
-import UploadImages from '@/components/upload-images';
 import ProjectDataContainer from '@/components/ui/project/project-data-container';
 import ProjectsHomeData from './projects-home-data';
 
