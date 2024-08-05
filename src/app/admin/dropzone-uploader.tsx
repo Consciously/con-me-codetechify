@@ -1,12 +1,20 @@
 'use client';
 
 import { useState } from 'react';
+import { useParams } from 'next/navigation';
 import Dropzone, { FileRejection } from 'react-dropzone';
 import { useUploadThing } from '@/lib/uploadthing';
 import { Image, Loader2, MousePointerSquareDashed } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import { useToast } from '@/components/ui/use-toast';
 import ContainerStruct from '@/components/ui/custom-container-layout';
+import matter from 'gray-matter';
+import { useMutation } from '@tanstack/react-query';
+import {
+	MarkdownMetadata,
+	markdownMetadataSchema,
+	frontMatterSchema,
+} from '@/lib/validation';
 
 export default function DropzoneUploader() {
 	const [isDragMdOver, setIsMdDragOver] = useState<boolean>(false);
@@ -14,6 +22,8 @@ export default function DropzoneUploader() {
 	const [uploadMdProgress, setUploadMdProgress] = useState<number>(0);
 	const [uploadImgProgress, setUploadImgProgress] = useState<number>(0);
 	const { toast } = useToast();
+
+	const { projectId } = useParams();
 
 	const { startUpload: startMdUpload, isUploading: isMdUploading } =
 		useUploadThing('markdownUploader', {
@@ -24,6 +34,38 @@ export default function DropzoneUploader() {
 				setUploadMdProgress(progress);
 			},
 		});
+
+	const handleMdFileUpload = async (file: File): Promise<MarkdownMetadata> => {
+		const text = await file.text();
+		const { data: frontMatter, content } = matter(text);
+		const validationResult = frontMatterSchema.safeParse(frontMatter);
+
+		if (!validationResult.success) {
+			throw new Error(validationResult.error.errors[0].message);
+		}
+
+		return { frontMatter: validationResult.data, content };
+	};
+
+	const { mutate } = useMutation({
+		mutationKey: ['uploadMdFile'],
+		mutationFn: handleMdFileUpload,
+		onSuccess: (data, variables) => {
+			const validationResult = markdownMetadataSchema.safeParse(data);
+
+			if (!validationResult.success) {
+				toast({
+					title: 'Markdown upload failed.',
+					description: validationResult.error.errors[0].message,
+					variant: 'destructive',
+				});
+				return;
+			}
+			startMdUpload([variables], {
+				...validationResult.data,
+			});
+		},
+	});
 
 	const { startUpload: startImgUpload, isUploading: isImgUploading } =
 		useUploadThing('imagesUploader', {
@@ -56,11 +98,22 @@ export default function DropzoneUploader() {
 	};
 
 	const onDropMdAccepted = (acceptedFiles: File[]) => {
-		startMdUpload(acceptedFiles);
+		const file = acceptedFiles[0];
+		mutate(file);
 		setIsMdDragOver(false);
 	};
 
 	const onDropImgAccepted = (acceptedFiles: File[]) => {
+		if (!projectId) {
+			toast({
+				title: 'Image upload failed.',
+				description: 'Please add project first',
+				variant: 'destructive',
+			});
+			setIsImgDragOver(false);
+			return;
+		}
+
 		startImgUpload(acceptedFiles);
 		setIsImgDragOver(false);
 	};
