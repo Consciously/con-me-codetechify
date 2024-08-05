@@ -32,7 +32,7 @@ export const getProjectSize = (
 	if (!Array.isArray(projects) || projects.length === 0) {
 		return () => 'small';
 	}
-	// Find the project with the highest importance and latest date
+	// Find the project w/ the highest importance and latest date
 	const latestImportantProject = projects.sort((a, b) => {
 		if (b.importance !== a.importance) {
 			return b.importance - a.importance;
