@@ -3,11 +3,11 @@
 import Image from 'next/image';
 import ProjectStruct from './custom-project-layout';
 import { useState } from 'react';
-import { SelectProject } from '@/db/schema';
 import { cn } from '@/lib/utils';
+import { Project } from '@prisma/client';
 
 type ProjectDescriptionPropsType = {
-	project: SelectProject;
+	project: Project;
 	className?: string;
 };
 

@@ -1,23 +1,23 @@
 'use client';
 
+import { Project } from '@prisma/client';
 import { useRouter } from 'next/navigation';
 import { cn, formatDate, separateWords } from '@/lib/utils';
 import ProjectStruct from './custom-project-layout';
-import { SelectProject } from '@/db/schema';
 import { Button } from '../button';
 
 type ProjectHeaderPropsType = {
 	className?: string;
 	projectId?: string;
 	children?: React.ReactNode;
-	projectSize?: (project: SelectProject) => 'large' | 'small';
+	projectSize?: (project: Project) => 'large' | 'small';
 };
 
 export default function ProjectHeader({
 	project,
 	className,
 	projectSize,
-}: ProjectHeaderPropsType & { project: SelectProject }) {
+}: ProjectHeaderPropsType & { project: Project }) {
 	const router = useRouter();
 
 	return (

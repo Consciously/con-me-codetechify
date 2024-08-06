@@ -2,7 +2,6 @@
 
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import type { SelectProject } from '@/db/schema';
 import ProjectHeader from './project-header';
 import ProjectDescription from './project-description';
 import ProjectImagesContainer from './project-images-container';
@@ -10,10 +9,11 @@ import ProjectStack from './project-stack';
 import ProjectContainer from './project-container';
 import ProjectContent from './project-content';
 import ProjectFooter from './project-footer';
+import { Project } from '@prisma/client';
 
 type ProjectItemPropsType = {
-	project: SelectProject;
-	projectSize?: (project: SelectProject) => 'large' | 'small';
+	project: Project;
+	projectSize?: (project: Project) => 'large' | 'small';
 };
 
 export default function ProjectItem({

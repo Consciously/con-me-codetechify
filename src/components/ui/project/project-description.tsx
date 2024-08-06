@@ -1,9 +1,9 @@
-import { SelectProject } from '@/db/schema';
+import { Project } from '@prisma/client';
 import ProjectStruct from './custom-project-layout';
 import { cn } from '@/lib/utils';
 
 type ProjectDescriptionPropsType = {
-	project: SelectProject;
+	project: Project;
 	className?: string;
 };
 

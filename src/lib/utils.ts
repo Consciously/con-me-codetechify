@@ -1,7 +1,7 @@
 import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { format } from 'date-fns';
-import type { SelectProject } from '@/db/schema';
+import { Project } from '@prisma/client';
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -27,8 +27,8 @@ export const separateWords = (text: string) => {
 
 // Arrow function to determine if a project is large or small
 export const getProjectSize = (
-	projects: SelectProject[],
-): ((project: SelectProject) => 'large' | 'small') => {
+	projects: Project[],
+): ((project: Project) => 'large' | 'small') => {
 	if (!Array.isArray(projects) || projects.length === 0) {
 		return () => 'small';
 	}
@@ -40,6 +40,6 @@ export const getProjectSize = (
 		return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
 	})[0];
 
-	return (project: SelectProject) =>
+	return (project: Project) =>
 		project.id === latestImportantProject?.id ? 'large' : 'small';
 };
