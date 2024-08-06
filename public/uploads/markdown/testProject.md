@@ -1,7 +1,7 @@
 ---
-title: 'Sample Project2'
-description: 'This is a description of another project'
-clientName: 'Another Awesome Client'
+title: 'Sample Project3'
+description: 'This is a description of yet another project'
+clientName: 'Another yet Awesome Client'
 technologies:
   - 'React'
   - 'Next.js'
