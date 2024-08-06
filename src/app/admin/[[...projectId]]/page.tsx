@@ -1,8 +1,8 @@
 import ContainerStruct from '@/components/ui/custom-container-layout';
 import H1 from '@/components/ui/h1';
-import DropzoneUploader from '@/app/admin/dropzone-uploader';
 import { getKindeServerSession } from '@kinde-oss/kinde-auth-nextjs/server';
 import { redirect } from 'next/navigation';
+import DropzoneContainer from '../dropzone-container';
 
 export default async function AdminPage() {
 	const { isAuthenticated, getPermission } = getKindeServerSession();
@@ -26,7 +26,7 @@ export default async function AdminPage() {
 					</H1>
 				</ContainerStruct.Content>
 				<ContainerStruct.Content>
-					<DropzoneUploader />
+					<DropzoneContainer />
 				</ContainerStruct.Content>
 			</ContainerStruct.Layout>
 		</ContainerStruct>

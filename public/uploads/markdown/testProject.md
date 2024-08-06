@@ -1,7 +1,7 @@
 ---
-title: 'Sample Project'
-description: 'This is a description of the project'
-clientName: 'Awesome Client'
+title: 'Sample Project3'
+description: 'This is a description of yet another project'
+clientName: 'Another yet Awesome Client'
 technologies:
   - 'React'
   - 'Next.js'
@@ -13,7 +13,7 @@ features:
 githubRepo: 'https://github.com/username/sample-project'
 liveDemo: 'https://sample-project.example.com'
 importance: 5
-createdAt: '2024-07-22'
+createdAt: '2024-07-23'
 ---
 
 This is a sample project created for testing purposes.
