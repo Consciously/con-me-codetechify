@@ -1,8 +1,9 @@
 'use server';
 
-import db from '@/db/drizzle';
-import { projectTable } from '@/db/schema';
+import { PrismaClient } from '@prisma/client';
 import { frontMatterSchema } from '@/lib/validation';
+
+const prisma = new PrismaClient();
 
 export const createProject = async (data: unknown) => {
 	const validationResult = frontMatterSchema.safeParse(data);
@@ -13,11 +14,11 @@ export const createProject = async (data: unknown) => {
 
 	const validatedData = validationResult.data;
 
-	const dbData = {
-		...validatedData,
-		createdAt: new Date(validatedData.createdAt),
-		updatedAt: new Date(validatedData.updatedAt),
-	};
-
-	await db.insert(projectTable).values(dbData);
+	await prisma.project.create({
+		data: {
+			...validatedData,
+			createdAt: new Date(validatedData.createdAt),
+			updatedAt: new Date(validatedData.updatedAt),
+		},
+	});
 };

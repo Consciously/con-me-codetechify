@@ -1,13 +1,9 @@
-import { config } from 'dotenv';
-import db from '@/db/drizzle';
-import { projectTable, InsertProject } from '@/db/schema';
-import { sql } from 'drizzle-orm';
+import { PrismaClient } from '@prisma/client';
 
-config({ path: '.env' });
+const prisma = new PrismaClient();
 
-const projectData: InsertProject[] = [
+const projectData = [
 	{
-		id: 1,
 		title: 'E-commerce Platform',
 		description:
 			'A comprehensive e-commerce platform designed to offer seamless shopping experiences. This platform integrates advanced payment systems, product management tools, and real-time data synchronization. With a user-friendly interface and robust backend, it supports various business models, including B2B and B2C. The platform ensures secure transactions and provides insightful analytics for business growth.',
@@ -20,12 +16,7 @@ const projectData: InsertProject[] = [
 			'Stripe',
 		],
 		clientName: 'ABC Retail',
-		images: [
-			'/images/projects/ecommerce-platform-1.webp',
-			'/images/projects/ecommerce-platform-2.webp',
-			'/images/projects/ecommerce-platform-3.webp',
-			'/images/projects/ecommerce-platform-4.webp',
-		],
+		images: [],
 		features: [
 			'Integrated Payment Gateway',
 			'Real-time Data Sync',
@@ -40,7 +31,6 @@ const projectData: InsertProject[] = [
 		updatedAt: new Date('2024-01-02'),
 	},
 	{
-		id: 2,
 		title: 'Portfolio Website',
 		description:
 			'A personal portfolio website showcasing a wide range of projects, skills, and contact information. This website highlights professional achievements and provides an easy-to-navigate interface for potential clients. The portfolio is designed to be fully responsive and features dynamic content updates to keep the information current.',
@@ -52,12 +42,7 @@ const projectData: InsertProject[] = [
 			'Next.js',
 		],
 		clientName: 'Self',
-		images: [
-			'/images/projects/portfolio-website-1.webp',
-			'/images/projects/portfolio-website-2.webp',
-			'/images/projects/portfolio-website-3.webp',
-			'/images/projects/portfolio-website-4.webp',
-		],
+		images: [],
 		features: [
 			'Responsive Design',
 			'Dynamic Project Showcase',
@@ -71,7 +56,6 @@ const projectData: InsertProject[] = [
 		updatedAt: new Date('2024-01-16'),
 	},
 	{
-		id: 3,
 		title: 'Blog Platform',
 		description:
 			'A scalable blog platform that includes user authentication, content management, and a customizable interface. This platform allows users to create, edit, and manage their blog posts efficiently. It also features advanced SEO tools and social media integration to boost content reach and engagement.',
@@ -84,12 +68,7 @@ const projectData: InsertProject[] = [
 			'Node.js',
 		],
 		clientName: 'Tech Blog Inc.',
-		images: [
-			'/images/projects/blog-platform-1.webp',
-			'/images/projects/blog-platform-2.webp',
-			'/images/projects/blog-platform-3.webp',
-			'/images/projects/blog-platform-4.webp',
-		],
+		images: [],
 		features: [
 			'User Authentication',
 			'Content Management System',
@@ -103,7 +82,6 @@ const projectData: InsertProject[] = [
 		updatedAt: new Date('2024-02-02'),
 	},
 	{
-		id: 4,
 		title: 'Social Media App',
 		description:
 			'A social media application offering real-time messaging, post sharing, and notification features. This app is designed to connect people and facilitate interactions through a modern and intuitive interface. It supports multimedia sharing, user tagging, and includes a robust notification system to keep users engaged.',
@@ -116,12 +94,7 @@ const projectData: InsertProject[] = [
 			'Redux',
 		],
 		clientName: 'Socially',
-		images: [
-			'/images/projects/social-media-app-1.webp',
-			'/images/projects/social-media-app-2.webp',
-			'/images/projects/social-media-app-3.webp',
-			'/images/projects/social-media-app-4.webp',
-		],
+		images: [],
 		features: [
 			'Real-time Messaging',
 			'Post Sharing',
@@ -136,7 +109,6 @@ const projectData: InsertProject[] = [
 		updatedAt: new Date('2024-02-16'),
 	},
 	{
-		id: 5,
 		title: 'Project Management Tool',
 		description:
 			'A project management tool that facilitates task tracking, team collaboration, and detailed reporting. This tool is designed to enhance productivity by providing a comprehensive overview of project progress. It includes features such as Gantt charts, time tracking, and project templates.',
@@ -149,12 +121,7 @@ const projectData: InsertProject[] = [
 			'MongoDB',
 		],
 		clientName: 'ManageIt',
-		images: [
-			'/images/projects/project-management-tool-1.webp',
-			'/images/projects/project-management-tool-2.webp',
-			'/images/projects/project-management-tool-3.webp',
-			'/images/projects/project-management-tool-4.webp',
-		],
+		images: [],
 		features: [
 			'Task Tracking',
 			'Collaboration',
@@ -169,7 +136,6 @@ const projectData: InsertProject[] = [
 		updatedAt: new Date('2024-03-02'),
 	},
 	{
-		id: 6,
 		title: 'Online Learning Platform',
 		description:
 			'An online learning platform featuring video courses, interactive quizzes, and certification. This platform is designed to offer a comprehensive learning experience with a variety of educational content. It supports multiple learning paths, progress tracking, and personalized recommendations.',
@@ -182,12 +148,7 @@ const projectData: InsertProject[] = [
 			'React',
 		],
 		clientName: 'LearnOnline',
-		images: [
-			'/images/projects/online-learning-platform-1.webp',
-			'/images/projects/online-learning-platform-2.webp',
-			'/images/projects/online-learning-platform-3.webp',
-			'/images/projects/online-learning-platform-4.webp',
-		],
+		images: [],
 		features: [
 			'Video Courses',
 			'Quizzes',
@@ -202,7 +163,6 @@ const projectData: InsertProject[] = [
 		updatedAt: new Date('2024-03-16'),
 	},
 	{
-		id: 7,
 		title: 'Fitness Tracker App',
 		description:
 			'A fitness tracker app designed to log workouts, track progress, and share achievements socially. This app helps users stay motivated by providing detailed analytics of their fitness journey. It includes features such as goal setting, workout plans, and a community forum for support.',
@@ -215,12 +175,7 @@ const projectData: InsertProject[] = [
 			'Expo',
 		],
 		clientName: 'FitLife',
-		images: [
-			'/images/projects/fitness-tracker-app-1.webp',
-			'/images/projects/fitness-tracker-app-2.webp',
-			'/images/projects/fitness-tracker-app-3.webp',
-			'/images/projects/fitness-tracker-app-4.webp',
-		],
+		images: [],
 		features: [
 			'Workout Logging',
 			'Progress Tracking',
@@ -235,7 +190,6 @@ const projectData: InsertProject[] = [
 		updatedAt: new Date('2024-04-02'),
 	},
 	{
-		id: 8,
 		title: 'Event Management System',
 		description:
 			'An event management system that handles ticketing, scheduling, and attendee management. This system simplifies the organization of events by providing an all-in-one platform for event planning. It includes features such as attendee tracking, event analytics, and email notifications.',
@@ -248,12 +202,7 @@ const projectData: InsertProject[] = [
 			'MongoDB',
 		],
 		clientName: 'EventMaster',
-		images: [
-			'/images/projects/event-management-system-1.webp',
-			'/images/projects/event-management-system-2.webp',
-			'/images/projects/event-management-system-3.webp',
-			'/images/projects/event-management-system-4.webp',
-		],
+		images: [],
 		features: [
 			'Ticketing',
 			'Scheduling',
@@ -268,7 +217,6 @@ const projectData: InsertProject[] = [
 		updatedAt: new Date('2024-04-16'),
 	},
 	{
-		id: 9,
 		title: 'E-commerce Mobile App',
 		description:
 			'A mobile e-commerce app providing seamless shopping experiences with product browsing, cart management, and secure checkout. This app is designed for both Android and iOS platforms, ensuring a wide reach and user engagement. It features push notifications, wish lists, and user reviews.',
@@ -281,12 +229,7 @@ const projectData: InsertProject[] = [
 			'Redux',
 		],
 		clientName: 'ShopEasy',
-		images: [
-			'/images/projects/ecommerce-mobile-app-1.webp',
-			'/images/projects/ecommerce-mobile-app-2.webp',
-			'/images/projects/ecommerce-mobile-app-3.webp',
-			'/images/projects/ecommerce-mobile-app-4.webp',
-		],
+		images: [],
 		features: [
 			'Product Browsing',
 			'Cart Management',
@@ -301,7 +244,6 @@ const projectData: InsertProject[] = [
 		updatedAt: new Date('2024-05-02'),
 	},
 	{
-		id: 10,
 		title: 'Job Board Platform',
 		description:
 			'A job board platform featuring job listings, application tracking, and employer management tools. This platform connects job seekers with employers through a user-friendly interface. It includes advanced search filters, resume builders, and company profiles to streamline the hiring process.',
@@ -314,12 +256,7 @@ const projectData: InsertProject[] = [
 			'GraphQL',
 		],
 		clientName: 'JobFinder',
-		images: [
-			'/images/projects/job-board-platform-1.webp',
-			'/images/projects/job-board-platform-2.webp',
-			'/images/projects/job-board-platform-3.webp',
-			'/images/projects/job-board-platform-4.webp',
-		],
+		images: [],
 		features: [
 			'Job Listings',
 			'Applications',
@@ -334,7 +271,6 @@ const projectData: InsertProject[] = [
 		updatedAt: new Date('2024-05-16'),
 	},
 	{
-		id: 11,
 		title: 'Recipe Sharing App',
 		description:
 			'A recipe sharing app that enables users to share, rate, and comment on recipes. This app provides a platform for food enthusiasts to discover and share their favorite recipes. It features advanced search options, ingredient lists, and step-by-step cooking instructions.',
@@ -347,12 +283,7 @@ const projectData: InsertProject[] = [
 			'Node.js',
 		],
 		clientName: 'CookTogether',
-		images: [
-			'/images/projects/recipe-sharing-app-1.webp',
-			'/images/projects/recipe-sharing-app-2.webp',
-			'/images/projects/recipe-sharing-app-3.webp',
-			'/images/projects/recipe-sharing-app-4.webp',
-		],
+		images: [],
 		features: [
 			'User-generated Content',
 			'Ratings',
@@ -367,7 +298,6 @@ const projectData: InsertProject[] = [
 		updatedAt: new Date('2024-06-02'),
 	},
 	{
-		id: 12,
 		title: 'Personal Finance App',
 		description:
 			'A personal finance app designed to help users manage their budget, track expenses, and plan their financial future. This app includes features such as expense categorization, financial goal setting, and automated transaction imports.',
@@ -380,12 +310,7 @@ const projectData: InsertProject[] = [
 			'Node.js',
 		],
 		clientName: 'FinancePro',
-		images: [
-			'/images/projects/personal-finance-app-1.webp',
-			'/images/projects/personal-finance-app-2.webp',
-			'/images/projects/personal-finance-app-3.webp',
-			'/images/projects/personal-finance-app-4.webp',
-		],
+		images: [],
 		features: [
 			'Budgeting',
 			'Expense Tracking',
@@ -400,7 +325,6 @@ const projectData: InsertProject[] = [
 		updatedAt: new Date('2024-06-16'),
 	},
 	{
-		id: 13,
 		title: 'Travel Booking Website',
 		description:
 			'A travel booking website offering comprehensive booking options for flights, hotels, and car rentals. This platform provides an easy-to-use interface for planning trips and includes features such as personalized travel recommendations and booking history management.',
@@ -413,12 +337,7 @@ const projectData: InsertProject[] = [
 			'Stripe',
 		],
 		clientName: 'TravelEasy',
-		images: [
-			'/images/projects/travel-booking-website-1.webp',
-			'/images/projects/travel-booking-website-2.webp',
-			'/images/projects/travel-booking-website-3.webp',
-			'/images/projects/travel-booking-website-4.webp',
-		],
+		images: [],
 		features: [
 			'Flight Booking',
 			'Hotel Booking',
@@ -433,7 +352,6 @@ const projectData: InsertProject[] = [
 		updatedAt: new Date('2024-07-02'),
 	},
 	{
-		id: 14,
 		title: 'Music Streaming App',
 		description:
 			'A music streaming app that allows users to create playlists, listen offline, and engage with social features. This app offers high-quality audio streaming and personalized music recommendations. It includes features such as collaborative playlists, artist profiles, and user comments.',
@@ -446,12 +364,7 @@ const projectData: InsertProject[] = [
 			'Redux',
 		],
 		clientName: 'StreamMusic',
-		images: [
-			'/images/projects/music-streaming-app-1.webp',
-			'/images/projects/music-streaming-app-2.webp',
-			'/images/projects/music-streaming-app-3.webp',
-			'/images/projects/music-streaming-app-4.webp',
-		],
+		images: [],
 		features: [
 			'Playlists',
 			'Offline Listening',
@@ -466,7 +379,6 @@ const projectData: InsertProject[] = [
 		updatedAt: new Date('2024-07-16'),
 	},
 	{
-		id: 15,
 		title: 'Health Tracking App',
 		description:
 			"A health tracking app designed to log daily activities, track diet, and monitor health metrics. This app provides detailed analytics and insights into the user's health journey. It includes features such as calorie counting, workout logging, and health goal setting.",
@@ -479,12 +391,7 @@ const projectData: InsertProject[] = [
 			'Node.js',
 		],
 		clientName: 'HealthTrack',
-		images: [
-			'/images/projects/health-tracking-app-1.webp',
-			'/images/projects/health-tracking-app-2.webp',
-			'/images/projects/health-tracking-app-3.webp',
-			'/images/projects/health-tracking-app-4.webp',
-		],
+		images: [],
 		features: [
 			'Activity Logging',
 			'Diet Tracking',
@@ -499,7 +406,6 @@ const projectData: InsertProject[] = [
 		updatedAt: new Date('2024-08-02'),
 	},
 	{
-		id: 16,
 		title: 'Online Marketplace',
 		description:
 			'An online marketplace offering product listings, user reviews, and secure payment options. This platform connects buyers and sellers in a user-friendly environment. It includes features such as advanced search filters, shopping carts, and order tracking.',
@@ -512,12 +418,7 @@ const projectData: InsertProject[] = [
 			'Express',
 		],
 		clientName: 'MarketPlace',
-		images: [
-			'/images/projects/online-marketplace-1.webp',
-			'/images/projects/online-marketplace-2.webp',
-			'/images/projects/online-marketplace-3.webp',
-			'/images/projects/online-marketplace-4.webp',
-		],
+		images: [],
 		features: [
 			'Product Listings',
 			'Reviews',
@@ -532,7 +433,6 @@ const projectData: InsertProject[] = [
 		updatedAt: new Date('2024-08-16'),
 	},
 	{
-		id: 17,
 		title: 'Educational Game',
 		description:
 			'An educational game that combines interactive lessons, quizzes, and progress tracking to provide an engaging learning experience. This game supports various subjects and is designed to make learning fun and effective for students of all ages.',
@@ -545,12 +445,7 @@ const projectData: InsertProject[] = [
 			'Firebase',
 		],
 		clientName: 'EduGame',
-		images: [
-			'/images/projects/educational-game-1.webp',
-			'/images/projects/educational-game-2.webp',
-			'/images/projects/educational-game-3.webp',
-			'/images/projects/educational-game-4.webp',
-		],
+		images: [],
 		features: [
 			'Interactive Lessons',
 			'Quizzes',
@@ -565,7 +460,6 @@ const projectData: InsertProject[] = [
 		updatedAt: new Date('2024-09-02'),
 	},
 	{
-		id: 18,
 		title: 'CRM System',
 		description:
 			'A customer relationship management system designed to help businesses manage their interactions with current and potential customers. This system includes features such as contact management, sales tracking, and detailed reporting.',
@@ -578,12 +472,7 @@ const projectData: InsertProject[] = [
 			'MongoDB',
 		],
 		clientName: 'CRMPro',
-		images: [
-			'/images/projects/crm-system-1.webp',
-			'/images/projects/crm-system-2.webp',
-			'/images/projects/crm-system-3.webp',
-			'/images/projects/crm-system-4.webp',
-		],
+		images: [],
 		features: [
 			'Contact Management',
 			'Sales Tracking',
@@ -598,7 +487,6 @@ const projectData: InsertProject[] = [
 		updatedAt: new Date('2024-09-16'),
 	},
 	{
-		id: 19,
 		title: 'Photo Editing App',
 		description:
 			'A photo editing app that provides users with a variety of tools to enhance and share their photos. This app includes features such as filters, effects, and social sharing options to help users create stunning visuals.',
@@ -611,12 +499,7 @@ const projectData: InsertProject[] = [
 			'Expo',
 		],
 		clientName: 'PhotoEdit',
-		images: [
-			'/images/projects/photo-editing-app-1.webp',
-			'/images/projects/photo-editing-app-2.webp',
-			'/images/projects/photo-editing-app-3.webp',
-			'/images/projects/photo-editing-app-4.webp',
-		],
+		images: [],
 		features: [
 			'Filters',
 			'Effects',
@@ -631,7 +514,6 @@ const projectData: InsertProject[] = [
 		updatedAt: new Date('2024-10-02'),
 	},
 	{
-		id: 20,
 		title: 'News Aggregator',
 		description:
 			'A news aggregator that compiles news articles from various sources into one place. This platform allows users to customize their feeds, receive notifications for breaking news, and save articles for later reading.',
@@ -644,12 +526,7 @@ const projectData: InsertProject[] = [
 			'Apollo',
 		],
 		clientName: 'NewsNow',
-		images: [
-			'/images/projects/news-aggregator-1.webp',
-			'/images/projects/news-aggregator-2.webp',
-			'/images/projects/news-aggregator-3.webp',
-			'/images/projects/news-aggregator-4.webp',
-		],
+		images: [],
 		features: [
 			'Customizable Feeds',
 			'Notifications',
@@ -669,26 +546,30 @@ async function main() {
 	console.log('Seeding database...');
 
 	// Check if any data exists in the table
-	const existingData = await db.select().from(projectTable);
+	const existingData = await prisma.project.findMany();
 
 	if (existingData.length > 0) {
-		console.log('Data found in the table, truncating...');
-		// Truncate the table before inserting new data
-		await db.execute(
-			sql`TRUNCATE TABLE ${projectTable} RESTART IDENTITY CASCADE`,
-		);
-		console.log('Table truncated successfully.');
+		console.log('Data found in the table, deleting...');
+		// Delete the existing data
+		await prisma.project.deleteMany();
+		console.log('Existing data deleted successfully.');
 	} else {
 		console.log('No data found in the table.');
 	}
 
 	// Insert new data
-	await db.insert(projectTable).values(projectData);
+	for (const project of projectData) {
+		await prisma.project.create({ data: project });
+	}
 
 	console.log('Database seeded successfully.');
 }
 
-main().catch(error => {
-	console.error('Error seeding database:', error);
-	process.exit(1);
-});
+main()
+	.catch(error => {
+		console.error('Error seeding database:', error);
+		process.exit(1);
+	})
+	.finally(async () => {
+		await prisma.$disconnect();
+	});

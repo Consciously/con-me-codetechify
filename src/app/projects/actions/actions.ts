@@ -1,11 +1,12 @@
 'use server';
 
-import db from '@/db/drizzle';
-import { projectTable } from '@/db/schema';
-import type { SelectProject } from '@/db/schema';
+import { db } from '@/db';
+import { Project } from '@prisma/client';
 
-export const getProjects = async (): Promise<SelectProject[]> => {
-	const projects = await db.select().from(projectTable);
+export const getProjects = async (): Promise<Project[]> => {
+	const projects = await db.project.findMany({
+		orderBy: [{ importance: 'desc' }, { createdAt: 'desc' }],
+	});
 
 	return projects;
 };
