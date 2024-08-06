@@ -1,7 +1,7 @@
-import { SelectProject } from '@/db/schema';
 import ProjectStruct from './custom-project-layout';
+import { Project } from '@prisma/client';
 
-export default function ProjectStack({ project }: { project: SelectProject }) {
+export default function ProjectStack({ project }: { project: Project }) {
 	return (
 		<div className='grid grid-cols-4 gap-6 my-3 md:my-6 xl:my-12'>
 			<ProjectStruct.Stack className='col-span-full xl:col-span-2'>
