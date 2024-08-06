@@ -20,6 +20,8 @@ export default function DropzoneContainer() {
 	const { toast } = useToast();
 	const { projectId } = useParams();
 
+	const hasProjectId = Boolean(projectId);
+
 	const { startUpload: startMdUpload, isUploading: isMdUploading } =
 		useUploadThing('markdownUploader', {
 			onClientUploadComplete: ([data]) => {
@@ -93,6 +95,16 @@ export default function DropzoneContainer() {
 	};
 
 	const onDropMdAccepted = (acceptedFiles: File[]) => {
+		if (projectId) {
+			toast({
+				title: 'Markdown upload failed.',
+				description: 'An project is already added',
+				variant: 'destructive',
+			});
+			setIsImgDragOver(false);
+			return;
+		}
+
 		const file = acceptedFiles[0];
 		mutate(file);
 		setIsMdDragOver(false);
@@ -129,6 +141,7 @@ export default function DropzoneContainer() {
 						'text/markdown': ['.md'],
 					}}
 					dropzoneVariant='md'
+					hasProjectId={hasProjectId}
 				/>
 			</ContainerStruct.Content>
 
@@ -149,6 +162,7 @@ export default function DropzoneContainer() {
 						'image/webp': ['.webp'],
 					}}
 					dropzoneVariant='img'
+					hasProjectId={hasProjectId}
 				/>
 			</ContainerStruct.Content>
 		</ContainerStruct.Layout>

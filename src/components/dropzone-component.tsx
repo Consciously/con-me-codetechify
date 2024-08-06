@@ -1,5 +1,5 @@
 import Dropzone, { FileRejection } from 'react-dropzone';
-import { MousePointerSquareDashed, Loader2, Image } from 'lucide-react';
+import { MousePointerSquareDashed, Loader2, Image, Ban } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import { cn } from '@/lib/utils';
 
@@ -14,6 +14,7 @@ type DropzoneComponentPropsType = {
 	onDragLeave: () => void;
 	accept: Record<string, string[]>;
 	dropzoneVariant?: 'md' | 'img';
+	hasProjectId?: boolean;
 };
 
 export default function DropzoneComponent({
@@ -27,7 +28,12 @@ export default function DropzoneComponent({
 	onDragLeave,
 	accept,
 	dropzoneVariant,
+	hasProjectId,
 }: DropzoneComponentPropsType) {
+	const isDisabled =
+		(!hasProjectId && dropzoneVariant === 'img') ||
+		(hasProjectId && dropzoneVariant === 'md');
+
 	return (
 		<>
 			<h4 className='text-xl/relaxed md:text-2xl/relaxed font-semibold tracking-tight text-balance text-center mb-3 md:mb-6 xl:mb-12'>
@@ -40,6 +46,7 @@ export default function DropzoneComponent({
 				accept={accept}
 				onDragEnter={onDragEnter}
 				onDragLeave={onDragLeave}
+				disabled={isDisabled}
 			>
 				{({ getRootProps, getInputProps }) => (
 					<div
@@ -52,8 +59,16 @@ export default function DropzoneComponent({
 						)}
 						{...getRootProps()}
 					>
-						<input {...getInputProps()} />
-						{isDragOver ? (
+						<input {...getInputProps()} disabled={isDisabled} />
+
+						{isDisabled ? (
+							<Ban
+								className={cn('h-6 w-6  mb-2', {
+									'text-secondary': dropzoneVariant === 'img',
+									'text-primary': dropzoneVariant === 'md',
+								})}
+							/>
+						) : isDragOver ? (
 							<MousePointerSquareDashed
 								className={cn('h-6 w-6  mb-2', {
 									'text-primary': dropzoneVariant === 'md',
@@ -76,13 +91,19 @@ export default function DropzoneComponent({
 								})}
 							/>
 						)}
+
 						<div
 							className={cn('flex flex-col justify-center mb-2 text-sm', {
 								'text-primary': dropzoneVariant === 'md',
 								'text-secondary': dropzoneVariant === 'img',
 							})}
 						>
-							{isUploading ? (
+							{isDisabled ? (
+								<p>
+									<span className='font-semibold'>Drop file</span> not allowed
+									yet
+								</p>
+							) : isUploading ? (
 								<div className='flex flex-col items-center'>
 									<p>Uploading...</p>
 									<Progress
