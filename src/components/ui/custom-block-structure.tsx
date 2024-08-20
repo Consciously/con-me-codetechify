@@ -3,21 +3,37 @@ import { cn } from '@/lib/utils';
 type BlockPropsType = {
 	children: React.ReactNode;
 	className?: string;
+	onMouseEnter?: () => void;
+	onMouseLeave?: () => void;
 };
 
-export default function Block({ children, className }: BlockPropsType) {
+export default function Block({
+	children,
+	className,
+	...props
+}: BlockPropsType) {
 	return (
-		<div className={cn('mb-4 md:mb-8 lg:mb-16', className)}>
-			<div className='grid grid-cols-12 gap-2 sm:gap-4 md:gap-8 xl:gap-16'>
+		<div className={cn('mb-4 md:mb-8 lg:mb-16', className)} {...props}>
+			<div
+				className='grid grid-cols-12 gap-2 sm:gap-4 md:gap-8 xl:gap-16'
+				{...props}
+			>
 				{children}
 			</div>
 		</div>
 	);
 }
 
-Block.Item = function BlockItem({ children, className }: BlockPropsType) {
+Block.Item = function BlockItem({
+	children,
+	className,
+	...props
+}: BlockPropsType) {
 	return (
-		<div className={cn('col-span-full p-2 md:p-4 lg:p-8', className)}>
+		<div
+			className={cn('col-span-full p-2 md:p-4 lg:p-8', className)}
+			{...props}
+		>
 			{children}
 		</div>
 	);
@@ -26,6 +42,7 @@ Block.Item = function BlockItem({ children, className }: BlockPropsType) {
 Block.ContentGroup = function BlockContentGroup({
 	children,
 	className,
+	...props
 }: BlockPropsType) {
 	return (
 		<div
@@ -33,19 +50,25 @@ Block.ContentGroup = function BlockContentGroup({
 				'grid grid-cols-[repeat(auto-fit,minmax(100px,1fr))] gap-2 md:gap-4',
 				className,
 			)}
+			{...props}
 		>
 			{children}
 		</div>
 	);
 };
 
-Block.Content = function BlockContent({ children, className }: BlockPropsType) {
+Block.Content = function BlockContent({
+	children,
+	className,
+	...props
+}: BlockPropsType) {
 	return (
 		<div
 			className={cn(
 				'flex flex-col justify-center items-center p-1 md:p-2 lg:p-4',
 				className,
 			)}
+			{...props}
 		>
 			{children}
 		</div>

@@ -3,11 +3,10 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
-import ContainerStruct from '@/components/ui/custom-container-layout';
 import { Button } from '@/components/ui/button';
 import { cn, generateRange } from '@/lib/utils';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
-// import Spacer from '@/components/ui/spacer';
+import Block from '@/components/ui/custom-block-structure';
 
 const buttonAnimationVariants = {
 	initial: (i: number) => ({
@@ -35,72 +34,72 @@ export default function HeroCtaArea() {
 	const [isHovered, setIsHovered] = useState(false);
 
 	return (
-		<ContainerStruct.Content className='md:col-span-6'>
-			{/* <Spacer variant='x-large'> */}
-			<div
-				className='relative z-10 w-fit mx-auto my-12 md:my-24 xl:my-48'
-				onMouseEnter={() => setIsHovered(true)}
-				onMouseLeave={() => setIsHovered(false)}
-			>
-				<Image
-					src='/images/profile_image.jpg'
-					alt='Profile image from Stefan Ihle'
-					width={552}
-					height={736}
-					className='aspect-auto h-[620px] md:h-[420px] w-auto rounded-3xl object-cover object-center border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60'
-				/>
-				<AnimatePresence>
-					{isHovered && (
-						<>
-							<motion.div
-								initial='initial'
-								animate='animate'
-								exit='initial'
-								variants={overlayAnimationVariants}
-								className='absolute inset-[2px] bg-background rounded-3xl z-10'
-							/>
-							<motion.div
-								initial='initial'
-								animate='animate'
-								exit='initial'
-								className='absolute inset-0 flex flex-col justify-center items-center rounded-3xl z-20'
-							>
-								{range.map((_, i) => (
-									<motion.div
-										key={i}
-										custom={i}
-										variants={buttonAnimationVariants}
-										className='w-1/2 mb-4'
-									>
-										<Button
-											className={cn(
-												'w-full bg-transparent bg-gradient-to-tr shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60',
-												{
-													'from-primary to-secondary': i === 0,
-													'from-secondary to-primary': i === 1,
-												},
-											)}
+		<Block>
+			<Block.Item>
+				<Block.Content
+					className='relative z-10 w-fit mx-auto my-12 md:my-24 xl:my-48'
+					onMouseEnter={() => setIsHovered(true)}
+					onMouseLeave={() => setIsHovered(false)}
+				>
+					<Image
+						src='/images/profile_image.jpg'
+						alt='Profile image from Stefan Ihle'
+						width={552}
+						height={736}
+						className='aspect-auto h-[620px] md:h-[420px] w-auto rounded-3xl object-cover object-center border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60'
+					/>
+					<AnimatePresence>
+						{isHovered && (
+							<>
+								<motion.div
+									initial='initial'
+									animate='animate'
+									exit='initial'
+									variants={overlayAnimationVariants}
+									className='absolute inset-[2px] bg-background rounded-3xl z-10'
+								/>
+								<motion.div
+									initial='initial'
+									animate='animate'
+									exit='initial'
+									className='absolute inset-0 flex flex-col justify-center items-center rounded-3xl z-20'
+								>
+									{range.map((_, i) => (
+										<motion.div
+											key={i}
+											custom={i}
+											variants={buttonAnimationVariants}
+											className='w-1/2 mb-4'
 										>
-											{i === 0 ? (
-												<>
-													<ArrowLeft />
-													Reach Me
-												</>
-											) : (
-												<>
-													My Stuff
-													<ArrowRight />
-												</>
-											)}
-										</Button>
-									</motion.div>
-								))}
-							</motion.div>
-						</>
-					)}
-				</AnimatePresence>
-			</div>
-			{/* </Spacer> */}
-		</ContainerStruct.Content>
+											<Button
+												className={cn(
+													'w-full bg-transparent bg-gradient-to-tr shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60',
+													{
+														'from-primary to-secondary': i === 0,
+														'from-secondary to-primary': i === 1,
+													},
+												)}
+											>
+												{i === 0 ? (
+													<>
+														<ArrowLeft />
+														Reach Me
+													</>
+												) : (
+													<>
+														My Stuff
+														<ArrowRight />
+													</>
+												)}
+											</Button>
+										</motion.div>
+									))}
+								</motion.div>
+							</>
+						)}
+					</AnimatePresence>
+				</Block.Content>
+			</Block.Item>
+		</Block>
 	);
 }
