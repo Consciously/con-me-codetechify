@@ -3,16 +3,17 @@
 import ServicesHeadingArea from './services-heading-area';
 import ServiceOfferArea from './service-offer-area';
 import ContainerStruct from '@/components/ui/custom-container-layout';
+import Section from '@/components/ui/custom-section-structure';
 
 export default function ServicesSection() {
 	return (
-		<ContainerStruct className='my-12 md:my-24 xl:my-48'>
-			{/* <Spacer> */}
-			<ContainerStruct.Layout className='gap-6'>
+		<>
+			<Section.Item>
 				<ServicesHeadingArea />
+			</Section.Item>
+			<Section.Item>
 				<ServiceOfferArea />
-			</ContainerStruct.Layout>
-			{/* </Spacer> */}
-		</ContainerStruct>
+			</Section.Item>
+		</>
 	);
 }

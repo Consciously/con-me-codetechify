@@ -44,7 +44,7 @@ Block.ContentGroup = function BlockContentGroup({
 	return (
 		<div
 			className={cn(
-				'grid grid-cols-[repeat(auto-fit,minmax(100px,1fr))] gap-2 md:gap-x-4 md:gap-y-2',
+				'grid grid-cols-[repeat(auto-fit,minmax(25rem,1fr))] gap-2 md:gap-x-4 md:gap-y-2',
 				className,
 			)}
 			{...props}
