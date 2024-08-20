@@ -16,7 +16,12 @@ const projectData = [
 			'Stripe',
 		],
 		clientName: 'ABC Retail',
-		images: [],
+		images: [
+			'/images/projects/ecommerce-platform-1.webp',
+			'/images/projects/ecommerce-platform-2.webp',
+			'/images/projects/ecommerce-platform-3.webp',
+			'/images/projects/ecommerce-platform-4.webp',
+		],
 		features: [
 			'Integrated Payment Gateway',
 			'Real-time Data Sync',
@@ -42,7 +47,12 @@ const projectData = [
 			'Next.js',
 		],
 		clientName: 'Self',
-		images: [],
+		images: [
+			'/images/projects/portfolio-website-1.webp',
+			'/images/projects/portfolio-website-2.webp',
+			'/images/projects/portfolio-website-3.webp',
+			'/images/projects/portfolio-website-4.webp',
+		],
 		features: [
 			'Responsive Design',
 			'Dynamic Project Showcase',
@@ -68,7 +78,12 @@ const projectData = [
 			'Node.js',
 		],
 		clientName: 'Tech Blog Inc.',
-		images: [],
+		images: [
+			'/images/projects/blog-platform-1.webp',
+			'/images/projects/blog-platform-2.webp',
+			'/images/projects/blog-platform-3.webp',
+			'/images/projects/blog-platform-4.webp',
+		],
 		features: [
 			'User Authentication',
 			'Content Management System',
@@ -94,7 +109,12 @@ const projectData = [
 			'Redux',
 		],
 		clientName: 'Socially',
-		images: [],
+		images: [
+			'/images/projects/social-media-app-1.webp',
+			'/images/projects/social-media-app-2.webp',
+			'/images/projects/social-media-app-3.webp',
+			'/images/projects/social-media-app-4.webp',
+		],
 		features: [
 			'Real-time Messaging',
 			'Post Sharing',
@@ -121,7 +141,12 @@ const projectData = [
 			'MongoDB',
 		],
 		clientName: 'ManageIt',
-		images: [],
+		images: [
+			'/images/projects/project-management-tool-1.webp',
+			'/images/projects/project-management-tool-2.webp',
+			'/images/projects/project-management-tool-3.webp',
+			'/images/projects/project-management-tool-4.webp',
+		],
 		features: [
 			'Task Tracking',
 			'Collaboration',
@@ -148,7 +173,12 @@ const projectData = [
 			'React',
 		],
 		clientName: 'LearnOnline',
-		images: [],
+		images: [
+			'/images/projects/online-learning-platform-1.webp',
+			'/images/projects/online-learning-platform-2.webp',
+			'/images/projects/online-learning-platform-3.webp',
+			'/images/projects/online-learning-platform-4.webp',
+		],
 		features: [
 			'Video Courses',
 			'Quizzes',
@@ -175,7 +205,12 @@ const projectData = [
 			'Expo',
 		],
 		clientName: 'FitLife',
-		images: [],
+		images: [
+			'/images/projects/fitness-tracker-app-1.webp',
+			'/images/projects/fitness-tracker-app-2.webp',
+			'/images/projects/fitness-tracker-app-3.webp',
+			'/images/projects/fitness-tracker-app-4.webp',
+		],
 		features: [
 			'Workout Logging',
 			'Progress Tracking',
@@ -202,7 +237,12 @@ const projectData = [
 			'MongoDB',
 		],
 		clientName: 'EventMaster',
-		images: [],
+		images: [
+			'/images/projects/event-management-system-1.webp',
+			'/images/projects/event-management-system-2.webp',
+			'/images/projects/event-management-system-3.webp',
+			'/images/projects/event-management-system-4.webp',
+		],
 		features: [
 			'Ticketing',
 			'Scheduling',
@@ -229,7 +269,12 @@ const projectData = [
 			'Redux',
 		],
 		clientName: 'ShopEasy',
-		images: [],
+		images: [
+			'/images/projects/ecommerce-mobile-app-1.webp',
+			'/images/projects/ecommerce-mobile-app-2.webp',
+			'/images/projects/ecommerce-mobile-app-3.webp',
+			'/images/projects/ecommerce-mobile-app-4.webp',
+		],
 		features: [
 			'Product Browsing',
 			'Cart Management',
@@ -256,7 +301,12 @@ const projectData = [
 			'GraphQL',
 		],
 		clientName: 'JobFinder',
-		images: [],
+		images: [
+			'/images/projects/job-board-platform-1.webp',
+			'/images/projects/job-board-platform-2.webp',
+			'/images/projects/job-board-platform-3.webp',
+			'/images/projects/job-board-platform-4.webp',
+		],
 		features: [
 			'Job Listings',
 			'Applications',
@@ -283,7 +333,12 @@ const projectData = [
 			'Node.js',
 		],
 		clientName: 'CookTogether',
-		images: [],
+		images: [
+			'/images/projects/recipe-sharing-app-1.webp',
+			'/images/projects/recipe-sharing-app-2.webp',
+			'/images/projects/recipe-sharing-app-3.webp',
+			'/images/projects/recipe-sharing-app-4.webp',
+		],
 		features: [
 			'User-generated Content',
 			'Ratings',
@@ -310,7 +365,12 @@ const projectData = [
 			'Node.js',
 		],
 		clientName: 'FinancePro',
-		images: [],
+		images: [
+			'/images/projects/personal-finance-app-1.webp',
+			'/images/projects/personal-finance-app-2.webp',
+			'/images/projects/personal-finance-app-3.webp',
+			'/images/projects/personal-finance-app-4.webp',
+		],
 		features: [
 			'Budgeting',
 			'Expense Tracking',
@@ -337,7 +397,12 @@ const projectData = [
 			'Stripe',
 		],
 		clientName: 'TravelEasy',
-		images: [],
+		images: [
+			'/images/projects/travel-booking-website-1.webp',
+			'/images/projects/travel-booking-website-2.webp',
+			'/images/projects/travel-booking-website-3.webp',
+			'/images/projects/travel-booking-website-4.webp',
+		],
 		features: [
 			'Flight Booking',
 			'Hotel Booking',
@@ -364,7 +429,12 @@ const projectData = [
 			'Redux',
 		],
 		clientName: 'StreamMusic',
-		images: [],
+		images: [
+			'/images/projects/music-streaming-app-1.webp',
+			'/images/projects/music-streaming-app-2.webp',
+			'/images/projects/music-streaming-app-3.webp',
+			'/images/projects/music-streaming-app-4.webp',
+		],
 		features: [
 			'Playlists',
 			'Offline Listening',
@@ -391,7 +461,12 @@ const projectData = [
 			'Node.js',
 		],
 		clientName: 'HealthTrack',
-		images: [],
+		images: [
+			'/images/projects/health-tracking-app-1.webp',
+			'/images/projects/health-tracking-app-2.webp',
+			'/images/projects/health-tracking-app-3.webp',
+			'/images/projects/health-tracking-app-4.webp',
+		],
 		features: [
 			'Activity Logging',
 			'Diet Tracking',
@@ -418,7 +493,12 @@ const projectData = [
 			'Express',
 		],
 		clientName: 'MarketPlace',
-		images: [],
+		images: [
+			'/images/projects/online-marketplace-1.webp',
+			'/images/projects/online-marketplace-2.webp',
+			'/images/projects/online-marketplace-3.webp',
+			'/images/projects/online-marketplace-4.webp',
+		],
 		features: [
 			'Product Listings',
 			'Reviews',
@@ -445,7 +525,12 @@ const projectData = [
 			'Firebase',
 		],
 		clientName: 'EduGame',
-		images: [],
+		images: [
+			'/images/projects/educational-game-1.webp',
+			'/images/projects/educational-game-2.webp',
+			'/images/projects/educational-game-3.webp',
+			'/images/projects/educational-game-4.webp',
+		],
 		features: [
 			'Interactive Lessons',
 			'Quizzes',
@@ -472,7 +557,12 @@ const projectData = [
 			'MongoDB',
 		],
 		clientName: 'CRMPro',
-		images: [],
+		images: [
+			'/images/projects/crm-system-1.webp',
+			'/images/projects/crm-system-2.webp',
+			'/images/projects/crm-system-3.webp',
+			'/images/projects/crm-system-4.webp',
+		],
 		features: [
 			'Contact Management',
 			'Sales Tracking',
@@ -499,7 +589,12 @@ const projectData = [
 			'Expo',
 		],
 		clientName: 'PhotoEdit',
-		images: [],
+		images: [
+			'/images/projects/photo-editing-app-1.webp',
+			'/images/projects/photo-editing-app-2.webp',
+			'/images/projects/photo-editing-app-3.webp',
+			'/images/projects/photo-editing-app-4.webp',
+		],
 		features: [
 			'Filters',
 			'Effects',
@@ -526,7 +621,12 @@ const projectData = [
 			'Apollo',
 		],
 		clientName: 'NewsNow',
-		images: [],
+		images: [
+			'/images/projects/news-aggregator-1.webp',
+			'/images/projects/news-aggregator-2.webp',
+			'/images/projects/news-aggregator-3.webp',
+			'/images/projects/news-aggregator-4.webp',
+		],
 		features: [
 			'Customizable Feeds',
 			'Notifications',
