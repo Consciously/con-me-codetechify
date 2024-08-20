@@ -7,13 +7,13 @@ type H1PropsType = {
 
 export default function H1({ children, className }: H1PropsType) {
 	return (
-		<div
+		<h1
 			className={cn(
-				'text-3xl/relaxed md:text-5xl/relaxed xl:text-7xl/relaxed font-semibold tracking-tight text-center',
+				'text-clamp-xl leading-relaxed font-semibold tracking-tight text-center',
 				className,
 			)}
 		>
 			{children}
-		</div>
+		</h1>
 	);
 }

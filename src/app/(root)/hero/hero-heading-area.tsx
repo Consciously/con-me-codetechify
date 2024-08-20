@@ -1,16 +1,26 @@
-import ContainerStruct from '@/components/ui/custom-container-layout';
 import H1 from '@/components/ui/h1';
-import HeroHeadingFlip from './hero-heading-flip';
+import Block from '@/components/ui/custom-block-structure';
+import H4 from '@/components/ui/h4';
 
 export default function HeroHeadingArea() {
 	return (
-		<ContainerStruct.Content>
-			<H1 className='text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary'>
-				Crafting Innovating Web Solutions with Heart and Skill
-			</H1>
-			<h3 className='text-transparent bg-clip-text bg-gradient-to-r from-foreground to-secondary text-xl/relaxed md:text-3xl/relaxed font-semibold tracking-tight text-center'>
-				Turning Challenges into Opportunities with Clean, Structured Code
-			</h3>
-		</ContainerStruct.Content>
+		<Block className='md:mb-8 lg:mb-16'>
+			<Block.Item>
+				<Block.Content>
+					<H1>
+						<span className=' text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary'>
+							Crafting Innovating Web Solutions with Heart and Skill
+						</span>
+					</H1>
+				</Block.Content>
+				<Block.Content>
+					<H4 className='hidden md:block'>
+						<span className='text-transparent bg-clip-text bg-gradient-to-r from-foreground to-secondary'>
+							Turning Challenges into Opportunities with Clean, Structured Code
+						</span>
+					</H4>
+				</Block.Content>
+			</Block.Item>
+		</Block>
 	);
 }

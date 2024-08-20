@@ -3,23 +3,30 @@ import HeroSection from './hero/hero-section';
 import ServicesSection from './services/services-section';
 import BackgroundPattern from '@/components/ui/background-pattern';
 import ProjectsSection from './projects/projects-section';
+import Section from '@/components/ui/custom-section-structure';
 
 export default function Home() {
 	return (
 		<>
-			<section className='relative block lg:min-h-screen'>
-				<Image
-					src='/images/bg_tech_01.webp'
-					alt='Hero image'
-					fill
-					className='w-full h-full object-cover object-center -z-20'
-				/>
-				<div className='grainy-light absolute inset-0 -z-30'></div>
-				<div className='absolute inset-0 bg-background opacity-85 -z-10'></div>
-				<div className='diagonal-cover' />
+			<Section className='relative lg:min-h-screen overflow-clip'>
+				<Section.Item>
+					<Image
+						src='/images/bg_tech_01.webp'
+						alt='Hero image'
+						fill
+						className='w-full h-full object-cover object-center -z-20'
+					/>
+				</Section.Item>
+				{/* <div className='grainy-light absolute inset-0 -z-30'></div> */}
+				<Section.Item>
+					<div className='absolute inset-0 bg-background opacity-85 -z-10'></div>
+				</Section.Item>
+				{/* <div className='diagonal-cover' /> */}
 				<HeroSection />
-				<BackgroundPattern />
-			</section>
+				<Section.Item>
+					<BackgroundPattern />
+				</Section.Item>
+			</Section>
 
 			<section className='relative block lg:min-h-screen'>
 				<Image
@@ -31,7 +38,7 @@ export default function Home() {
 				<div className='grainy-light absolute inset-0 -z-30' />
 				<div className='absolute inset-0 bg-background opacity-85 -z-10' />
 				<ServicesSection />
-				<BackgroundPattern />
+				{/* <BackgroundPattern /> */}
 			</section>
 			<section className='relative block lg:min-h-screen'>
 				<Image
@@ -43,7 +50,7 @@ export default function Home() {
 				<div className='grainy-light absolute inset-0 -z-30' />
 				<div className='absolute inset-0 bg-background opacity-85 -z-10' />
 				<ProjectsSection />
-				<BackgroundPattern />
+				{/* <BackgroundPattern /> */}
 			</section>
 		</>
 	);
