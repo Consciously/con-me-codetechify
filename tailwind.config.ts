@@ -66,6 +66,13 @@ const config = {
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)',
 			},
+			fontSize: {
+				'clamp-xl': 'clamp(2.5rem, 8vw, 4.8rem)',
+				'clamp-lg': 'clamp(1.625rem, 7vw, 3.5rem)',
+				'clamp-md': 'clamp(1.5rem, 6vw, 2.75rem)',
+				'clamp-sm': 'clamp(1.25rem, 5vw, 2rem)',
+				clamp: 'clamp(0.825rem, 4vw, 1rem)',
+			},
 			keyframes: {
 				'accordion-down': {
 					from: { height: '0' },
@@ -87,7 +94,11 @@ const config = {
 			},
 		},
 	},
-	plugins: [require('tailwindcss-animate'), require('@tailwindcss/line-clamp')],
+	plugins: [
+		require('tailwindcss-animate'),
+		require('@tailwindcss/line-clamp'),
+		require('@tailwindcss/container-queries'),
+	],
 } satisfies Config;
 
 export default withUt(config);
