@@ -34,10 +34,10 @@ export default function HeroCtaArea() {
 	const [isHovered, setIsHovered] = useState(false);
 
 	return (
-		<Block>
-			<Block.Item>
+		<Block className='md:mb-8 lg:mb-16'>
+			<Block.Item className='md:px-4 md:py-2 lg:px-8 py-4'>
 				<Block.Content
-					className='relative z-10 w-fit mx-auto my-12 md:my-24 xl:my-48'
+					className='relative z-10 w-fit mx-auto'
 					onMouseEnter={() => setIsHovered(true)}
 					onMouseLeave={() => setIsHovered(false)}
 				>

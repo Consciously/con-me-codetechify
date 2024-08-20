@@ -15,7 +15,7 @@ export default function Section({
 	return (
 		<section
 			className={cn(
-				'min-h-64 my-2 sm:my-4 md:my-8 lg:my-16 px-2 sm:px-4 md:px-8 lg:px-16 xl:px-0',
+				'min-h-64 py-2 sm:py-4 md:py-8 lg:py-16 px-2 sm:px-4 md:px-8 lg:px-16',
 				className,
 			)}
 		>
@@ -24,7 +24,7 @@ export default function Section({
 					'md:max-w-screen-2xl': isCentered,
 				})}
 			>
-				<div className='grid grid-cols-12 gap-2 sm:gap-4 md:gap-8 xl:gap-16'>
+				<div className='grid grid-cols-12 gap-2 sm:gap-x-4 sm:gap-y-2 md:gap-x-8 md:gap-y-4 xl:gap-x-16 xl:gap-y-8'>
 					{children}
 				</div>
 			</MaxWidthWrapper>

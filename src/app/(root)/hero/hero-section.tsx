@@ -1,7 +1,6 @@
 import HeroHeadingArea from './hero-heading-area';
 import HeroCtaArea from './hero-cta-area';
 import HeroIntroArea from './hero-intro-area';
-// import Spacer from '@/components/ui/spacer';
 import Section from '@/components/ui/custom-section-structure';
 
 export default function HeroSection() {

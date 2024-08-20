@@ -13,9 +13,9 @@ export default function Block({
 	...props
 }: BlockPropsType) {
 	return (
-		<div className={cn('mb-4 md:mb-8 lg:mb-16', className)} {...props}>
+		<div className={cn('mb-4', className)} {...props}>
 			<div
-				className='grid grid-cols-12 gap-2 sm:gap-4 md:gap-8 xl:gap-16'
+				className='grid grid-cols-12 gap-2 sm:gap-x-4 sm:gap-y-2 md:gap-x-8 md:gap-y-4 xl:gap-x-16 xl:gap-y-8'
 				{...props}
 			>
 				{children}
@@ -30,10 +30,7 @@ Block.Item = function BlockItem({
 	...props
 }: BlockPropsType) {
 	return (
-		<div
-			className={cn('col-span-full p-2 md:p-4 lg:p-8', className)}
-			{...props}
-		>
+		<div className={cn('col-span-full px-2 py-1', className)} {...props}>
 			{children}
 		</div>
 	);
@@ -47,7 +44,7 @@ Block.ContentGroup = function BlockContentGroup({
 	return (
 		<div
 			className={cn(
-				'grid grid-cols-[repeat(auto-fit,minmax(100px,1fr))] gap-2 md:gap-4',
+				'grid grid-cols-[repeat(auto-fit,minmax(100px,1fr))] gap-2 md:gap-x-4 md:gap-y-2',
 				className,
 			)}
 			{...props}
