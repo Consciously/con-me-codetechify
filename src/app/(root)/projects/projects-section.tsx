@@ -1,23 +1,19 @@
 import ProjectsData from './projects-home-data';
 // import Spacer from '@/components/ui/spacer';
-import ContainerStruct from '@/components/ui/custom-container-layout';
 import ProjectHeaderArea from './project-header-area';
 import ProjectDataContainer from '@/components/ui/project/project-data-container';
 import ProjectsHomeData from './projects-home-data';
+import Section from '@/components/ui/custom-section-structure';
 
 export default function ProjectsSection() {
 	return (
-		<ContainerStruct className='my-12 md:my-24 xl:my-48'>
-			{/* <Spacer> */}
-			<ContainerStruct.Layout className='gap-6'>
+		<>
+			<Section.Item>
 				<ProjectHeaderArea title='My featured Projects' />
-				<ContainerStruct.Content>
-					<ProjectDataContainer>
-						<ProjectsHomeData />
-					</ProjectDataContainer>
-				</ContainerStruct.Content>
-			</ContainerStruct.Layout>
-			{/* </Spacer> */}
-		</ContainerStruct>
+			</Section.Item>
+			<Section.Item>
+				<ProjectsHomeData />
+			</Section.Item>
+		</>
 	);
 }

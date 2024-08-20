@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { getProjects } from '@/app/(root)/projects/action/action';
 import ProjectItem from '@/components/ui/project/project-item';
 import { cn, getProjectSize } from '@/lib/utils';
+import Block from '@/components/ui/custom-block-structure';
 
 export default function ProjectsHomeData() {
 	const { data, isLoading, error } = useQuery({
@@ -19,11 +20,11 @@ export default function ProjectsHomeData() {
 	if (error) return <div>Error: {error.message}</div>;
 
 	return (
-		<>
+		<Block>
 			{projects.length > 0 ? (
 				data?.map(project => {
 					return (
-						<div
+						<Block.Item
 							key={project.id}
 							className={cn('col-span-full', {
 								'md:col-span-6 lg:col-span-4 xl:col-span-3':
@@ -31,12 +32,12 @@ export default function ProjectsHomeData() {
 							})}
 						>
 							<ProjectItem project={project} projectSize={projectSize} />
-						</div>
+						</Block.Item>
 					);
 				})
 			) : (
 				<div>No projects found</div>
 			)}
-		</>
+		</Block>
 	);
 }
