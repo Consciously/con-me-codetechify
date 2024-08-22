@@ -3,7 +3,7 @@
 import { Project } from '@prisma/client';
 import { useRouter } from 'next/navigation';
 import { cn, formatDate, separateWords } from '@/lib/utils';
-import ProjectStruct from './custom-project-layout';
+import ProjectStruct from '../custom-project-structure';
 import { Button } from '../button';
 
 type ProjectHeaderPropsType = {

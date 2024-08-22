@@ -1,4 +1,4 @@
-import ProjectStruct from './custom-project-layout';
+import ProjectStruct from '../custom-project-structure';
 import { Project } from '@prisma/client';
 
 export default function ProjectStack({ project }: { project: Project }) {

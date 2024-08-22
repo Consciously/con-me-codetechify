@@ -10,6 +10,7 @@ import ProjectContainer from './project-container';
 import ProjectContent from './project-content';
 import ProjectFooter from './project-footer';
 import { Project } from '@prisma/client';
+import Block from '../custom-block-structure';
 
 type ProjectItemPropsType = {
 	project: Project;
@@ -29,6 +30,7 @@ export default function ProjectItem({
 						projectSize={projectSize}
 						className='w-full md:w-auto mb-12 md:mb-24 xl:mb-48'
 					/>
+
 					<ProjectContent className='grid grid-cols-8 gap-12 mb-6 md:mb-12 xl:mb-24'>
 						<div className='col-span-full sm:col-span-4 xl:col-span-2 grid grid-cols-2'>
 							<ProjectDescription
@@ -44,6 +46,7 @@ export default function ProjectItem({
 							<ProjectStack project={project} />
 						</div>
 					</ProjectContent>
+
 					<ProjectFooter className='flex-col md:flex-row flex-1 items-center justify-center gap-6 w-1/2 md:absolute md:bottom-0 xl:left-1/3'>
 						<a
 							href={project.liveDemo}
@@ -75,6 +78,7 @@ export default function ProjectItem({
 						project={project}
 						className='w-full max-h-32 mb-12 md:mb-24 xl:mb-48'
 					/>
+
 					<ProjectContent className='grid grid-cols-1'>
 						<div className='col-span-full'>
 							<ProjectDescription
