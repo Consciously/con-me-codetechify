@@ -1,7 +1,4 @@
-import ProjectsData from './projects-home-data';
-// import Spacer from '@/components/ui/spacer';
 import ProjectHeaderArea from './project-header-area';
-import ProjectDataContainer from '@/components/ui/project/project-data-container';
 import ProjectsHomeData from './projects-home-data';
 import Section from '@/components/ui/custom-section-structure';
 
