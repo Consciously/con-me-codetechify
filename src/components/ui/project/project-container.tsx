@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import ProjectStruct from './custom-project-layout';
+import ProjectStruct from '../custom-project-structure';
 
 type ProjectContainerPropsType = {
 	children: React.ReactNode;
@@ -11,7 +11,7 @@ export default function ProjectContainer({
 	className,
 }: ProjectContainerPropsType) {
 	return (
-		<ProjectStruct.Container className={cn(className)}>
+		<ProjectStruct.Container className={cn('p-0', className)}>
 			{children}
 		</ProjectStruct.Container>
 	);

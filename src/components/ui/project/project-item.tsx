@@ -10,6 +10,7 @@ import ProjectContainer from './project-container';
 import ProjectContent from './project-content';
 import ProjectFooter from './project-footer';
 import { Project } from '@prisma/client';
+import ProjectStruct from '../custom-project-structure';
 
 type ProjectItemPropsType = {
 	project: Project;
@@ -23,28 +24,32 @@ export default function ProjectItem({
 	return (
 		<>
 			{projectSize && projectSize(project) === 'large' ? (
-				<ProjectContainer className='w-full h-full'>
+				<ProjectStruct.Container className='p-0 @container/container'>
 					<ProjectHeader
 						project={project}
 						projectSize={projectSize}
-						className='w-full md:w-auto mb-12 md:mb-24 xl:mb-48'
+						className='w-full md:w-auto'
 					/>
-					<ProjectContent className='grid grid-cols-8 gap-12 mb-6 md:mb-12 xl:mb-24'>
-						<div className='col-span-full sm:col-span-4 xl:col-span-2 grid grid-cols-2'>
-							<ProjectDescription
-								project={project}
-								className='col-span-full xl:absolute xl:-top-28 xl:w-2/3 xl:left-1/4 w-full mb-6 md:mb-12 xl:mb-24'
-							/>
-							<ProjectImagesContainer
-								project={project}
-								className='col-span-full w-2/3 h-2/3 xl:w-full xl:h-full m-auto'
-							/>
-						</div>
-						<div className='hidden sm:block sm:col-span-4 xl:col-span-6'>
-							<ProjectStack project={project} />
+					<ProjectContent>
+						<div className='grid grid-cols-12 gap-2 md:gap-4 xl:gap-8'>
+							<div className='col-span-full'>
+								<ProjectDescription
+									project={project}
+									className='col-span-full'
+								/>
+							</div>
+							<div className='col-span-full grid grid-cols-12 gap-2 sm:gap-x-4 sm:gap-y-2 md:gap-x-8 md:gap-y-4 xl:gap-x-16 xl:gap-y-8 @container'>
+								<div className='col-span-full md:col-span-6 @sm:max-w-[28rem] @sm:mx-auto'>
+									<ProjectImagesContainer project={project} />
+								</div>
+								<div className='col-span-full md:col-span-6'>
+									<ProjectStack project={project} />
+								</div>
+							</div>
 						</div>
 					</ProjectContent>
-					<ProjectFooter className='flex-col md:flex-row flex-1 items-center justify-center gap-6 w-1/2 md:absolute md:bottom-0 xl:left-1/3'>
+
+					<ProjectFooter className='w-full @xl/container:w-2/3 flex-row items-center justify-center gap-6 mx-auto'>
 						<a
 							href={project.liveDemo}
 							className={cn(
@@ -68,23 +73,24 @@ export default function ProjectItem({
 							GitHub Repo
 						</a>
 					</ProjectFooter>
-				</ProjectContainer>
+				</ProjectStruct.Container>
 			) : (
-				<ProjectContainer className='w-full h-full'>
+				<ProjectStruct.Container>
 					<ProjectHeader
 						project={project}
-						className='w-full max-h-32 mb-12 md:mb-24 xl:mb-48'
+						className='w-full mb-6 md:mb-12 p-0'
 					/>
+
 					<ProjectContent className='grid grid-cols-1'>
 						<div className='col-span-full'>
 							<ProjectDescription
 								project={project}
-								className='mb-3 md:mb-6 xl:mb-12 line-clamp-8'
+								className='mb-6 md:mb-12 p-0 line-clamp-8'
 							/>
 							<ProjectImagesContainer project={project} />
 						</div>
 					</ProjectContent>
-				</ProjectContainer>
+				</ProjectStruct.Container>
 			)}
 		</>
 	);

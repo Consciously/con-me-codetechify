@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import ProjectStruct from './custom-project-layout';
+import ProjectStruct from '../custom-project-structure';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Project } from '@prisma/client';

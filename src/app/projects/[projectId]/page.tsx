@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import ContainerStruct from '@/components/ui/custom-container-layout';
-import ProjectStruct from '@/components/ui/project/custom-project-layout';
+import ProjectStruct from '@/components/ui/custom-project-structure';
 import ProjectDataContainer from '@/components/ui/project/project-data-container';
 import ProjectDetails from './project-details';
 

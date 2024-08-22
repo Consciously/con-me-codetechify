@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import ProjectStruct from './custom-project-layout';
+import ProjectStruct from '../custom-project-structure';
 
 type ProjectFooterPropsType = {
 	children: React.ReactNode;

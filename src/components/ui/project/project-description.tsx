@@ -1,5 +1,5 @@
 import { Project } from '@prisma/client';
-import ProjectStruct from './custom-project-layout';
+import ProjectStruct from '../custom-project-structure';
 import { cn } from '@/lib/utils';
 
 type ProjectDescriptionPropsType = {
