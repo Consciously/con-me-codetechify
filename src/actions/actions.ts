@@ -1,0 +1,30 @@
+'use server';
+
+import { cookies } from 'next/headers';
+import { consentSchema } from '@/lib/validation';
+
+export const setConsent = async (data: unknown) => {
+	const result = consentSchema.safeParse(data);
+
+	if (!result.success) {
+		throw new Error('Invalid consent data');
+	}
+
+	const { necessary, analytics, marketing } = result.data;
+
+	const consentCookies = cookies();
+
+	consentCookies.set('consent_necessary', necessary ? 'true' : 'false', {
+		httpOnly: true,
+	});
+
+	consentCookies.set('consent_analytics', analytics ? 'true' : 'false', {
+		httpOnly: true,
+	});
+
+	consentCookies.set('consent_marketing', marketing ? 'true' : 'false', {
+		httpOnly: true,
+	});
+
+	return { success: true };
+};
