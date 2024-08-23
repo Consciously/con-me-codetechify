@@ -26,5 +26,16 @@ export const setConsent = async (data: unknown) => {
 		httpOnly: true,
 	});
 
+	consentCookies.set('consent_given', 'true', {
+		httpOnly: true,
+	});
+
 	return { success: true };
+};
+
+export const getConsentStatus = async () => {
+	const consentCookies = cookies();
+	const consentGiven = consentCookies.get('consent_given');
+
+	return consentGiven?.value === 'true';
 };
