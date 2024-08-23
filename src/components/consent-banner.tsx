@@ -17,6 +17,7 @@ import {
 import { useRouter } from 'next/navigation';
 import { setConsent, getConsentStatus } from '@/app/actions/actions';
 import { type ConsentFormValues, consentSchema } from '@/lib/validation';
+import Block from './ui/custom-block-structure';
 
 export default function ConsentBanner() {
 	const [isVisible, setIsVisible] = useState<boolean>(true);
@@ -73,83 +74,100 @@ export default function ConsentBanner() {
 	}
 
 	return (
-		<div className='fixed bottom-0 left-0 right-0 p-4 bg-gray-800 text-white z-50'>
-			<p className='mb-4'>
-				We use cookies to enhance your experience. You can accept or reject all
-				cookies, or customize your preferences.
-			</p>
-			<Form {...form}>
-				<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
-					{showPreferences ? (
-						<>
-							<FormField
-								control={form.control}
-								name='necessary'
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel>Necessary</FormLabel>
-										<FormControl>
-											<Checkbox
-												checked={field.value}
-												onCheckedChange={field.onChange}
-												disabled
-											/>
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-							<FormField
-								control={form.control}
-								name='analytics'
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel>Analytics</FormLabel>
-										<FormControl>
-											<Checkbox
-												checked={field.value}
-												onCheckedChange={field.onChange}
-											/>
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
-							<FormField
-								control={form.control}
-								name='marketing'
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel>Marketing</FormLabel>
-										<FormControl>
-											<Checkbox
-												checked={field.value}
-												onCheckedChange={field.onChange}
-											/>
-										</FormControl>
-										<FormMessage />
-									</FormItem>
-								)}
-							/>
+		<Block className='fixed bottom-0 left-0 right-0 p-4 bg-background text-white z-50 mb-0'>
+			<Block.Item>
+				<p className='mb-4'>
+					We use cookies to enhance your experience. You can accept or reject
+					all cookies, or customize your preferences.
+				</p>
+				<Form {...form}>
+					<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
+						{showPreferences ? (
+							<>
+								<FormField
+									control={form.control}
+									name='necessary'
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Necessary</FormLabel>
+											<FormControl>
+												<Checkbox
+													checked={field.value}
+													onCheckedChange={field.onChange}
+													disabled
+												/>
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name='analytics'
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Analytics</FormLabel>
+											<FormControl>
+												<Checkbox
+													checked={field.value}
+													onCheckedChange={field.onChange}
+												/>
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<FormField
+									control={form.control}
+									name='marketing'
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Marketing</FormLabel>
+											<FormControl>
+												<Checkbox
+													checked={field.value}
+													onCheckedChange={field.onChange}
+												/>
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								<div className='flex justify-end space-x-4'>
+									<Button type='submit'>Accept Preferences</Button>
+								</div>
+							</>
+						) : (
 							<div className='flex justify-end space-x-4'>
-								<Button type='submit'>Accept Preferences</Button>
+								<Button
+									type='button'
+									variant='destructive'
+									onClick={handleRejectAll}
+									className='shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60 hover:bg-red-500'
+								>
+									Reject All
+								</Button>
+								<Button
+									type='button'
+									variant='default'
+									onClick={handleAcceptAll}
+									className='bg-transparent bg-gradient-to-tr from-primary to-secondary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60'
+								>
+									Accept All
+								</Button>
+								<Button
+									type='button'
+									variant='default'
+									onClick={() => setShowPreferences(true)}
+									className='bg-transparent bg-gradient-to-tr from-secondary to-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60'
+								>
+									Preferences
+								</Button>
 							</div>
-						</>
-					) : (
-						<div className='flex justify-end space-x-4'>
-							<Button type='button' variant='outline' onClick={handleRejectAll}>
-								Reject All
-							</Button>
-							<Button type='button' variant='outline' onClick={handleAcceptAll}>
-								Accept All
-							</Button>
-							<Button type='button' onClick={() => setShowPreferences(true)}>
-								Preferences
-							</Button>
-						</div>
-					)}
-				</form>
-			</Form>
-		</div>
+						)}
+					</form>
+				</Form>
+			</Block.Item>
+		</Block>
 	);
 }
