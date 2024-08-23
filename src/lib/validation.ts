@@ -18,4 +18,11 @@ export const markdownMetadataSchema = z.object({
 	content: z.string(),
 });
 
+export const consentSchema = z.object({
+	necessary: z.boolean().default(true),
+	analytics: z.boolean().optional(),
+	marketing: z.boolean().optional(),
+});
+
+export type ConsentFormValues = z.infer<typeof consentSchema>;
 export type MarkdownMetadata = z.infer<typeof markdownMetadataSchema>;
