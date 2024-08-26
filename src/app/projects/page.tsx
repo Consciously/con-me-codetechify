@@ -4,7 +4,7 @@ import Section from '@/components/ui/custom-section-structure';
 
 export default function ProjectsPage() {
 	return (
-		<Section>
+		<Section isCentered>
 			<Section.Item>
 				<ProjectHeaderArea title='My projects' />
 			</Section.Item>

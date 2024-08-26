@@ -11,8 +11,6 @@ import { Button } from './ui/button';
 import { MenuIcon, LogIn, LogOut } from 'lucide-react';
 import { ThemeToggler } from './theme-toggler';
 import { Separator } from './ui/separator';
-import { LoginLink, LogoutLink } from '@kinde-oss/kinde-auth-nextjs/components';
-import { useKindeBrowserClient } from '@kinde-oss/kinde-auth-nextjs';
 
 const NAVIGATION_DATA = [
 	{
@@ -33,8 +31,6 @@ const NAVIGATION_DATA = [
 export default function Header() {
 	const { scrollY } = useScroll();
 	const [hasShadow, setHasShadow] = useState<boolean>(false);
-	const { isAuthenticated, getPermissions } = useKindeBrowserClient();
-	const { permissions } = getPermissions();
 
 	useEffect(() => {
 		const unsubscribe = scrollY.on('change', latest => {
@@ -72,53 +68,38 @@ export default function Header() {
 					</Link>
 				</div>
 				<ul className='hidden md:flex gap-x-6 items-center ml-auto h-full'>
-					{NAVIGATION_DATA.map(({ href, name, requiredPermissions }) => {
-						if (
-							!requiredPermissions ||
-							requiredPermissions.every(p => permissions?.includes(p))
-						) {
-							return (
-								<li
-									key={href}
-									className={cn(
-										'flex items-center relative  text-base font-semibold',
-										{
-											'text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary':
-												activePathname === href,
-											'text-primary': activePathname !== href,
-										},
-									)}
-								>
-									<Link href={href} className='block'>
-										{name}
-									</Link>
+					{NAVIGATION_DATA.map(({ href, name }) => {
+						return (
+							<li
+								key={href}
+								className={cn(
+									'flex items-center relative  text-base font-semibold',
+									{
+										'text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary':
+											activePathname === href,
+										'text-primary': activePathname !== href,
+									},
+								)}
+							>
+								<Link href={href} className='block'>
+									{name}
+								</Link>
 
-									{activePathname === href && (
-										<motion.div
-											layoutId='header-active-link'
-											className='bg-primary h-1 w-full absolute top-8'
-										></motion.div>
-									)}
-								</li>
-							);
-						}
+								{activePathname === href && (
+									<motion.div
+										layoutId='header-active-link'
+										className='bg-primary h-1 w-full absolute top-8'
+									></motion.div>
+								)}
+							</li>
+						);
 					})}
 				</ul>
 				<Separator
 					orientation='vertical'
 					className='hidden md:block bg-accent ml-3'
 				/>
-				<div className='ml-3 py-3'>
-					{isAuthenticated ? (
-						<LogoutLink className='text-primary'>
-							<LogOut className='w-6 h-6' />
-						</LogoutLink>
-					) : (
-						<LoginLink className='text-primary'>
-							<LogIn className='w-6 h-6' />
-						</LoginLink>
-					)}
-				</div>
+				<div className='ml-3 py-3'></div>
 				<div className='hidden md:block ml-3 py-3'>
 					<ThemeToggler />
 				</div>
