@@ -6,8 +6,8 @@ import Footer from '@/components/footer';
 import { ThemeProvider } from 'next-themes';
 import Provider from '@/components/provider';
 import { Toaster } from '@/components/ui/toaster';
-import ConsentBanner from '@/components/consent-banner';
 import ConsentProvider from '@/components/consent-provider';
+import { ClerkProvider } from '@clerk/nextjs';
 
 const albertSans = Albert_Sans({ subsets: ['latin'] });
 
@@ -32,12 +32,14 @@ export default function RootLayout({
 				>
 					<Provider>
 						<ConsentProvider>
-							<Header />
-							<main className='flex flex-col min-h-[calc(100vh-4rem-1px)]'>
-								<div className='flex-1 flex flex-col h-full'>{children}</div>
-							</main>
-							<Toaster />
-							<Footer />
+							<ClerkProvider>
+								<Header />
+								<main className='flex flex-col min-h-[calc(100vh-4rem-1px)]'>
+									<div className='flex-1 flex flex-col h-full'>{children}</div>
+								</main>
+								<Toaster />
+								<Footer />
+							</ClerkProvider>
 						</ConsentProvider>
 					</Provider>
 				</ThemeProvider>
