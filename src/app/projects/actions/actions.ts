@@ -10,3 +10,13 @@ export const getProjects = async (): Promise<Project[]> => {
 
 	return projects;
 };
+
+export const getProjectById = async (
+	projectId: string,
+): Promise<Project | null> => {
+	const project = await db.project.findUnique({
+		where: { id: projectId },
+	});
+
+	return project;
+};
