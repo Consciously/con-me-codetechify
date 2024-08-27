@@ -2,7 +2,6 @@
 
 import { Button, buttonVariants } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
-import { useKindeBrowserClient } from '@kinde-oss/kinde-auth-nextjs';
 import ProjectStruct from '@/components/ui/custom-project-structure';
 import ProjectHeader from '@/components/ui/project/project-header';
 import ProjectContent from '@/components/ui/project/project-content';
@@ -16,7 +15,6 @@ import { getProjectById } from '../actions/actions';
 
 export default function ProjectDetails({ projectId }: { projectId: string }) {
 	const router = useRouter();
-	const { user } = useKindeBrowserClient();
 
 	const {
 		data: project,
@@ -97,14 +95,13 @@ export default function ProjectDetails({ projectId }: { projectId: string }) {
 					</a>
 				</ProjectFooter>
 			</ProjectStruct.Container>
-			{user?.id && (
-				<Button
-					className='w-full bg-transparent bg-gradient-to-tr from-primary to-secondary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60'
-					onClick={() => router.push(`/admin/${projectId}`)}
-				>
-					Redirect...
-				</Button>
-			)}
+
+			<Button
+				className='w-full bg-transparent bg-gradient-to-tr from-primary to-secondary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60'
+				onClick={() => router.push(`/admin/${projectId}`)}
+			>
+				Redirect...
+			</Button>
 		</>
 	);
 }

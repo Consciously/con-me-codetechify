@@ -1,10 +1,10 @@
 'use client';
 
 import { useParams } from 'next/navigation';
-import ContainerStruct from '@/components/ui/custom-container-layout';
 import DropzoneComponent from '@/components/dropzone-component';
 import { useMarkdownUploader } from '@/hooks/use-markdown-uploader';
 import { useImageUploader } from '@/hooks/use-image-uploader';
+import Block from '@/components/ui/custom-block-structure';
 
 export default function DropzoneContainer() {
 	const { projectId } = useParams();
@@ -14,8 +14,8 @@ export default function DropzoneContainer() {
 	const hasProjectId = Boolean(projectId);
 
 	return (
-		<ContainerStruct.Layout className='gap-6'>
-			<ContainerStruct.Content className='md:col-span-6 h-[300px]'>
+		<Block>
+			<Block.Item className='md:col-span-6'>
 				<DropzoneComponent
 					title='Upload Markdown'
 					isDragOver={mdUploader.isDragOver}
@@ -31,9 +31,8 @@ export default function DropzoneContainer() {
 					dropzoneVariant='md'
 					hasProjectId={hasProjectId}
 				/>
-			</ContainerStruct.Content>
-
-			<ContainerStruct.Content className='md:col-span-6 h-[300px]'>
+			</Block.Item>
+			<Block.Item className='md:col-span-6'>
 				<DropzoneComponent
 					title='Upload Images'
 					isDragOver={imgUploader.isDragOver}
@@ -52,7 +51,7 @@ export default function DropzoneContainer() {
 					dropzoneVariant='img'
 					hasProjectId={hasProjectId}
 				/>
-			</ContainerStruct.Content>
-		</ContainerStruct.Layout>
+			</Block.Item>
+		</Block>
 	);
 }

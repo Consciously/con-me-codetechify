@@ -51,7 +51,7 @@ export default function DropzoneComponent({
 				{({ getRootProps, getInputProps }) => (
 					<div
 						className={cn(
-							'h-full w-full flex-1 flex flex-col items-center justify-center border-2 border-dashed',
+							'min-h-[20rem] flex-1 flex flex-col items-center justify-center border-2 border-dashed',
 							{
 								'border-primary': dropzoneVariant === 'md',
 								'border-secondary': dropzoneVariant === 'img',

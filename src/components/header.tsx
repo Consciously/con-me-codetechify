@@ -11,8 +11,13 @@ import { Button } from './ui/button';
 import { MenuIcon, LogIn, LogOut } from 'lucide-react';
 import { ThemeToggler } from './theme-toggler';
 import { Separator } from './ui/separator';
-import { LoginLink, LogoutLink } from '@kinde-oss/kinde-auth-nextjs/components';
-import { useKindeBrowserClient } from '@kinde-oss/kinde-auth-nextjs';
+import {
+	SignInButton,
+	SignedIn,
+	SignedOut,
+	SignOutButton,
+} from '@clerk/nextjs';
+import { useUser } from '@clerk/clerk-react';
 
 const NAVIGATION_DATA = [
 	{
@@ -26,15 +31,15 @@ const NAVIGATION_DATA = [
 	{
 		name: 'Admin Dashboard',
 		href: '/admin',
-		requiredPermissions: ['access:admin_dashboard'],
+		requiredAuth: true,
 	},
 ];
 
 export default function Header() {
 	const { scrollY } = useScroll();
 	const [hasShadow, setHasShadow] = useState<boolean>(false);
-	const { isAuthenticated, getPermissions } = useKindeBrowserClient();
-	const { permissions } = getPermissions();
+
+	const { isSignedIn } = useUser();
 
 	useEffect(() => {
 		const unsubscribe = scrollY.on('change', latest => {
@@ -48,6 +53,13 @@ export default function Header() {
 	}, [scrollY]);
 
 	const activePathname = usePathname();
+
+	const filteredNavigation = NAVIGATION_DATA.filter(item => {
+		if (item.requiredAuth) {
+			return isSignedIn;
+		}
+		return true;
+	});
 
 	return (
 		<motion.nav
@@ -72,36 +84,31 @@ export default function Header() {
 					</Link>
 				</div>
 				<ul className='hidden md:flex gap-x-6 items-center ml-auto h-full'>
-					{NAVIGATION_DATA.map(({ href, name, requiredPermissions }) => {
-						if (
-							!requiredPermissions ||
-							requiredPermissions.every(p => permissions?.includes(p))
-						) {
-							return (
-								<li
-									key={href}
-									className={cn(
-										'flex items-center relative  text-base font-semibold',
-										{
-											'text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary':
-												activePathname === href,
-											'text-primary': activePathname !== href,
-										},
-									)}
-								>
-									<Link href={href} className='block'>
-										{name}
-									</Link>
+					{filteredNavigation.map(({ href, name }) => {
+						return (
+							<li
+								key={href}
+								className={cn(
+									'flex items-center relative  text-base font-semibold',
+									{
+										'text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary':
+											activePathname === href,
+										'text-primary': activePathname !== href,
+									},
+								)}
+							>
+								<Link href={href} className='block'>
+									{name}
+								</Link>
 
-									{activePathname === href && (
-										<motion.div
-											layoutId='header-active-link'
-											className='bg-primary h-1 w-full absolute top-8'
-										></motion.div>
-									)}
-								</li>
-							);
-						}
+								{activePathname === href && (
+									<motion.div
+										layoutId='header-active-link'
+										className='bg-primary h-1 w-full absolute top-8'
+									></motion.div>
+								)}
+							</li>
+						);
 					})}
 				</ul>
 				<Separator
@@ -109,15 +116,20 @@ export default function Header() {
 					className='hidden md:block bg-accent ml-3'
 				/>
 				<div className='ml-3 py-3'>
-					{isAuthenticated ? (
-						<LogoutLink className='text-primary'>
-							<LogOut className='w-6 h-6' />
-						</LogoutLink>
-					) : (
-						<LoginLink className='text-primary'>
-							<LogIn className='w-6 h-6' />
-						</LoginLink>
-					)}
+					<SignedOut>
+						<SignInButton>
+							<span className='flex items-center relative  text-base font-semibold text-primary'>
+								<LogIn className='w-6 h-6' />
+							</span>
+						</SignInButton>
+					</SignedOut>
+					<SignedIn>
+						<SignOutButton>
+							<span className='flex items-center relative  text-base font-semibold text-primary'>
+								<LogOut className='w-6 h-6' />
+							</span>
+						</SignOutButton>
+					</SignedIn>
 				</div>
 				<div className='hidden md:block ml-3 py-3'>
 					<ThemeToggler />

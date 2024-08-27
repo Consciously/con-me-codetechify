@@ -8,7 +8,7 @@ export default function HeroHeadingArea() {
 			<Block.Item>
 				<Block.Content>
 					<H1>
-						<span className=' text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary'>
+						<span className='text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary'>
 							Crafting Innovating Web Solutions with Heart and Skill
 						</span>
 					</H1>
