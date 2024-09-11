@@ -5,8 +5,8 @@ import { Container, Content } from '@/components/ui/custom-container-structure';
 
 export default function HeroSection() {
 	return (
-		<Container as='section' className='py-12 md:py-24'>
-			<Container>
+		<>
+			<Container className='py-12 md:py-24'>
 				<HeroHeadingArea />
 			</Container>
 
@@ -21,6 +21,6 @@ export default function HeroSection() {
 					<HeroIntroArea />
 				</Content>
 			</Container>
-		</Container>
+		</>
 	);
 }

@@ -31,27 +31,24 @@ export default function Home() {
 				</Container>
 			</Section>
 
-			{/* <Section className='relative block lg:min-h-screen overflow-clip'>
-				<Section.Item>
+			<Section className='relative block lg:min-h-screen overflow-clip'>
+				<Container fullWidth>
 					<Image
 						src='/images/bg_tech_02.webp'
 						alt='Hero image'
 						fill
 						className='w-full h-full object-cover object-center -z-20'
 					/>
-				</Section.Item>
-				<Section.Item>
+				</Container>
+				<Container fullWidth>
 					<div className='absolute inset-0 bg-background opacity-85 -z-10' />
-				</Section.Item>
-				<Section.Item>
-					<div className='absolute inset-0 bg-background opacity-85 -z-10' />
-				</Section.Item>
+				</Container>
 				<ServicesSection />
-				<Section.Item>
+				<Container>
 					<BackgroundPattern />
-				</Section.Item>
+				</Container>
 			</Section>
-			<Section className='relative block lg:min-h-screen overflow-clip'>
+			{/*<Section className='relative block lg:min-h-screen overflow-clip'>
 				<Section.Item>
 					<Image
 						src='/images/bg_tech_03.webp'
