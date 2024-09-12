@@ -8,13 +8,14 @@ import {
 	Layers,
 	Wrench,
 } from 'lucide-react';
-import Block from '@/components/ui/custom-block-structure';
+import { Layout } from '@/components/ui/custom-container-structure';
 
 export default function ServiceOfferArea() {
 	return (
-		<div className='grid grid-cols-[repeat(auto-fit,minmax(20rem,1fr))] gap-2 md:gap-x-4 md:gap-y-2'>
+		<>
 			{SERVICES_DATA.map(services => (
-				<div
+				<Layout.GridItem
+					colSpan={{ sm: 1, md: 3, xl: 4 }}
 					key={services.id}
 					className='flex flex-col justify-center items-center p-1 md:p-2 lg:p-4 min-h-48'
 				>
@@ -50,8 +51,8 @@ export default function ServiceOfferArea() {
 							</div>
 						</CardContent>
 					</Card>
-				</div>
+				</Layout.GridItem>
 			))}
-		</div>
+		</>
 	);
 }

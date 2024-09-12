@@ -1,16 +1,16 @@
 import ProjectHeaderArea from './project-header-area';
 import ProjectsHomeData from './projects-home-data';
-import Section from '@/components/ui/custom-section-structure';
+import { Layout } from '@/components/ui/custom-container-structure';
 
 export default function ProjectsSection() {
 	return (
 		<>
-			<Section.Item>
+			<Layout.Flex direction='column' justify='center' items='center'>
 				<ProjectHeaderArea title='My featured Projects' />
-			</Section.Item>
-			<Section.Item>
+			</Layout.Flex>
+			<Layout.Grid>
 				<ProjectsHomeData />
-			</Section.Item>
+			</Layout.Grid>
 		</>
 	);
 }

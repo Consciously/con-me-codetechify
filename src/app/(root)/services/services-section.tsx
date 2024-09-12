@@ -3,19 +3,17 @@
 import ServicesHeadingArea from './services-heading-area';
 import ServiceOfferArea from './service-offer-area';
 import Section from '@/components/ui/custom-section-structure';
-import { Container, Content } from '@/components/ui/custom-container-structure';
+import { Layout } from '@/components/ui/custom-container-structure';
 
 export default function ServicesSection() {
 	return (
 		<>
-			<Container className='py-12 md:py-24'>
+			<Layout.Flex direction='row' justify='center' items='center'>
 				<ServicesHeadingArea />
-			</Container>
-			<Container>
-				<Content>
-					<ServiceOfferArea />
-				</Content>
-			</Container>
+			</Layout.Flex>
+			<Layout.Grid columns={{ sm: 1, md: 6, xl: 12 }}>
+				<ServiceOfferArea />
+			</Layout.Grid>
 		</>
 	);
 }

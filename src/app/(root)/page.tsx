@@ -4,67 +4,69 @@ import ServicesSection from './services/services-section';
 import BackgroundPattern from '@/components/ui/background-pattern';
 import ProjectsSection from './projects/projects-section';
 // import Section from '@/components/ui/custom-section-structure';
-import {
-	Section,
-	Container,
-	Content,
-} from '@/components/ui/custom-container-structure';
+import { Layout } from '@/components/ui/custom-container-structure';
 
 export default function Home() {
 	return (
 		<>
-			<Section className='relative block lg:min-h-screen overflow-clip'>
-				<Container fullWidth>
+			<Layout.Section className='relative block lg:min-h-screen overflow-clip'>
+				<Layout.Container>
 					<Image
 						src='/images/bg_tech_01.webp'
 						alt='Hero image'
 						fill
 						className='w-full h-full object-cover object-center -z-20'
 					/>
-				</Container>
-				<Container fullWidth>
+				</Layout.Container>
+				<Layout.Container>
 					<div className='absolute inset-0 bg-background opacity-85 -z-10'></div>
-				</Container>
-				<HeroSection />
-				<Container>
+				</Layout.Container>
+				<Layout.Container isCentered>
+					<HeroSection />
+				</Layout.Container>
+				<Layout.Container>
 					<BackgroundPattern />
-				</Container>
-			</Section>
+				</Layout.Container>
+			</Layout.Section>
 
-			<Section className='relative block lg:min-h-screen overflow-clip'>
-				<Container fullWidth>
+			<Layout.Section className='relative block lg:min-h-screen overflow-clip'>
+				<Layout.Container>
 					<Image
 						src='/images/bg_tech_02.webp'
 						alt='Hero image'
 						fill
 						className='w-full h-full object-cover object-center -z-20'
 					/>
-				</Container>
-				<Container fullWidth>
+				</Layout.Container>
+				<Layout.Container>
 					<div className='absolute inset-0 bg-background opacity-85 -z-10' />
-				</Container>
-				<ServicesSection />
-				<Container>
+				</Layout.Container>
+				<Layout.Container isCentered>
+					<ServicesSection />
+				</Layout.Container>
+				<Layout.Container>
 					<BackgroundPattern />
-				</Container>
-			</Section>
-			{/*<Section className='relative block lg:min-h-screen overflow-clip'>
-				<Section.Item>
+				</Layout.Container>
+			</Layout.Section>
+			<Layout.Section className='relative block lg:min-h-screen overflow-clip'>
+				<Layout.Container>
 					<Image
 						src='/images/bg_tech_03.webp'
 						alt='Hero image'
 						fill
 						className='w-full h-full object-cover object-center -z-20'
 					/>
-				</Section.Item>
-				<Section.Item>
+				</Layout.Container>
+				<Layout.Container>
 					<div className='absolute inset-0 bg-background opacity-85 -z-10' />
-				</Section.Item>
-				<ProjectsSection />
-				<Section.Item>
+				</Layout.Container>
+				<Layout.Container isCentered>
+					<ProjectsSection />
+				</Layout.Container>
+				<Layout.Container>
 					<BackgroundPattern />
-				</Section.Item>
-			</Section> */}
+				</Layout.Container>
+			</Layout.Section>
 		</>
 	);
 }
