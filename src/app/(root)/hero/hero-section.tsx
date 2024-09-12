@@ -5,7 +5,7 @@ import { Layout } from '@/components/ui/custom-container-structure';
 
 export default function HeroSection() {
 	return (
-		<Layout.Container className='space-y-8 md:space-y-12'>
+		<>
 			<Layout.Flex direction='column' justify='center' items='center'>
 				<HeroHeadingArea />
 			</Layout.Flex>
@@ -18,6 +18,6 @@ export default function HeroSection() {
 					<HeroIntroArea />
 				</Layout.GridItem>
 			</Layout.Grid>
-		</Layout.Container>
+		</>
 	);
 }

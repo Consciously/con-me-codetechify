@@ -99,6 +99,21 @@ const config = {
 		require('@tailwindcss/line-clamp'),
 		require('@tailwindcss/container-queries'),
 	],
+	// Safelist dynamically generated classes
+	safelist: [
+		{
+			pattern: /grid-cols-.*/,
+			variants: ['sm', 'md', 'lg', 'xl', '2xl'], // Add your breakpoints
+		},
+		{
+			pattern: /gap-.*/,
+			variants: ['sm', 'md', 'lg', 'xl', '2xl'],
+		},
+		{
+			pattern: /col-span-.*/,
+			variants: ['sm', 'md', 'lg', 'xl', '2xl'],
+		},
+	],
 } satisfies Config;
 
 export default withUt(config);

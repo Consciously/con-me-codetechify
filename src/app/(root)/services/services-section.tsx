@@ -8,7 +8,7 @@ import { Layout } from '@/components/ui/custom-container-structure';
 export default function ServicesSection() {
 	return (
 		<>
-			<Layout.Flex direction='row' justify='center' items='center'>
+			<Layout.Flex direction='column' justify='center' items='center'>
 				<ServicesHeadingArea />
 			</Layout.Flex>
 			<Layout.Grid columns={{ sm: 1, md: 6, xl: 12 }}>

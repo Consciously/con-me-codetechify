@@ -46,13 +46,17 @@ const getResponsiveClasses = (
 	if (typeof value === 'number' || typeof value === 'string') {
 		return `${prefix}-${value}`;
 	}
-	return Object.entries(value)
-		.map(([breakpoint, val]) =>
-			breakpoint === 'sm'
-				? `${prefix}-${val}`
-				: `${breakpoint}:${prefix}-${val}`,
-		)
-		.join(' ');
+	if (typeof value === 'object') {
+		return Object.entries(value)
+			.map(([breakpoint, val]) => {
+				if (val === undefined) return ''; // Ignore undefined values
+				return breakpoint === 'sm'
+					? `${prefix}-${val}`
+					: `${breakpoint}:${prefix}-${val}`;
+			})
+			.join(' ');
+	}
+	return ''; // Return empty string if value doesn't match expected types
 };
 
 const Section = React.forwardRef<HTMLElement, SectionProps>(

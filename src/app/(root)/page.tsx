@@ -2,9 +2,8 @@ import Image from 'next/image';
 import HeroSection from './hero/hero-section';
 import ServicesSection from './services/services-section';
 import BackgroundPattern from '@/components/ui/background-pattern';
-import ProjectsSection from './projects/projects-section';
-// import Section from '@/components/ui/custom-section-structure';
 import { Layout } from '@/components/ui/custom-container-structure';
+import ProjectsSection from './projects/projects-section';
 
 export default function Home() {
 	return (
@@ -48,6 +47,7 @@ export default function Home() {
 					<BackgroundPattern />
 				</Layout.Container>
 			</Layout.Section>
+
 			<Layout.Section className='relative block lg:min-h-screen overflow-clip'>
 				<Layout.Container>
 					<Image
