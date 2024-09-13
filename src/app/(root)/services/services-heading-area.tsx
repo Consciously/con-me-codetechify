@@ -1,4 +1,3 @@
-import Block from '@/components/ui/custom-block-structure';
 import { Layout } from '@/components/ui/custom-container-structure';
 import H2 from '@/components/ui/h2';
 

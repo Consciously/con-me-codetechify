@@ -1,4 +1,4 @@
-import ProjectHeaderArea from './project-header-area';
+import ProjectHeaderArea from '../../../components/ui/project/project-header-area';
 import ProjectsHomeData from './projects-home-data';
 import { Layout } from '@/components/ui/custom-container-structure';
 
