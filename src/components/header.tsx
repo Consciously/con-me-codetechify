@@ -30,7 +30,7 @@ const NAVIGATION_DATA = [
 	},
 	{
 		name: 'Admin Dashboard',
-		href: '/admin',
+		href: '/admin/uploads/json',
 		requiredAuth: true,
 	},
 ];

@@ -96,7 +96,6 @@ const config = {
 	},
 	plugins: [
 		require('tailwindcss-animate'),
-		require('@tailwindcss/line-clamp'),
 		require('@tailwindcss/container-queries'),
 	],
 	// Safelist dynamically generated classes
