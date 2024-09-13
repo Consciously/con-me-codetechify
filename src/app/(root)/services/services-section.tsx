@@ -2,18 +2,18 @@
 
 import ServicesHeadingArea from './services-heading-area';
 import ServiceOfferArea from './service-offer-area';
-import ContainerStruct from '@/components/ui/custom-container-layout';
 import Section from '@/components/ui/custom-section-structure';
+import { Layout } from '@/components/ui/custom-container-structure';
 
 export default function ServicesSection() {
 	return (
 		<>
-			<Section.Item>
+			<Layout.Flex direction='column' justify='center' items='center'>
 				<ServicesHeadingArea />
-			</Section.Item>
-			<Section.Item>
+			</Layout.Flex>
+			<Layout.Grid columns={{ sm: 1, md: 6, xl: 12 }}>
 				<ServiceOfferArea />
-			</Section.Item>
+			</Layout.Grid>
 		</>
 	);
 }

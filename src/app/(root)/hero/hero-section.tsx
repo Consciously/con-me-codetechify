@@ -1,20 +1,23 @@
 import HeroHeadingArea from './hero-heading-area';
 import HeroCtaArea from './hero-cta-area';
 import HeroIntroArea from './hero-intro-area';
-import Section from '@/components/ui/custom-section-structure';
+import { Layout } from '@/components/ui/custom-container-structure';
 
 export default function HeroSection() {
 	return (
 		<>
-			<Section.Item>
+			<Layout.Flex direction='column' justify='center' items='center'>
 				<HeroHeadingArea />
-			</Section.Item>
-			<Section.Item className='md:col-span-6 xl:col-span-4'>
-				<HeroCtaArea />
-			</Section.Item>
-			<Section.Item className='md:col-span-6 xl:col-span-8'>
-				<HeroIntroArea />
-			</Section.Item>
+			</Layout.Flex>
+
+			<Layout.Grid columns={{ sm: 1, md: 6, xl: 12 }} gap={8}>
+				<Layout.GridItem colSpan={{ sm: 1, md: 3, xl: 4 }}>
+					<HeroCtaArea />
+				</Layout.GridItem>
+				<Layout.GridItem colSpan={{ sm: 1, md: 3, xl: 8 }}>
+					<HeroIntroArea />
+				</Layout.GridItem>
+			</Layout.Grid>
 		</>
 	);
 }

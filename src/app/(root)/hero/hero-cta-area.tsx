@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { cn, generateRange } from '@/lib/utils';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
-import Block from '@/components/ui/custom-block-structure';
 
 const buttonAnimationVariants = {
 	initial: (i: number) => ({
@@ -34,72 +33,70 @@ export default function HeroCtaArea() {
 	const [isHovered, setIsHovered] = useState(false);
 
 	return (
-		<Block className='md:mb-8 lg:mb-16'>
-			<Block.Item className='md:px-4 md:py-2 lg:px-8 py-4'>
-				<Block.Content
-					className='relative z-10 w-fit mx-auto'
-					onMouseEnter={() => setIsHovered(true)}
-					onMouseLeave={() => setIsHovered(false)}
-				>
-					<Image
-						src='/images/profile_image.jpg'
-						alt='Profile image from Stefan Ihle'
-						width={552}
-						height={736}
-						className='aspect-auto h-[620px] md:h-[420px] w-auto rounded-3xl object-cover object-center border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60'
-					/>
-					<AnimatePresence>
-						{isHovered && (
-							<>
-								<motion.div
-									initial='initial'
-									animate='animate'
-									exit='initial'
-									variants={overlayAnimationVariants}
-									className='absolute inset-[2px] bg-background rounded-3xl z-10'
-								/>
-								<motion.div
-									initial='initial'
-									animate='animate'
-									exit='initial'
-									className='absolute inset-0 flex flex-col justify-center items-center rounded-3xl z-20'
-								>
-									{range.map((_, i) => (
-										<motion.div
-											key={i}
-											custom={i}
-											variants={buttonAnimationVariants}
-											className='w-1/2 mb-4'
+		<div className='w-full h-full flex items-center justify-center'>
+			<div
+				className='relative z-10 w-fit mx-auto'
+				onMouseEnter={() => setIsHovered(true)}
+				onMouseLeave={() => setIsHovered(false)}
+			>
+				<Image
+					src='/images/profile_image.jpg'
+					alt='Profile image from Stefan Ihle'
+					width={552}
+					height={736}
+					className='aspect-auto h-[420px] w-auto rounded-3xl object-cover object-center border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60'
+				/>
+				<AnimatePresence>
+					{isHovered && (
+						<>
+							<motion.div
+								initial='initial'
+								animate='animate'
+								exit='initial'
+								variants={overlayAnimationVariants}
+								className='absolute inset-[2px] bg-background rounded-3xl z-10'
+							/>
+							<motion.div
+								initial='initial'
+								animate='animate'
+								exit='initial'
+								className='absolute inset-0 flex flex-col justify-center items-center rounded-3xl z-20'
+							>
+								{range.map((_, i) => (
+									<motion.div
+										key={i}
+										custom={i}
+										variants={buttonAnimationVariants}
+										className='w-2/3 mb-4'
+									>
+										<Button
+											className={cn(
+												'w-full bg-transparent bg-gradient-to-tr shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60',
+												{
+													'from-primary to-secondary': i === 0,
+													'from-secondary to-primary': i === 1,
+												},
+											)}
 										>
-											<Button
-												className={cn(
-													'w-full bg-transparent bg-gradient-to-tr shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60',
-													{
-														'from-primary to-secondary': i === 0,
-														'from-secondary to-primary': i === 1,
-													},
-												)}
-											>
-												{i === 0 ? (
-													<>
-														<ArrowLeft />
-														Reach Me
-													</>
-												) : (
-													<>
-														My Stuff
-														<ArrowRight />
-													</>
-												)}
-											</Button>
-										</motion.div>
-									))}
-								</motion.div>
-							</>
-						)}
-					</AnimatePresence>
-				</Block.Content>
-			</Block.Item>
-		</Block>
+											{i === 0 ? (
+												<>
+													<ArrowLeft className='mr-2' />
+													Reach Me
+												</>
+											) : (
+												<>
+													My Stuff
+													<ArrowRight className='ml-2' />
+												</>
+											)}
+										</Button>
+									</motion.div>
+								))}
+							</motion.div>
+						</>
+					)}
+				</AnimatePresence>
+			</div>
+		</div>
 	);
 }

@@ -1,16 +1,16 @@
-import ProjectHeaderArea from '../(root)/projects/project-header-area';
+import ProjectHeaderArea from '@/components/ui/project/project-header-area';
 import ProjectsPageData from './project-page-data';
-import Section from '@/components/ui/custom-section-structure';
+import { Layout } from '@/components/ui/custom-container-structure';
 
 export default function ProjectsPage() {
 	return (
-		<Section isCentered>
-			<Section.Item>
+		<Layout.Section>
+			<Layout.Container isCentered>
 				<ProjectHeaderArea title='My projects' />
-			</Section.Item>
-			<Section.Item>
+			</Layout.Container>
+			<Layout.Container isCentered>
 				<ProjectsPageData />
-			</Section.Item>
-		</Section>
+			</Layout.Container>
+		</Layout.Section>
 	);
 }
