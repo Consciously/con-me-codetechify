@@ -31,6 +31,7 @@ type FlexProps = BaseProps & {
 type GridItemProps = BaseProps & {
 	colSpan?: ResponsiveValue<number>;
 	rowSpan?: ResponsiveValue<number>;
+	fullSpan?: boolean;
 };
 
 type FlexItemProps = BaseProps & {
@@ -166,9 +167,21 @@ const Flex = React.forwardRef<HTMLElement, FlexProps>(
 Flex.displayName = 'Layout.Flex';
 
 const GridItem = React.forwardRef<HTMLElement, GridItemProps>(
-	({ as: Component = 'div', className, colSpan, rowSpan, ...props }, ref) => {
+	(
+		{
+			as: Component = 'div',
+			className,
+			colSpan,
+			rowSpan,
+			fullSpan = true,
+			...props
+		},
+		ref,
+	) => {
 		const colSpanClasses = colSpan
 			? getResponsiveClasses('col-span', colSpan)
+			: fullSpan
+			? 'col-span-full'
 			: '';
 		const rowSpanClasses = rowSpan
 			? getResponsiveClasses('row-span', rowSpan)
