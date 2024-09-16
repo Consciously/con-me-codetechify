@@ -15,8 +15,10 @@ export default function CreateProjectLayout({
 }) {
 	return (
 		<Layout.Section>
-			<Layout.Container size='lg' isCentered>
-				<Stepper steps={steps} />
+			<Layout.Container isCentered>
+				<Layout.Section>
+					<Stepper steps={steps} />
+				</Layout.Section>
 				{children}
 			</Layout.Container>
 		</Layout.Section>
