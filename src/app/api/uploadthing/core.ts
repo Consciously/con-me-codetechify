@@ -1,32 +1,39 @@
-import { createProject } from '@/app/admin/actions/actions';
-import { markdownMetadataSchema } from '@/lib/validation';
+// import { auth	 } from '@clerk/nextjs/server';
 import { createUploadthing, type FileRouter } from 'uploadthing/next';
+import { z } from 'zod';
 
+// Create the Uploadthing instance
 const f = createUploadthing();
 
-// FileRouter for your app, can contain multiple FileRoutes
 export const ourFileRouter = {
-	// Define as many FileRoutes as you like, each with a unique routeSlug
-	markdownUploader: f({ text: { maxFileSize: '64KB' } })
-		.input(markdownMetadataSchema)
-		.middleware(async ({ input }) => {
-			return { ...input };
-		})
-		.onUploadComplete(async ({ metadata }) => {
-			try {
-				console.log('Received metadata:', metadata);
-				await createProject(metadata.frontMatter);
-				console.log('Project created successfully.');
-			} catch (error) {
-				console.error('Error creating project:', error);
-				throw new Error('Failed to create project');
-			}
-		}),
-	imagesUploader: f({ image: { maxFileSize: '4MB' } }).onUploadComplete(
-		async ({ file }) => {
-			console.log('file url', file.url);
+	jsonUploader: f({
+		'application/json': {
+			maxFileSize: '1MB', // Set the maximum file size for text files
 		},
-	),
+	})
+		.input(z.object({ projectId: z.string().optional() })) // Optional projectId
+		.middleware(async ({ input, req }) => {
+			// const { userId } = auth();
+
+			// if (!userId) {
+			// 	throw new Error('Please sign in');
+			// }
+			// console.log(userId);
+
+			return { input };
+		})
+		.onUploadComplete(async ({ metadata, file }) => {
+			let projectId = metadata.input.projectId;
+			const res = await fetch(file.url);
+			const data = await res.json();
+
+			console.log(data);
+
+			if (!projectId) {
+				projectId = Math.random().toString(36).substring(7);
+			}
+			return { projectId };
+		}),
 } satisfies FileRouter;
 
 export type OurFileRouter = typeof ourFileRouter;
