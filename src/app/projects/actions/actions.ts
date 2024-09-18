@@ -1,22 +1,11 @@
 'use server';
 
-import { db } from '@/db';
-import { Project } from '@prisma/client';
+import { getProjects } from '@/lib/dal/project-dal';
 
-export const getProjects = async (): Promise<Project[]> => {
-	const projects = await db.project.findMany({
-		orderBy: [{ importance: 'desc' }, { createdAt: 'desc' }],
-	});
-
-	return projects;
+export const getProjectsHandler = async (home: boolean) => {
+	return getProjects(home);
 };
 
-export const getProjectById = async (
-	projectId: string,
-): Promise<Project | null> => {
-	const project = await db.project.findUnique({
-		where: { id: projectId },
-	});
+export const getPrjectHandler = async (id: string) => {};
 
-	return project;
-};
+export const createProjectHandler = async (data: unknown) => {};

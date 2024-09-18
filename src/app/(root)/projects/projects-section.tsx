@@ -9,7 +9,7 @@ export default function ProjectsSection() {
 				<ProjectHeaderArea title='My featured Projects' />
 			</Layout.Flex>
 			<Layout.Grid>
-				<ProjectsHomeData />
+				<ProjectsHomeData isHomepage={true} />
 			</Layout.Grid>
 		</>
 	);

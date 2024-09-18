@@ -1,15 +1,21 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
-import { getProjects } from '@/app/(root)/projects/action/action';
+import { getProjectsHandler } from '@/app/projects/actions/actions';
 import ProjectItem from '@/components/ui/project/project-item';
 import { cn, getProjectSize } from '@/lib/utils';
 import { Layout } from '@/components/ui/custom-container-structure';
 
-export default function ProjectsHomeData() {
+type ProjectsHomeDataProps = {
+	isHomepage: boolean;
+};
+
+export default function ProjectsHomeData({
+	isHomepage,
+}: ProjectsHomeDataProps) {
 	const { data, isLoading, error } = useQuery({
 		queryKey: ['projects'],
-		queryFn: async () => await getProjects(),
+		queryFn: async () => await getProjectsHandler(isHomepage),
 	});
 
 	const projects = data || [];

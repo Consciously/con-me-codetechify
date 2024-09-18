@@ -3,8 +3,12 @@ import 'server-only';
 import { db } from '@/db';
 import { Project } from '@prisma/client';
 
-export const getProjects = async (): Promise<Project[]> => {
-	const projects = await db.project.findMany();
+export const getProjects = async (home: boolean): Promise<Project[]> => {
+	const projects = await db.project.findMany({
+		orderBy: [{ importance: 'desc' }, { createdAt: 'desc' }],
+		// If we are on the home page, we only want to show 5 projects
+		take: home ? 5 : undefined,
+	});
 	return projects;
 };
 
