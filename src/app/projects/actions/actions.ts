@@ -2,8 +2,8 @@
 
 import { getProjects } from '@/lib/dal/project-dal';
 
-export const getProjectsHandler = async (home: boolean) => {
-	return getProjects(home);
+export const getProjectsHandler = async (isHomepage: boolean = false) => {
+	return getProjects(isHomepage);
 };
 
 export const getPrjectHandler = async (id: string) => {};

@@ -15,15 +15,17 @@ import ProjectStruct from '../custom-project-structure';
 type ProjectItemPropsType = {
 	project: Project;
 	projectSize?: (project: Project) => 'large' | 'small';
+	isLarge?: boolean;
 };
 
 export default function ProjectItem({
 	project,
 	projectSize,
+	isLarge = false,
 }: ProjectItemPropsType) {
 	return (
 		<>
-			{projectSize && projectSize(project) === 'large' ? (
+			{isLarge ? (
 				<ProjectStruct.Container className='p-0 @container/container'>
 					<ProjectHeader
 						project={project}

@@ -1,5 +1,5 @@
 import ProjectHeaderArea from '../../../components/ui/project/project-header-area';
-import ProjectsHomeData from './projects-home-data';
+import ProjectData from '../../../components/ui/project/project-data';
 import { Layout } from '@/components/ui/custom-container-structure';
 
 export default function ProjectsSection() {
@@ -8,8 +8,8 @@ export default function ProjectsSection() {
 			<Layout.Flex direction='column' justify='center' items='center'>
 				<ProjectHeaderArea title='My featured Projects' />
 			</Layout.Flex>
-			<Layout.Grid>
-				<ProjectsHomeData isHomepage={true} />
+			<Layout.Grid columns={{ sm: 1, md: 6, xl: 12 }}>
+				<ProjectData isHomepage />
 			</Layout.Grid>
 		</>
 	);
