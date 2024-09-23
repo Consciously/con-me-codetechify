@@ -34,3 +34,19 @@ export const createProject = async (project: ProjectClean) => {
 	});
 	return newProject;
 };
+
+export const updateProject = async (
+	id: string,
+	imageUrls: string[],
+): Promise<Project> => {
+	const updatedProject = await db.project.update({
+		where: { id },
+		data: {
+			images: {
+				push: imageUrls,
+			},
+		},
+	});
+
+	return updatedProject;
+};

@@ -20,7 +20,7 @@ export default function ImageUploadPage({
 	return (
 		<Layout.Section>
 			<Layout.Container isCentered>
-				<ImagesUploadData />
+				<ImagesUploadData projectId={id} />
 			</Layout.Container>
 		</Layout.Section>
 	);

@@ -1,8 +1,10 @@
 // import { auth	 } from '@clerk/nextjs/server';
 import { createUploadthing, type FileRouter } from 'uploadthing/next';
 import { z } from 'zod';
-import { createProjectHandler } from '@/app/projects/actions/actions';
-import { db } from '@/db';
+import {
+	createProjectHandler,
+	updateProjectHandler,
+} from '@/app/projects/actions/actions';
 
 // Create the Uploadthing instance
 const f = createUploadthing();
@@ -30,20 +32,25 @@ export const ourFileRouter = {
 			const data = await res.json();
 
 			if (!projectId) {
-				try {
-					const newProject = await db.project.create({
-						data: data,
-					});
+				const newProject = await createProjectHandler(data);
+				return { projectId: newProject.id };
+			}
+		}),
+	imageUploader: f({
+		image: {
+			maxFileSize: '4MB', // Set the maximum file size for images
+		},
+	})
+		.input(z.object({ projectId: z.string().optional() }))
+		.middleware(async ({ input }) => {
+			return { input };
+		})
+		.onUploadComplete(async ({ metadata, file }) => {
+			const { projectId } = metadata.input;
+			if (projectId) {
+				const updateProject = updateProjectHandler(projectId, [file.url]);
 
-					console.log(newProject.id);
-
-					return {
-						projectId: newProject.id,
-					};
-				} catch (error) {
-					console.error('Database error:', error);
-					throw new Error('Failed to create project in database');
-				}
+				return { projectId: (await updateProject).id };
 			}
 		}),
 } satisfies FileRouter;
