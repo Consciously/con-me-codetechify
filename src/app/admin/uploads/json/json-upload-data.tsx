@@ -16,12 +16,12 @@ export default function JsonUploadData() {
 	const { toast } = useToast();
 	const [isDragOver, setIsDragOver] = useState<boolean>(false);
 	const [uploadProgress, setUploadProgress] = useState<number>(0);
+	// const [jsonContent, setJsonContent] = useState<object | null>(null)
 
 	const { startUpload, isUploading } = useUploadThing('jsonUploader', {
 		onClientUploadComplete: async ([data]) => {
 			// Fetch the project ID returned by the server
 			const projectId = data.serverData?.projectId;
-			console.log('projectId', projectId);
 
 			startTransition(() => {
 				router.push(`/admin/uploads/images?id=${projectId}`);

@@ -1,33 +1,23 @@
-[
-	{
-		"title": "E-commerce Platform",
-		"description": "A comprehensive e-commerce platform designed to offer seamless shopping experiences. This platform integrates advanced payment systems, product management tools, and real-time data synchronization. With a user-friendly interface and robust backend, it supports various business models, including B2B and B2C. The platform ensures secure transactions and provides insightful analytics for business growth.",
-		"technologies": [
-			"Next.js",
-			"TypeScript",
-			"TailwindCSS",
-			"Prisma",
-			"Node.js",
-			"Stripe"
-		],
-		"clientName": "ABC Retail",
-		"images": [
-			"/images/projects/ecommerce-platform-1.webp",
-			"/images/projects/ecommerce-platform-2.webp",
-			"/images/projects/ecommerce-platform-3.webp",
-			"/images/projects/ecommerce-platform-4.webp"
-		],
-		"features": [
-			"Integrated Payment Gateway",
-			"Real-time Data Sync",
-			"Product Management",
-			"User Analytics",
-			"Customer Support Integration"
-		],
-		"githubRepo": "https://github.com/username/ecommerce-platform",
-		"liveDemo": "https://example.com/ecommerce-platform",
-		"importance": 5,
-		"createdAt": "2024-01-01T00:00:00.000Z",
-		"updatedAt": "2024-01-02T00:00:00.000Z"
-	}
-]
+{
+	"title": "E-commerce Platform2",
+	"description": "A comprehensive e-commerce platform designed to offer seamless shopping experiences. This platform integrates advanced payment systems, product management tools, and real-time data synchronization. With a user-friendly interface and robust backend, it supports various business models, including B2B and B2C. The platform ensures secure transactions and provides insightful analytics for business growth.",
+	"technologies": [
+		"Next.js",
+		"TypeScript",
+		"TailwindCSS",
+		"Prisma",
+		"Node.js",
+		"Stripe"
+	],
+	"clientName": "ABC Retail",
+	"images": [],
+	"features": [
+		"Integrated Payment Gateway",
+		"Real-time Data Sync",
+		"Product Management",
+		"User Analytics",
+		"Customer Support Integration"
+	],
+	"githubRepo": "https://github.com/username/ecommerce-platform",
+	"liveDemo": "https://example.com/ecommerce-platform"
+}

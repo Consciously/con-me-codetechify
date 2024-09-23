@@ -3,6 +3,8 @@ import 'server-only';
 import { db } from '@/db';
 import { Project } from '@prisma/client';
 
+type ProjectClean = Omit<Project, 'id' | 'createdAt' | 'updatedAt'>;
+
 export const getProjects = async (home: boolean): Promise<Project[]> => {
 	const projects = await db.project.findMany({
 		orderBy: [{ importance: 'desc' }, { createdAt: 'desc' }],
@@ -26,7 +28,7 @@ export const getProjectById = async (id: string): Promise<Project> => {
 	return project;
 };
 
-export const createProject = async (project: Project) => {
+export const createProject = async (project: ProjectClean) => {
 	const newProject = await db.project.create({
 		data: project,
 	});
