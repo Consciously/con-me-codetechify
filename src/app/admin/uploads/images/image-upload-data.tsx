@@ -33,17 +33,17 @@ export default function ImagesUploadData({ projectId }: ImagesUploadDataProps) {
 	const [isDragOver, setIsDragOver] = useState<boolean>(false);
 	const [uploadProgress, setUploadProgress] = useState<number>(0);
 	const [uploadedImages, setUploadedImages] = useState<UploadedImage[]>([]);
-	const [isUploadReady, setIsUploadReady] = useState<boolean>(false);
-	const maxImages = 4;
 	const { toast } = useToast();
 
+	const MAX_IMAGES = 4;
 	const uploadedImagesLength = uploadedImages.length;
 
-	const { startUpload, isUploading } = useUploadThing('imageUploader', {
-		onClientUploadComplete: async ([data]) => {
-			// Fetch the project ID returned by the server
-			const projectId = data.serverData?.projectId;
+	// Disable the button if not all images are uploaded
+	const isUploadReady = uploadedImagesLength === MAX_IMAGES;
 
+	const { startUpload, isUploading } = useUploadThing('imageUploader', {
+		onClientUploadComplete: async () => {
+			// After uploading, redirect to a summary or confirmation page
 			startTransition(() => {
 				router.push(`/admin/uploads/summary?id=${projectId}`);
 			});
@@ -55,7 +55,7 @@ export default function ImagesUploadData({ projectId }: ImagesUploadDataProps) {
 
 	const onDropRejected = () => {};
 	const onDropAccepted = (acceptedFiles: File[]) => {
-		if (uploadedImages.length + acceptedFiles.length > maxImages) {
+		if (uploadedImages.length + acceptedFiles.length > MAX_IMAGES) {
 			toast({
 				title: 'You can only upload up to 4 images',
 				variant: 'destructive',
@@ -63,23 +63,25 @@ export default function ImagesUploadData({ projectId }: ImagesUploadDataProps) {
 			return;
 		}
 
-		if (uploadedImages.length + acceptedFiles.length <= maxImages) {
-			const newImages = acceptedFiles.map(file => ({
-				file,
-				previewUrl: URL.createObjectURL(file),
-			}));
+		const newImages = acceptedFiles.map(file => ({
+			file,
+			previewUrl: URL.createObjectURL(file),
+		}));
 
-			setUploadedImages([...uploadedImages, ...newImages]);
-
-			if (uploadedImagesLength === maxImages - 1) {
-				setIsUploadReady(true);
-			}
-		}
+		setUploadedImages([...uploadedImages, ...newImages]);
 	};
 
-	const onUploadComplete = (acceptedFiles: File[]) => {
-		startUpload(acceptedFiles, { projectId });
-		setIsDragOver(false);
+	// This function is called when the "Upload Images" button is clicked
+	const handleUpload = () => {
+		// Only upload if all images are ready
+		if (isUploadReady) {
+			const filesToUpload = uploadedImages.map(image => image.file);
+			startUpload(filesToUpload, { projectId }); // Trigger the upload process to the imageUploader route
+			setIsDragOver(false);
+
+			// console.log('Uploading images1:', filesToUpload);
+			// console.log('Uploading images2:', uploadedImages);
+		}
 	};
 
 	return (
@@ -93,60 +95,85 @@ export default function ImagesUploadData({ projectId }: ImagesUploadDataProps) {
 					</H1>
 				</Layout.FlexItem>
 			</Layout.Flex>
-			<Layout.Grid className='min-h-[20rem] place-items-center'>
-				<Layout.GridItem colSpan={{ sm: 1, md: 6, xl: 8 }}>
-					<Layout.Grid>
-						{uploadedImages.map((image, index) => (
-							<Layout.GridItem key={index} colSpan={{ sm: 2 }}>
-								<div className='relative flex'>
-									<Image
-										src={image.previewUrl}
-										width={1024}
-										height={1024}
-										alt='Uploaded image'
-										className='aspect-square w-full h-full object-cover rounded-lg'
-									/>
 
-									<Button
-										onClick={() => {
-											const newImages = uploadedImages.filter(
-												(_, i) => i !== index,
-											);
-											setUploadedImages(newImages);
-										}}
-										variant='link'
-										className='absolute top-2 right-2'
-									>
-										<X className='h-4 w-4 text-primary font-bold border-2 border-primary rounded-full' />
-									</Button>
-								</div>
-							</Layout.GridItem>
-						))}
-					</Layout.Grid>
-				</Layout.GridItem>
-
-				<Layout.GridItem colSpan={{ sm: 1, md: 6, xl: 4 }}>
+			{/* Full-width image gallery grid container */}
+			<div className='relative w-full max-w-4xl mx-auto mb-4'>
+				{/* Message box above the grid */}
+				<div className='flex justify-end mb-2'>
 					<Card className='border-primary'>
 						<CardContent className='p-1'>
 							<p>
 								Uploaded Images{' '}
 								<span className='text-primary'>
-									{uploadedImagesLength} of {maxImages}
+									{uploadedImagesLength} of {MAX_IMAGES}
 								</span>
 							</p>
 						</CardContent>
 					</Card>
-				</Layout.GridItem>
-			</Layout.Grid>
+				</div>
+
+				{/* 2x2 Image Grid with reserved space and dynamic placeholders */}
+				<div className='grid grid-cols-4 gap-4'>
+					{uploadedImages.map((image, index) => (
+						<div key={index} className='relative overflow-hidden group'>
+							<Image
+								src={image.previewUrl}
+								width={300}
+								height={300}
+								alt='Uploaded image'
+								className='aspect-square w-full h-full object-cover rounded-lg'
+							/>
+							{/* Hover effect for darkening the image */}
+							<div className='absolute inset-0 bg-black opacity-0 group-hover:opacity-50 transition-opacity' />
+							{/* Delete button in the center on hover */}
+							<Button
+								onClick={() => {
+									const newImages = uploadedImages.filter(
+										(_, i) => i !== index,
+									);
+									setUploadedImages(newImages);
+								}}
+								variant='link'
+								className='absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]  flex justify-center items-center text-white opacity-0 group-hover:opacity-100 transition-opacity'
+							>
+								<X className='h-8 w-8 p-1 bg-black rounded-full' />
+							</Button>
+						</div>
+					))}
+
+					{/* Render remaining placeholders based on how many images have been uploaded */}
+					{[...Array(MAX_IMAGES - uploadedImagesLength)].map((_, index) => (
+						<div
+							key={index}
+							className='border-2 border-dashed border-secondary rounded-lg flex items-center justify-center h-40'
+						>
+							<p className='text-gray-400'>
+								Image {uploadedImagesLength + index + 1} placeholder
+							</p>
+						</div>
+					))}
+				</div>
+			</div>
+
+			{/* Upload Button */}
 			<Layout.Grid>
 				<Layout.GridItem fullSpan>
 					<div className='flex flex-col justify-center items-center gap-y-6 mb-6'>
-						<Button onClick={() => onUploadComplete} disabled={!isUploadReady}>
-							Upload Images
+						<Button
+							onClick={handleUpload}
+							disabled={!isUploadReady || isUploading} // Disable the button when uploading
+						>
+							{isUploading ? (
+								<Loader2 className='h-6 w-6 animate-spin' />
+							) : (
+								'Upload Images'
+							)}
 						</Button>
 					</div>
 				</Layout.GridItem>
 			</Layout.Grid>
+
+			{/* Dropzone */}
 			<Layout.Grid>
 				<Layout.GridItem fullSpan>
 					<div className='border-2 border-dashed border-primary rounded-lg min-h-[20rem] flex justify-center items-center'>
@@ -173,7 +200,6 @@ export default function ImagesUploadData({ projectId }: ImagesUploadDataProps) {
 									) : isUploading || isPending ? (
 										<Loader2 className='h-6 w-6 text-primary mb-2' />
 									) : (
-										// eslint-disable-next-line jsx-a11y/alt-text
 										<ImageIcon className='h-6 w-6 text-primary mb-2' />
 									)}
 									<div className='flex flex-col justify-center items-center'>
@@ -192,7 +218,7 @@ export default function ImagesUploadData({ projectId }: ImagesUploadDataProps) {
 										) : isDragOver ? (
 											<p>
 												<span className='font-semibold text-primary'>
-													Drop text file
+													Drop images
 												</span>{' '}
 												to upload
 											</p>
