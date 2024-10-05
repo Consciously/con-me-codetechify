@@ -16,7 +16,7 @@ import {
 } from '@/components/ui/form';
 import { useRouter } from 'next/navigation';
 import { setConsent, getConsentStatus } from '@/app/actions/actions';
-import { type ConsentFormValues, consentSchema } from '@/lib/validation';
+import { type ConsentTypeValues, consentSchema } from '@/lib/validation';
 import Block from './ui/custom-block-structure';
 
 export default function ConsentBanner() {
@@ -34,7 +34,7 @@ export default function ConsentBanner() {
 		};
 	}, []);
 
-	const form = useForm<ConsentFormValues>({
+	const form = useForm<ConsentTypeValues>({
 		resolver: zodResolver(consentSchema),
 		defaultValues: {
 			necessary: true,
@@ -59,7 +59,7 @@ export default function ConsentBanner() {
 		form.handleSubmit(onSubmit)();
 	};
 
-	const onSubmit = async (values: ConsentFormValues) => {
+	const onSubmit = async (values: ConsentTypeValues) => {
 		try {
 			await setConsent(values);
 			setIsVisible(false);
