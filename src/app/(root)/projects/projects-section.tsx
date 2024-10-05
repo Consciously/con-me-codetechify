@@ -1,5 +1,5 @@
-import ProjectHeaderArea from '../../../components/ui/project/project-header-area';
-import ProjectData from '../../../components/ui/project/project-data';
+import ProjectHeaderArea from '@/components/ui/project/project-header-area';
+import ProjectData from '@/components/ui/project/project-data';
 import { Layout } from '@/components/ui/custom-container-structure';
 
 export default function ProjectsSection() {

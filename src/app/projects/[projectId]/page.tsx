@@ -1,5 +1,5 @@
 import Section from '@/components/ui/custom-section-structure';
-import ProjectHeaderArea from '@/app/(root)/projects/project-header-area';
+import ProjectHeaderArea from '@/components/ui/project/project-header-area';
 import ProjectDetails from './project-details';
 
 type ProjectDetailPageProps = {
