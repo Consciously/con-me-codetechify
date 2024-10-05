@@ -4,6 +4,7 @@ import {
 	getProjects,
 	createProject,
 	updateProject,
+	getProjectById,
 } from '@/lib/dal/project-dal';
 import { projectSchema } from '@/lib/validation';
 
@@ -11,7 +12,14 @@ export const getProjectsHandler = async (isHomepage: boolean = false) => {
 	return getProjects(isHomepage);
 };
 
-export const getProjectHandler = async (id: string) => {};
+export const getProjectHandler = async (id: string) => {
+	try {
+		return await getProjectById(id);
+	} catch (error) {
+		console.error('Error fetching project', error);
+		throw new Error('Failed to fetch project');
+	}
+};
 
 export const createProjectHandler = async (data: unknown) => {
 	const parsedData = projectSchema.safeParse(data);

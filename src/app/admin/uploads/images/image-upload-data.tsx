@@ -17,6 +17,7 @@ import { Progress } from '@/components/ui/progress';
 import { useUploadThing } from '@/lib/uploadthing';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import PageHeader from '@/components/page-header';
 
 type ImagesUploadDataProps = {
 	projectId: string;
@@ -86,15 +87,7 @@ export default function ImagesUploadData({ projectId }: ImagesUploadDataProps) {
 
 	return (
 		<>
-			<Layout.Flex direction='column' justify='center' items='center'>
-				<Layout.FlexItem>
-					<H1>
-						<span className='text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary'>
-							Images Upload
-						</span>
-					</H1>
-				</Layout.FlexItem>
-			</Layout.Flex>
+			<PageHeader title='Upload Images' />
 
 			{/* Full-width image gallery grid container */}
 			<div className='relative w-full max-w-4xl mx-auto mb-4'>

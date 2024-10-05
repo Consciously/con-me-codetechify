@@ -9,6 +9,7 @@ import Dropzone, { FileRejection } from 'react-dropzone';
 import { Loader2, MousePointerSquareDashed, Image } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 import { useUploadThing } from '@/lib/uploadthing';
+import PageHeader from '@/components/page-header';
 
 export default function JsonUploadData() {
 	const router = useRouter();
@@ -51,15 +52,7 @@ export default function JsonUploadData() {
 
 	return (
 		<>
-			<Layout.Flex direction='column' justify='center' items='center'>
-				<Layout.FlexItem>
-					<H1>
-						<span className='text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary'>
-							JSON File Upload
-						</span>
-					</H1>
-				</Layout.FlexItem>
-			</Layout.Flex>
+			<PageHeader title='Upload JSON Data' />
 			<Layout.Grid>
 				<Layout.GridItem fullSpan>
 					<div className='border-2 border-dashed border-primary rounded-lg min-h-[20rem] flex justify-center items-center'>
