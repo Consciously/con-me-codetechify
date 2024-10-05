@@ -1,21 +1,19 @@
 import { z } from 'zod';
 
-export const frontMatterSchema = z.object({
-	title: z.string(),
-	description: z.string(),
-	technologies: z.array(z.string()).optional().default([]),
-	clientName: z.string().optional().default(''),
-	features: z.array(z.string()).optional().default([]),
-	githubRepo: z.string().optional().default(''),
-	liveDemo: z.string().optional().default(''),
-	importance: z.number().optional().default(0),
-	createdAt: z.string().optional().default(new Date().toISOString()),
-	updatedAt: z.string().optional().default(new Date().toISOString()),
-});
-
-export const markdownMetadataSchema = z.object({
-	frontMatter: frontMatterSchema,
-	content: z.string(),
+export const projectSchema = z.object({
+	title: z.string().min(1, 'Title is required'),
+	description: z.string().min(1, 'Description is required'),
+	technologies: z
+		.array(z.string())
+		.min(1, 'At least one technology is required'),
+	clientName: z.string().min(1, 'Client name is required'),
+	images: z
+		.array(z.string().url('Each image must be a valid URL'))
+		.min(1, 'At least one image is required'),
+	features: z.array(z.string()).min(1, 'At least one feature is required'),
+	githubRepo: z.string().url('GitHub repository must be a valid URL'),
+	liveDemo: z.string().url('Live demo URL must be a valid URL'),
+	importance: z.number().min(1).max(5, 'Importance must be between 1 and 5'),
 });
 
 export const consentSchema = z.object({
@@ -24,5 +22,5 @@ export const consentSchema = z.object({
 	marketing: z.boolean().optional(),
 });
 
-export type ConsentFormValues = z.infer<typeof consentSchema>;
-export type MarkdownMetadata = z.infer<typeof markdownMetadataSchema>;
+export type ConsentTypeValues = z.infer<typeof consentSchema>;
+// export type ProjectTypeValues = z.infer<typeof projectSchema>;

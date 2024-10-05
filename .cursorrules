@@ -1,0 +1,73 @@
+# TypeScript and Next.js Guidelines
+
+You are an expert in TypeScript, Node.js, Next.js App Router, React, Shadcn UI, Radix UI, Tailwind, Zod for data validation, and Tanstack Query for data management.
+
+## Code Style and Structure
+
+- Write concise, technical TypeScript code with accurate examples.
+- Use functional and declarative programming patterns; avoid classes. Functional and declarative patterns are preferred for improved readability, easier testing, and better compatibility with modern React features.
+- Prefer iteration and modularization over code duplication.
+- Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError). Include additional examples or guidelines for naming complex objects or functions to ensure consistency across the codebase.
+- Structure files: exported component, subcomponents, helpers, static content, types.
+
+## Architecture Patterns
+
+- Use a **data-access-layer (DAL)** to abstract and encapsulate data interactions. The DAL should be structured in a modular way, separating different data sources and operations to ensure clarity and maintainability for team members implementing it.
+- Use a **business-logic-layer (BLL)** to handle application logic, ensuring separation of concerns between data access and business rules.
+- For CRUD operations, use **server-actions** to hold business logic. Handle error handling, validation, authentication, and authorization in these functions. For example, ensure proper error messages are returned for different failure scenarios, validate input data using schemas, and check user roles for appropriate authorization to avoid common pitfalls. These functions should call the DAL, which is the source of truth for interacting with the database (e.g., via Prisma).
+
+## Data Management with Tanstack Query
+
+- Use **Tanstack Query** (`useQuery`, `useMutation`) for querying and mutating data.
+- Prefer **React Server Components (RSC)** when possible, but use `useQuery` in the context of server-side operations when necessary.
+- Feel free to use `useQuery` or similar hooks in client components when useful, especially for dynamic or user-interactive data.
+- Use **optimistic updates** with `useMutation` to provide immediate UI feedback, ensuring a responsive user experience by rolling back changes if the mutation fails. For example, when updating a user's profile, immediately update the local state to reflect the changes while the server request is pending, and revert if an error occurs.
+
+## Naming Conventions
+
+- Use lowercase with dashes for directories (e.g., components/auth-wizard).
+- Favor named exports for components.
+
+## TypeScript Usage
+
+- Use TypeScript for all code; prefer type definitions over interfaces, use interfaces only when absolutely necessary.
+- Avoid enums; use maps instead.
+- Use functional components with TypeScript type definitions.
+
+## Syntax and Formatting
+
+- Use the `function` keyword with default export in the same line for React components.
+- Use arrow functions for all other functions.
+- Avoid unnecessary curly braces in conditionals; use concise syntax for simple statements.
+- Use declarative JSX.
+
+## UI and Styling
+
+- Use **Shadcn UI**, **Radix**, and **Tailwind** for components and styling.
+- Implement responsive design with **Tailwind CSS**; use a mobile-first approach.
+
+## Performance Optimization
+
+- Minimize `use client`, `useEffect`, and `setState`; favor **React Server Components (RSC)**.
+- Wrap client components in **Suspense** with fallback.
+- Use dynamic loading for non-critical components.
+- Optimize images: use **WebP** format, include size data, implement lazy loading.
+
+## Data Validation with Zod
+
+- **Validating API Requests**: Define Zod schemas for incoming API request data (body, headers, parameters). Use `safeParse()` to validate data and handle invalid inputs with informative error messages.
+- **Validating URL Query Parameters**: Define Zod schemas to validate query parameters, using `.default()` for default values and handling optional parameters to ensure well-formed data.
+- **Validating Environment Variables**: Create a Zod schema for environment variables (`process.env`) and validate them during startup. Use `safeParse()` and log detailed errors for missing or malformed variables.
+- **Combining with React-Hook-Form**: Integrate Zod with `react-hook-form` using the `zodResolver` to validate form fields both on the client and server. Be cautious of performance impacts for larger forms.
+- **Validating External API Responses**: Use Zod schemas to validate third-party API responses at runtime to handle unexpected or malformed data, maintaining stability and reliability.
+
+## Key Conventions
+
+- Use **nuqs** for URL search parameter state management.
+- Optimize **Web Vitals** (LCP, CLS, FID).
+- Limit `use client`:
+  - Favor server components and Next.js SSR.
+  - Use only for Web API access in small components.
+  - Avoid for data fetching or state management.
+
+Follow **Next.js** docs for Data Fetching, Rendering, and Routing.

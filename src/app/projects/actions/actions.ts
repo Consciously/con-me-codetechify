@@ -1,22 +1,46 @@
 'use server';
 
-import { db } from '@/db';
-import { Project } from '@prisma/client';
+import {
+	getProjects,
+	createProject,
+	updateProject,
+	getProjectById,
+} from '@/lib/dal/project-dal';
+import { projectSchema } from '@/lib/validation';
 
-export const getProjects = async (): Promise<Project[]> => {
-	const projects = await db.project.findMany({
-		orderBy: [{ importance: 'desc' }, { createdAt: 'desc' }],
-	});
-
-	return projects;
+export const getProjectsHandler = async (isHomepage: boolean = false) => {
+	return getProjects(isHomepage);
 };
 
-export const getProjectById = async (
-	projectId: string,
-): Promise<Project | null> => {
-	const project = await db.project.findUnique({
-		where: { id: projectId },
-	});
+export const getProjectHandler = async (id: string) => {
+	try {
+		return await getProjectById(id);
+	} catch (error) {
+		console.error('Error fetching project', error);
+		throw new Error('Failed to fetch project');
+	}
+};
 
-	return project;
+export const createProjectHandler = async (data: unknown) => {
+	const parsedData = projectSchema.safeParse(data);
+
+	if (!parsedData.success) {
+		throw new Error('Invalid project data');
+	}
+
+	try {
+		return createProject(parsedData.data);
+	} catch (error) {
+		console.error('Error creating project', error);
+		throw new Error('Failed creating project');
+	}
+};
+
+export const updateProjectHandler = async (id: string, imageUrls: string[]) => {
+	try {
+		return updateProject(id, imageUrls);
+	} catch (error) {
+		console.error('Error updating project', error);
+		throw new Error('Failed updating project');
+	}
 };
