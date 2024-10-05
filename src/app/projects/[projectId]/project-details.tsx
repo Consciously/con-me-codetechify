@@ -11,7 +11,7 @@ import ProjectStack from '@/components/ui/project/project-stack';
 import ProjectFooter from '@/components/ui/project/project-footer';
 import { cn } from '@/lib/utils';
 import { useQuery } from '@tanstack/react-query';
-import { getProjectById } from '../actions/actions';
+import { getProjectHandler } from '@/app/projects/actions/actions';
 
 export default function ProjectDetails({ projectId }: { projectId: string }) {
 	const router = useRouter();
@@ -24,7 +24,7 @@ export default function ProjectDetails({ projectId }: { projectId: string }) {
 		queryKey: ['project'],
 		queryFn: async () => {
 			try {
-				return await getProjectById(projectId);
+				return await getProjectHandler(projectId);
 			} catch (err) {
 				// Handle 401 errors gracefully, so it doesn't disrupt rendering
 				if (err instanceof Response && err.status === 401) {
