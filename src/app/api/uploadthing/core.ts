@@ -32,13 +32,11 @@ export const ourFileRouter = {
 			const data = await res.json();
 
 			if (!projectId) {
-				try {
-					const newProject = await createProjectHandler(data);
-					return { projectId: newProject.projectId };
-				} catch (error) {
-					console.error('Error in createProjectHandler:', error);
-					// Return a meaningful response instead of throwing
-					return { error: 'Failed to create project' };
+				const newProject = await createProjectHandler(data);
+				if ('id' in newProject) {
+					return { projectId: newProject.id };
+				} else {
+					throw new Error('Failed to create project');
 				}
 			}
 		}),

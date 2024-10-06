@@ -29,8 +29,7 @@ export const createProjectHandler = async (data: unknown) => {
 	}
 
 	try {
-		const newProject = await createProject(parsedData.data);
-		return { projectId: newProject.id };
+		return createProject(parsedData.data);
 	} catch (error) {
 		console.error('Error creating project:', error);
 		return {
