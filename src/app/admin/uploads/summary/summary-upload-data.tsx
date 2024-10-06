@@ -36,7 +36,7 @@ export default function SummaryUploadData({
 	});
 
 	const handleConfirm = () => {
-		router.push('/admin/projects');
+		router.push('/projects');
 	};
 
 	if (isLoading) {
