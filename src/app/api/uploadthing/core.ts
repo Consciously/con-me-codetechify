@@ -32,8 +32,8 @@ export const ourFileRouter = {
 			const data = await res.json();
 
 			if (!projectId) {
-				const newProject = await createProjectHandler(data);
-				return { projectId: newProject.id };
+				// const newProject = await createProjectHandler(data);
+				return { projectId: 'u89sd8gyg8sdy8g' };
 			}
 		}),
 	imageUploader: f({
