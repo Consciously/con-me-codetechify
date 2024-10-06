@@ -43,7 +43,7 @@ export default function ImagesUploadData({ projectId }: ImagesUploadDataProps) {
 	const isUploadReady = uploadedImagesLength === MAX_IMAGES;
 
 	const { startUpload, isUploading } = useUploadThing('imageUploader', {
-		onClientUploadComplete: async () => {
+		onClientUploadComplete: () => {
 			// After uploading, redirect to a summary or confirmation page
 			startTransition(() => {
 				router.push(`/admin/uploads/summary?id=${projectId}`);
