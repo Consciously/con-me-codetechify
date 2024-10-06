@@ -24,15 +24,16 @@ export const getProjectHandler = async (id: string) => {
 	}
 };
 
-export const createProjectHandler = async (data: ProjectClean) => {
-	// const parsedData = projectSchema.safeParse(data);
+export const createProjectHandler = async (data: unknown) => {
+	const parsedData = projectSchema.safeParse(data);
 
-	// if (!parsedData.success) {
-	// 	throw new Error('Invalid project data');
-	// }
+	if (!parsedData.success) {
+		console.error('Validation failed:', parsedData.error);
+		throw new Error('Invalid project data');
+	}
 
 	try {
-		return createProject(data);
+		return createProject(parsedData.data as ProjectClean);
 	} catch (error) {
 		console.error('Error creating project', error);
 		throw new Error('Failed creating project');
