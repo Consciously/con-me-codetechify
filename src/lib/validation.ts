@@ -7,9 +7,7 @@ export const projectSchema = z.object({
 		.array(z.string())
 		.min(1, 'At least one technology is required'),
 	clientName: z.string().min(1, 'Client name is required'),
-	images: z
-		.array(z.string().url('Each image must be a valid URL'))
-		.min(1, 'At least one image is required'),
+	images: z.array(z.string().url('Each image must be a valid URL')),
 	features: z.array(z.string()).min(1, 'At least one feature is required'),
 	githubRepo: z.string().url('GitHub repository must be a valid URL'),
 	liveDemo: z.string().url('Live demo URL must be a valid URL'),
