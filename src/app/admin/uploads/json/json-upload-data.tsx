@@ -20,7 +20,7 @@ export default function JsonUploadData() {
 	// const [jsonContent, setJsonContent] = useState<object | null>(null)
 
 	const { startUpload, isUploading } = useUploadThing('jsonUploader', {
-		onClientUploadComplete: async ([data]) => {
+		onClientUploadComplete: ([data]) => {
 			// Fetch the project ID returned by the server
 			const projectId = data.serverData?.projectId;
 
