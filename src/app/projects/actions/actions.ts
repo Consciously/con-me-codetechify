@@ -29,6 +29,7 @@ export const createProjectHandler = async (data: unknown) => {
 	}
 
 	try {
+		console.log('Parsed data:', parsedData.data);
 		return createProject(parsedData.data);
 	} catch (error) {
 		console.error('Error creating project', error);
