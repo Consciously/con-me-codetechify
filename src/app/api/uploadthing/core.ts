@@ -2,7 +2,7 @@
 import { createUploadthing, type FileRouter } from 'uploadthing/next';
 import { z } from 'zod';
 import {
-	createProject,
+	createProjectHandler,
 	updateProjectHandler,
 } from '@/app/projects/actions/actions';
 
@@ -17,13 +17,6 @@ export const ourFileRouter = {
 	})
 		.input(z.object({ projectId: z.string().optional() })) // Optional projectId
 		.middleware(async ({ input }) => {
-			// const { userId } = auth();
-
-			// if (!userId) {
-			// 	throw new Error('Please sign in');
-			// }
-			// console.log(userId);
-
 			return { input };
 		})
 		.onUploadComplete(async ({ metadata, file }) => {
@@ -32,7 +25,7 @@ export const ourFileRouter = {
 			const data = await res.json();
 
 			if (!projectId) {
-				const newProject = await createProject(data);
+				const newProject = await createProjectHandler(data);
 
 				return { projectId: newProject.id };
 			}

@@ -1,17 +1,12 @@
 'use server';
 
-import { Project } from '@prisma/client';
-
-type ProjectClean = Omit<Project, 'id' | 'createdAt' | 'updatedAt'>;
-
 import {
 	getProjects,
-	// createProject,
+	createProject,
 	updateProject,
 	getProjectById,
 } from '@/lib/dal/project-dal';
 import { projectSchema } from '@/lib/validation';
-import { db } from '@/db';
 
 export const getProjectsHandler = async (isHomepage: boolean = false) => {
 	return getProjects(isHomepage);
@@ -26,29 +21,19 @@ export const getProjectHandler = async (id: string) => {
 	}
 };
 
-// export const createProjectHandler = async (data: unknown) => {
-// 	const parsedData = projectSchema.safeParse(data);
+export const createProjectHandler = async (data: unknown) => {
+	const parsedData = projectSchema.safeParse(data);
 
-// 	if (!parsedData.success) {
-// 		throw new Error('Invalid project data');
-// 	}
+	if (!parsedData.success) {
+		throw new Error('Invalid project data');
+	}
 
-// 	try {
-// 		return createProject(parsedData.data);
-// 	} catch (error) {
-// 		console.error('Error creating project:', error);
-// 		return {
-// 			error: 'Failed to create project',
-// 			details: error instanceof Error ? error.message : 'Unknown error',
-// 		};
-// 	}
-// };
-
-export const createProject = async (project: ProjectClean) => {
-	const newProject = await db.project.create({
-		data: project,
-	});
-	return newProject;
+	try {
+		return createProject(parsedData.data);
+	} catch (error) {
+		console.error('Error creating project', error);
+		throw new Error('Failed creating project');
+	}
 };
 
 export const updateProjectHandler = async (id: string, imageUrls: string[]) => {
