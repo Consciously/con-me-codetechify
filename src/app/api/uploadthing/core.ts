@@ -2,7 +2,7 @@
 import { createUploadthing, type FileRouter } from 'uploadthing/next';
 import { z } from 'zod';
 import {
-	createProjectHandler,
+	createProject,
 	updateProjectHandler,
 } from '@/app/projects/actions/actions';
 
@@ -32,12 +32,9 @@ export const ourFileRouter = {
 			const data = await res.json();
 
 			if (!projectId) {
-				const newProject = await createProjectHandler(data);
-				if ('id' in newProject) {
-					return { projectId: newProject.id };
-				} else {
-					throw new Error('Failed to create project');
-				}
+				const newProject = await createProject(data);
+
+				return { projectId: newProject.id };
 			}
 		}),
 	imageUploader: f({
