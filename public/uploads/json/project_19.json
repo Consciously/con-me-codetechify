@@ -1,0 +1,24 @@
+{
+    "title": "Photo Editing App",
+    "description": "A photo editing app that provides users with a variety of tools to enhance and share their photos. This app includes features such as filters, effects, and social sharing options to help users create stunning visuals.",
+    "technologies": [
+        "React Native",
+        "TypeScript",
+        "Redux",
+        "Firebase",
+        "GraphQL",
+        "Expo"
+    ],
+    "clientName": "PhotoEdit",
+    "images": [],
+    "features": [
+        "Filters",
+        "Effects",
+        "Social Sharing",
+        "Image Adjustment",
+        "Photo Collage"
+    ],
+    "githubRepo": "https://github.com/username/photo-editing-app",
+    "liveDemo": "https://example.com/photo-editing-app",
+    "importance": 2
+}

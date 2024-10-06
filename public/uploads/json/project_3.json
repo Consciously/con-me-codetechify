@@ -1,0 +1,23 @@
+{
+    "title": "Blog Platform",
+    "description": "A scalable blog platform that includes user authentication, content management, and a customizable interface. This platform allows users to create, edit, and manage their blog posts efficiently. It also features advanced SEO tools and social media integration to boost content reach and engagement.",
+    "technologies": [
+        "Gatsby",
+        "GraphQL",
+        "TailwindCSS",
+        "Contentful",
+        "React",
+        "Node.js"
+    ],
+    "clientName": "Tech Blog Inc.",
+    "images": [],
+    "features": [
+        "User Authentication",
+        "Content Management System",
+        "SEO Tools",
+        "Social Media Integration"
+    ],
+    "githubRepo": "https://github.com/username/blog-platform",
+    "liveDemo": "https://example.com/blog-platform",
+    "importance": 2
+}

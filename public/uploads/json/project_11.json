@@ -1,0 +1,24 @@
+{
+    "title": "Recipe Sharing App",
+    "description": "A recipe sharing app that enables users to share, rate, and comment on recipes. This app provides a platform for food enthusiasts to discover and share their favorite recipes. It features advanced search options, ingredient lists, and step-by-step cooking instructions.",
+    "technologies": [
+        "Vue.js",
+        "TypeScript",
+        "GraphQL",
+        "Apollo",
+        "Firebase",
+        "Node.js"
+    ],
+    "clientName": "CookTogether",
+    "images": [],
+    "features": [
+        "User-generated Content",
+        "Ratings",
+        "Comments",
+        "Advanced Search",
+        "Ingredient Lists"
+    ],
+    "githubRepo": "https://github.com/username/recipe-sharing-app",
+    "liveDemo": "https://example.com/recipe-sharing-app",
+    "importance": 5
+}

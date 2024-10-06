@@ -1,0 +1,24 @@
+{
+    "title": "Personal Finance App",
+    "description": "A personal finance app designed to help users manage their budget, track expenses, and plan their financial future. This app includes features such as expense categorization, financial goal setting, and automated transaction imports.",
+    "technologies": [
+        "React Native",
+        "TypeScript",
+        "Redux",
+        "Firebase",
+        "GraphQL",
+        "Node.js"
+    ],
+    "clientName": "FinancePro",
+    "images": [],
+    "features": [
+        "Budgeting",
+        "Expense Tracking",
+        "Financial Planning",
+        "Goal Setting",
+        "Automated Transaction Imports"
+    ],
+    "githubRepo": "https://github.com/username/personal-finance-app",
+    "liveDemo": "https://example.com/personal-finance-app",
+    "importance": 3
+}

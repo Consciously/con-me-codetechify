@@ -1,0 +1,24 @@
+{
+    "title": "Social Media App",
+    "description": "A social media application offering real-time messaging, post sharing, and notification features. This app is designed to connect people and facilitate interactions through a modern and intuitive interface. It supports multimedia sharing, user tagging, and includes a robust notification system to keep users engaged.",
+    "technologies": [
+        "React Native",
+        "TypeScript",
+        "GraphQL",
+        "Firebase",
+        "Expo",
+        "Redux"
+    ],
+    "clientName": "Socially",
+    "images": [],
+    "features": [
+        "Real-time Messaging",
+        "Post Sharing",
+        "Notifications",
+        "Multimedia Sharing",
+        "User Tagging"
+    ],
+    "githubRepo": "https://github.com/username/social-media-app",
+    "liveDemo": "https://example.com/social-media-app",
+    "importance": 3
+}

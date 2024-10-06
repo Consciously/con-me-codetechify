@@ -1,0 +1,24 @@
+{
+    "title": "Event Management System",
+    "description": "An event management system that handles ticketing, scheduling, and attendee management. This system simplifies the organization of events by providing an all-in-one platform for event planning. It includes features such as attendee tracking, event analytics, and email notifications.",
+    "technologies": [
+        "Angular",
+        "TypeScript",
+        "Material Design",
+        "Node.js",
+        "Express",
+        "MongoDB"
+    ],
+    "clientName": "EventMaster",
+    "images": [],
+    "features": [
+        "Ticketing",
+        "Scheduling",
+        "Attendee Management",
+        "Event Analytics",
+        "Email Notifications"
+    ],
+    "githubRepo": "https://github.com/username/event-management-system",
+    "liveDemo": "https://example.com/event-management-system",
+    "importance": 3
+}

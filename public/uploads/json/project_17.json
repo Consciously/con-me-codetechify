@@ -1,0 +1,24 @@
+{
+    "title": "Educational Game",
+    "description": "An educational game that combines interactive lessons, quizzes, and progress tracking to provide an engaging learning experience. This game supports various subjects and is designed to make learning fun and effective for students of all ages.",
+    "technologies": [
+        "React",
+        "TypeScript",
+        "GraphQL",
+        "Hasura",
+        "Node.js",
+        "Firebase"
+    ],
+    "clientName": "EduGame",
+    "images": [],
+    "features": [
+        "Interactive Lessons",
+        "Quizzes",
+        "Progress Tracking",
+        "Multisubject Support",
+        "Engaging Content"
+    ],
+    "githubRepo": "https://github.com/username/educational-game",
+    "liveDemo": "https://example.com/educational-game",
+    "importance": 5
+}

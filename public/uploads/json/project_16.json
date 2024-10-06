@@ -1,0 +1,24 @@
+{
+    "title": "Online Marketplace",
+    "description": "An online marketplace offering product listings, user reviews, and secure payment options. This platform connects buyers and sellers in a user-friendly environment. It includes features such as advanced search filters, shopping carts, and order tracking.",
+    "technologies": [
+        "Vue.js",
+        "TypeScript",
+        "GraphQL",
+        "Stripe",
+        "Node.js",
+        "Express"
+    ],
+    "clientName": "MarketPlace",
+    "images": [],
+    "features": [
+        "Product Listings",
+        "Reviews",
+        "Secure Payments",
+        "Advanced Search Filters",
+        "Order Tracking"
+    ],
+    "githubRepo": "https://github.com/username/online-marketplace",
+    "liveDemo": "https://example.com/online-marketplace",
+    "importance": 4
+}

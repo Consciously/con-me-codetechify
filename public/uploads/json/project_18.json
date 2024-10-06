@@ -1,0 +1,24 @@
+{
+    "title": "CRM System",
+    "description": "A customer relationship management system designed to help businesses manage their interactions with current and potential customers. This system includes features such as contact management, sales tracking, and detailed reporting.",
+    "technologies": [
+        "Angular",
+        "TypeScript",
+        "Material Design",
+        "Node.js",
+        "Express",
+        "MongoDB"
+    ],
+    "clientName": "CRMPro",
+    "images": [],
+    "features": [
+        "Contact Management",
+        "Sales Tracking",
+        "Reporting",
+        "Customer Interaction History",
+        "Task Management"
+    ],
+    "githubRepo": "https://github.com/username/crm-system",
+    "liveDemo": "https://example.com/crm-system",
+    "importance": 4
+}

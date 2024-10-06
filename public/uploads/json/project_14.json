@@ -1,0 +1,24 @@
+{
+    "title": "Music Streaming App",
+    "description": "A music streaming app that allows users to create playlists, listen offline, and engage with social features. This app offers high-quality audio streaming and personalized music recommendations. It includes features such as collaborative playlists, artist profiles, and user comments.",
+    "technologies": [
+        "React Native",
+        "TypeScript",
+        "GraphQL",
+        "Apollo",
+        "Expo",
+        "Redux"
+    ],
+    "clientName": "StreamMusic",
+    "images": [],
+    "features": [
+        "Playlists",
+        "Offline Listening",
+        "Social Features",
+        "Collaborative Playlists",
+        "Artist Profiles"
+    ],
+    "githubRepo": "https://github.com/username/music-streaming-app",
+    "liveDemo": "https://example.com/music-streaming-app",
+    "importance": 5
+}

@@ -1,0 +1,24 @@
+{
+    "title": "Job Board Platform",
+    "description": "A job board platform featuring job listings, application tracking, and employer management tools. This platform connects job seekers with employers through a user-friendly interface. It includes advanced search filters, resume builders, and company profiles to streamline the hiring process.",
+    "technologies": [
+        "Next.js",
+        "TypeScript",
+        "TailwindCSS",
+        "Prisma",
+        "Node.js",
+        "GraphQL"
+    ],
+    "clientName": "JobFinder",
+    "images": [],
+    "features": [
+        "Job Listings",
+        "Applications",
+        "Employer Management",
+        "Advanced Search Filters",
+        "Resume Builder"
+    ],
+    "githubRepo": "https://github.com/username/job-board-platform",
+    "liveDemo": "https://example.com/job-board-platform",
+    "importance": 3
+}

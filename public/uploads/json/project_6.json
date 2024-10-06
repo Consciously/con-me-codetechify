@@ -1,0 +1,24 @@
+{
+    "title": "Online Learning Platform",
+    "description": "An online learning platform featuring video courses, interactive quizzes, and certification. This platform is designed to offer a comprehensive learning experience with a variety of educational content. It supports multiple learning paths, progress tracking, and personalized recommendations.",
+    "technologies": [
+        "Next.js",
+        "TypeScript",
+        "GraphQL",
+        "Hasura",
+        "PostgreSQL",
+        "React"
+    ],
+    "clientName": "LearnOnline",
+    "images": [],
+    "features": [
+        "Video Courses",
+        "Quizzes",
+        "Certification",
+        "Progress Tracking",
+        "Personalized Recommendations"
+    ],
+    "githubRepo": "https://github.com/username/online-learning-platform",
+    "liveDemo": "https://example.com/online-learning-platform",
+    "importance": 2
+}

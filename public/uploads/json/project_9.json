@@ -1,0 +1,24 @@
+{
+    "title": "E-commerce Mobile App",
+    "description": "A mobile e-commerce app providing seamless shopping experiences with product browsing, cart management, and secure checkout. This app is designed for both Android and iOS platforms, ensuring a wide reach and user engagement. It features push notifications, wish lists, and user reviews.",
+    "technologies": [
+        "React Native",
+        "TypeScript",
+        "GraphQL",
+        "Stripe",
+        "Expo",
+        "Redux"
+    ],
+    "clientName": "ShopEasy",
+    "images": [],
+    "features": [
+        "Product Browsing",
+        "Cart Management",
+        "Checkout",
+        "Push Notifications",
+        "Wish Lists"
+    ],
+    "githubRepo": "https://github.com/username/ecommerce-mobile-app",
+    "liveDemo": "https://example.com/ecommerce-mobile-app",
+    "importance": 5
+}

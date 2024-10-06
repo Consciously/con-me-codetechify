@@ -1,0 +1,24 @@
+{
+    "title": "Travel Booking Website",
+    "description": "A travel booking website offering comprehensive booking options for flights, hotels, and car rentals. This platform provides an easy-to-use interface for planning trips and includes features such as personalized travel recommendations and booking history management.",
+    "technologies": [
+        "Next.js",
+        "TypeScript",
+        "TailwindCSS",
+        "Prisma",
+        "Node.js",
+        "Stripe"
+    ],
+    "clientName": "TravelEasy",
+    "images": [],
+    "features": [
+        "Flight Booking",
+        "Hotel Booking",
+        "Car Rental",
+        "Personalized Recommendations",
+        "Booking History"
+    ],
+    "githubRepo": "https://github.com/username/travel-booking-website",
+    "liveDemo": "https://example.com/travel-booking-website",
+    "importance": 1
+}

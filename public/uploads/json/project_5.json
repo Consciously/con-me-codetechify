@@ -1,0 +1,24 @@
+{
+    "title": "Project Management Tool",
+    "description": "A project management tool that facilitates task tracking, team collaboration, and detailed reporting. This tool is designed to enhance productivity by providing a comprehensive overview of project progress. It includes features such as Gantt charts, time tracking, and project templates.",
+    "technologies": [
+        "Vue.js",
+        "TypeScript",
+        "Vuetify",
+        "Node.js",
+        "Express",
+        "MongoDB"
+    ],
+    "clientName": "ManageIt",
+    "images": [],
+    "features": [
+        "Task Tracking",
+        "Collaboration",
+        "Reporting",
+        "Gantt Charts",
+        "Time Tracking"
+    ],
+    "githubRepo": "https://github.com/username/project-management-tool",
+    "liveDemo": "https://example.com/project-management-tool",
+    "importance": 4
+}

@@ -1,0 +1,24 @@
+{
+    "title": "News Aggregator",
+    "description": "A news aggregator that compiles news articles from various sources into one place. This platform allows users to customize their feeds, receive notifications for breaking news, and save articles for later reading.",
+    "technologies": [
+        "Next.js",
+        "TypeScript",
+        "TailwindCSS",
+        "GraphQL",
+        "Node.js",
+        "Apollo"
+    ],
+    "clientName": "NewsNow",
+    "images": [],
+    "features": [
+        "Customizable Feeds",
+        "Notifications",
+        "Article Saving",
+        "Breaking News Alerts",
+        "Source Filtering"
+    ],
+    "githubRepo": "https://github.com/username/news-aggregator",
+    "liveDemo": "https://example.com/news-aggregator",
+    "importance": 1
+}

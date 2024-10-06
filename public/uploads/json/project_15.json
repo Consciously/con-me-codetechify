@@ -1,0 +1,24 @@
+{
+    "title": "Health Tracking App",
+    "description": "A health tracking app designed to log daily activities, track diet, and monitor health metrics. This app provides detailed analytics and insights into the user's health journey. It includes features such as calorie counting, workout logging, and health goal setting.",
+    "technologies": [
+        "React Native",
+        "TypeScript",
+        "Redux",
+        "Firebase",
+        "GraphQL",
+        "Node.js"
+    ],
+    "clientName": "HealthTrack",
+    "images": [],
+    "features": [
+        "Activity Logging",
+        "Diet Tracking",
+        "Health Metrics",
+        "Calorie Counting",
+        "Workout Logging"
+    ],
+    "githubRepo": "https://github.com/username/health-tracking-app",
+    "liveDemo": "https://example.com/health-tracking-app",
+    "importance": 4
+}

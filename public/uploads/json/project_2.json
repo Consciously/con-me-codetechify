@@ -1,0 +1,22 @@
+{
+    "title": "Portfolio Website",
+    "description": "A personal portfolio website showcasing a wide range of projects, skills, and contact information. This website highlights professional achievements and provides an easy-to-navigate interface for potential clients. The portfolio is designed to be fully responsive and features dynamic content updates to keep the information current.",
+    "technologies": [
+        "React",
+        "TypeScript",
+        "TailwindCSS",
+        "Framer Motion",
+        "Next.js"
+    ],
+    "clientName": "Self",
+    "images": [],
+    "features": [
+        "Responsive Design",
+        "Dynamic Project Showcase",
+        "Contact Form",
+        "SEO Optimization"
+    ],
+    "githubRepo": "https://github.com/username/portfolio-website",
+    "liveDemo": "https://example.com/portfolio",
+    "importance": 1
+}

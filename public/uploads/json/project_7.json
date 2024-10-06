@@ -1,0 +1,24 @@
+{
+    "title": "Fitness Tracker App",
+    "description": "A fitness tracker app designed to log workouts, track progress, and share achievements socially. This app helps users stay motivated by providing detailed analytics of their fitness journey. It includes features such as goal setting, workout plans, and a community forum for support.",
+    "technologies": [
+        "React Native",
+        "TypeScript",
+        "Redux",
+        "Firebase",
+        "GraphQL",
+        "Expo"
+    ],
+    "clientName": "FitLife",
+    "images": [],
+    "features": [
+        "Workout Logging",
+        "Progress Tracking",
+        "Social Sharing",
+        "Goal Setting",
+        "Workout Plans"
+    ],
+    "githubRepo": "https://github.com/username/fitness-tracker-app",
+    "liveDemo": "https://example.com/fitness-tracker-app",
+    "importance": 4
+}
