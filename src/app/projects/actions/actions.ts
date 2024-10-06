@@ -29,10 +29,14 @@ export const createProjectHandler = async (data: unknown) => {
 	}
 
 	try {
-		return createProject(parsedData.data);
+		const newProject = await createProject(parsedData.data);
+		return { projectId: newProject.id };
 	} catch (error) {
-		console.error('Error creating project', error);
-		throw new Error('Failed creating project');
+		console.error('Error creating project:', error);
+		return {
+			error: 'Failed to create project',
+			details: error instanceof Error ? error.message : 'Unknown error',
+		};
 	}
 };
 
