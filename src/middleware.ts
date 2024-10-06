@@ -5,7 +5,6 @@ const isPublicRoute = createRouteMatcher([
 	'/',
 	'/projects(.*)',
 	'/api/uploadthing',
-	'https://con-me-codetechify.vercel.app',
 ]);
 
 export default clerkMiddleware((auth, request) => {
