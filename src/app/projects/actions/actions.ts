@@ -7,6 +7,9 @@ import {
 	getProjectById,
 } from '@/lib/dal/project-dal';
 import { projectSchema } from '@/lib/validation';
+import { Project } from '@prisma/client';
+
+type ProjectClean = Omit<Project, 'id' | 'createdAt' | 'updatedAt'>;
 
 export const getProjectsHandler = async (isHomepage: boolean = false) => {
 	return getProjects(isHomepage);
@@ -21,16 +24,15 @@ export const getProjectHandler = async (id: string) => {
 	}
 };
 
-export const createProjectHandler = async (data: unknown) => {
-	const parsedData = projectSchema.safeParse(data);
+export const createProjectHandler = async (data: ProjectClean) => {
+	// const parsedData = projectSchema.safeParse(data);
 
-	if (!parsedData.success) {
-		throw new Error('Invalid project data');
-	}
+	// if (!parsedData.success) {
+	// 	throw new Error('Invalid project data');
+	// }
 
 	try {
-		console.log('Parsed data:', parsedData.data);
-		return createProject(parsedData.data);
+		return createProject(data);
 	} catch (error) {
 		console.error('Error creating project', error);
 		throw new Error('Failed creating project');
