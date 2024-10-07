@@ -1,10 +1,21 @@
+// 'use client';
+
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { HERO_DATA } from '@/constants/constants';
 import Image from 'next/image';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import H4 from '@/components/ui/h4';
+import { useQuery } from '@tanstack/react-query';
+import { getStaticFilesHandler } from '@/app/(root)/hero/actions/actions';
 
-export default function HeroIntroArea() {
+export default async function HeroIntroArea() {
+	const files = await getStaticFilesHandler();
+	console.log(files);
+	// const { data: files } = useQuery({
+	// 	queryKey: ['static-files'],
+	// 	queryFn: async () => getStaticFilesHandler(),
+	// });
+
 	return (
 		<div className='space-y-6'>
 			<div>
