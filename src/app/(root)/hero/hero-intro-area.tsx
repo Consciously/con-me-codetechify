@@ -1,4 +1,4 @@
-// 'use client';
+'use client';
 
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { HERO_DATA } from '@/constants/constants';
@@ -8,13 +8,17 @@ import H4 from '@/components/ui/h4';
 import { useQuery } from '@tanstack/react-query';
 import { getStaticFilesHandler } from '@/app/(root)/hero/actions/actions';
 
-export default async function HeroIntroArea() {
-	const files = await getStaticFilesHandler();
-	console.log(files);
-	// const { data: files } = useQuery({
-	// 	queryKey: ['static-files'],
-	// 	queryFn: async () => getStaticFilesHandler(),
-	// });
+export default function HeroIntroArea() {
+	const { data: files } = useQuery({
+		queryKey: ['static-files'],
+		queryFn: async () => getStaticFilesHandler(),
+	});
+
+	const heroDataWithUrls = HERO_DATA.map((item, index) => ({
+		id: item.id,
+		title: item.title,
+		url: files?.[index] || item.url, // Fallback to the original URL if files[index] is undefined
+	}));
 
 	return (
 		<div className='space-y-6'>
@@ -38,7 +42,7 @@ export default async function HeroIntroArea() {
 			<div>
 				<ScrollArea className='w-full whitespace-nowrap'>
 					<div className='flex w-max gap-6'>
-						{HERO_DATA.map(item => (
+						{heroDataWithUrls.map(item => (
 							<div key={item.id} className='flex-1 w-full'>
 								<Card className='bg-[#1B1918]/25 dark:bg-[#1B1918]/50 border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60'>
 									<CardHeader className='flex justify-center items-center h-[50px]'>

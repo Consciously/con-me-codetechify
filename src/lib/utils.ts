@@ -2,7 +2,6 @@ import { type ClassValue, clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { format } from 'date-fns';
 import { Project } from '@prisma/client';
-import { UTApi } from 'uploadthing/server';
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs));
@@ -45,4 +44,4 @@ export const getProjectSize = (
 		project.id === latestImportantProject?.id ? 'large' : 'small';
 };
 
-export const utapi = new UTApi();
+export const getHeroData = async () => {};

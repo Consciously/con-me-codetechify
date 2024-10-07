@@ -1,5 +1,5 @@
 import 'server-only';
-import { utapi } from '../utils';
+import { utapi } from '@/lib/server-utils';
 
 export const getStaticFiles = async () => {
 	try {
