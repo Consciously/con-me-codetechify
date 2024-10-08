@@ -5,15 +5,12 @@ import { HERO_DATA } from '@/constants/constants';
 import Image from 'next/image';
 import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import H4 from '@/components/ui/h4';
-import { useQuery } from '@tanstack/react-query';
-import { getStaticFilesHandler } from '@/app/(root)/hero/actions/actions';
 
-export default function HeroIntroArea() {
-	const { data: files } = useQuery({
-		queryKey: ['static-files'],
-		queryFn: async () => getStaticFilesHandler(),
-	});
+type HeroIntroAreaProps = {
+	files: string[];
+};
 
+export default function HeroIntroArea({ files }: HeroIntroAreaProps) {
 	const heroDataWithUrls = HERO_DATA.map((item, index) => ({
 		id: item.id,
 		title: item.title,

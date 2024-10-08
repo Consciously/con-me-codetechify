@@ -7,6 +7,10 @@ import { Button } from '@/components/ui/button';
 import { cn, generateRange } from '@/lib/utils';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 
+type HeroCtaAreaProps = {
+	files: string[];
+};
+
 const buttonAnimationVariants = {
 	initial: (i: number) => ({
 		x: i % 2 === 0 ? '-100%' : '100%',
@@ -29,7 +33,7 @@ const overlayAnimationVariants = {
 
 const range = generateRange(0, 2);
 
-export default function HeroCtaArea() {
+export default function HeroCtaArea({ files }: HeroCtaAreaProps) {
 	const [isHovered, setIsHovered] = useState(false);
 
 	return (
@@ -40,7 +44,7 @@ export default function HeroCtaArea() {
 				onMouseLeave={() => setIsHovered(false)}
 			>
 				<Image
-					src='/images/profile_image.jpg'
+					src={files[0]}
 					alt='Profile image from Stefan Ihle'
 					width={552}
 					height={736}
