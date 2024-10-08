@@ -7,19 +7,23 @@ export const getStaticFilesHandler = async () => {
 		const rawFiles = await getStaticFiles();
 		const { files } = rawFiles;
 
-		// Filter files for HeroCtaArea
-		const ctaFiles = files
-			.filter(file => file.name.includes('_cta_'))
-			.map(file => file.key);
+		// Filter files fro HeroCtaArea and HeroIntroArea
+		const ctaFiles: string[] = [];
+		const introFiles: string[] = [];
 
-		// Filter files for HeroIntroArea
-		const introFiles = files
-			.filter(file => file.name.includes('_illustration_'))
-			.map(file => file.key);
+		files.forEach(file => {
+			if (file.name.includes('_cta_')) {
+				ctaFiles.push(file.key);
+			} else if (file.name.includes('_illustration_')) {
+				introFiles.push(file.key);
+			}
+		});
 
-		// Fetch URLs for both sets of files
-		const ctaFileUrls = await utapi.getFileUrls(ctaFiles);
-		const introFileUrls = await utapi.getFileUrls(introFiles);
+		// Fetch URLs for both sets of files in parallel
+		const [ctaFileUrls, introFileUrls] = await Promise.all([
+			utapi.getFileUrls(ctaFiles),
+			utapi.getFileUrls(introFiles),
+		]);
 
 		return {
 			ctaFileUrls: ctaFileUrls.data.map(file => file.url),

@@ -6,6 +6,7 @@ import HeroIntroArea from './hero-intro-area';
 import { Layout } from '@/components/ui/custom-container-structure';
 import { useQuery } from '@tanstack/react-query';
 import { getStaticFilesHandler } from '@/app/(root)/hero/actions/actions';
+import Loading from './loading';
 
 export default function HeroSection() {
 	const { data: files, isLoading } = useQuery({
@@ -15,8 +16,6 @@ export default function HeroSection() {
 
 	const { ctaFileUrls, introFileUrls } = files || {};
 
-	if (isLoading) return <div>Loading...</div>;
-
 	return (
 		<>
 			<Layout.Flex direction='column' justify='center' items='center'>
@@ -25,10 +24,18 @@ export default function HeroSection() {
 
 			<Layout.Grid columns={{ sm: 1, md: 6, xl: 12 }} gap={8}>
 				<Layout.GridItem colSpan={{ sm: 1, md: 3, xl: 4 }}>
-					{ctaFileUrls && <HeroCtaArea files={ctaFileUrls} />}
+					{isLoading ? (
+						<Loading />
+					) : (
+						ctaFileUrls && <HeroCtaArea files={ctaFileUrls} />
+					)}
 				</Layout.GridItem>
 				<Layout.GridItem colSpan={{ sm: 1, md: 3, xl: 8 }}>
-					{introFileUrls && <HeroIntroArea files={introFileUrls} />}
+					{isLoading ? (
+						<Loading />
+					) : (
+						introFileUrls && <HeroIntroArea files={introFileUrls} />
+					)}
 				</Layout.GridItem>
 			</Layout.Grid>
 		</>
