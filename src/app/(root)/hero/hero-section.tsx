@@ -2,12 +2,12 @@
 
 import HeroHeadingArea from './hero-heading-area';
 import HeroCtaArea from './hero-cta-area';
-import HeroIntroArea from './hero-intro-area';
 import { Layout } from '@/components/ui/custom-container-structure';
 import { useQuery } from '@tanstack/react-query';
 import { getStaticFilesHandler } from '@/app/(root)/hero/actions/actions';
 import Loading from './loading';
-
+import HeroMotivationalTextArea from './hero-motivational-text-area';
+import HeroMotivationalImageArea from './hero-motivational-image-area';
 export default function HeroSection() {
 	const { data: files, isLoading } = useQuery({
 		queryKey: ['static-files'],
@@ -15,6 +15,8 @@ export default function HeroSection() {
 	});
 
 	const { ctaFileUrls, introFileUrls } = files || {};
+
+	console.log('From HeroSection', isLoading);
 
 	return (
 		<>
@@ -31,11 +33,19 @@ export default function HeroSection() {
 					)}
 				</Layout.GridItem>
 				<Layout.GridItem colSpan={{ sm: 1, md: 3, xl: 8 }}>
-					{isLoading ? (
-						<Loading />
-					) : (
-						introFileUrls && <HeroIntroArea files={introFileUrls} />
-					)}
+					<div className='space-y-6'>
+						<HeroMotivationalTextArea />
+						{isLoading ? (
+							<Loading />
+						) : (
+							introFileUrls && (
+								<HeroMotivationalImageArea
+									files={introFileUrls}
+									isLoading={isLoading}
+								/>
+							)
+						)}
+					</div>
 				</Layout.GridItem>
 			</Layout.Grid>
 		</>
