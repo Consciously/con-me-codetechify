@@ -43,3 +43,5 @@ export const getProjectSize = (
 	return (project: Project) =>
 		project.id === latestImportantProject?.id ? 'large' : 'small';
 };
+
+export const getHeroData = async () => {};

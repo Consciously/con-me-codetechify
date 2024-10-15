@@ -2,62 +2,62 @@ export const HERO_DATA = [
 	{
 		id: 1,
 		title: 'Passion',
-		url: '/images/illustration_keyword_01.webp',
+		url: '',
 	},
 	{
 		id: 2,
 		title: 'Overcoming Challenges',
-		url: '/images/illustration_keyword_02.webp',
+		url: '',
 	},
 	{
 		id: 3,
 		title: 'Continuous Learning',
-		url: '/images/illustration_keyword_03.webp',
+		url: '',
 	},
 	{
 		id: 4,
 		title: 'New Technologies',
-		url: '/images/illustration_keyword_04.webp',
+		url: '',
 	},
 	{
 		id: 5,
 		title: 'In-Depth Knowledge',
-		url: '/images/illustration_keyword_05.webp',
+		url: '',
 	},
 	{
 		id: 6,
 		title: 'Generalized Specialist',
-		url: '/images/illustration_keyword_06.webp',
+		url: '',
 	},
 	{
 		id: 7,
 		title: 'Clean Code',
-		url: '/images/illustration_keyword_07.webp',
+		url: '',
 	},
 	{
 		id: 8,
 		title: 'Intrinsic Motivation',
-		url: '/images/illustration_keyword_08.webp',
+		url: '',
 	},
 	{
 		id: 9,
 		title: 'Reliable Solutions',
-		url: '/images/illustration_keyword_09.webp',
+		url: '',
 	},
 	{
 		id: 10,
 		title: 'Practice-Oriented',
-		url: '/images/illustration_keyword_10.webp',
+		url: '',
 	},
 	{
 		id: 11,
 		title: 'Structured Code',
-		url: '/images/illustration_keyword_11.webp',
+		url: '',
 	},
 	{
 		id: 12,
 		title: 'Innovation',
-		url: '/images/illustration_keyword_12.webp',
+		url: '',
 	},
 ] as const;
 
