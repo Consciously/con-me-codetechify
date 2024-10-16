@@ -60,6 +60,12 @@ const config = {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))',
 				},
+				primaryLightTransparent: {
+					DEFAULT: 'rgba(20, 0, 11, 0.5)',
+				},
+				secondaryLightTransparent: {
+					DEFAULT: 'rgba(122, 0, 65, 0.5)',
+				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

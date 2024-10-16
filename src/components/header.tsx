@@ -43,7 +43,7 @@ export default function Header() {
 
 	useEffect(() => {
 		const unsubscribe = scrollY.on('change', latest => {
-			if (latest > 200) {
+			if (latest > 50) {
 				setHasShadow(true);
 			} else {
 				setHasShadow(false);
@@ -64,9 +64,9 @@ export default function Header() {
 	return (
 		<motion.nav
 			className={cn(
-				'sticky z-[80] h-16 inset-x-0 top-0 w-full bg-background backdrop-blur-lg',
+				'sticky z-[80] h-16 inset-x-0 top-0 w-full bg-[rgb(217, 217, 217,0.2)]',
 				hasShadow
-					? 'opacity-85 border-b border-primary transition-all shadow-md shadow-[#1b1918]/15 dark:shadow-[#e6e6e6]]/15 duration-200'
+					? 'bg-gradient-to-r from-primaryLightTransparent to-secondaryLightTransparent backdrop-blur-xl border-b border-primary transition-all shadow-md shadow-[#1b1918]/15 dark:shadow-[#e6e6e6]]/15 duration-200'
 					: '',
 			)}
 		>
@@ -113,7 +113,7 @@ export default function Header() {
 				</ul>
 				<Separator
 					orientation='vertical'
-					className='hidden md:block bg-accent ml-3'
+					className='hidden md:block bg-secondaryLightTransparent ml-3'
 				/>
 				<div className='ml-3 py-3'>
 					<SignedOut>

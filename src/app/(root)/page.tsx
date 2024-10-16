@@ -14,7 +14,7 @@ export default function Home() {
 						src='/images/bg_tech_01.webp'
 						alt='Hero image'
 						fill
-						className='w-full h-full object-cover object-center -z-20'
+						className='w-full h-full object-cover object-center -z-20 opacity-50'
 					/>
 				</Layout.Container>
 				<Layout.Container>
@@ -34,7 +34,7 @@ export default function Home() {
 						src='/images/bg_tech_02.webp'
 						alt='Hero image'
 						fill
-						className='w-full h-full object-cover object-center -z-20'
+						className='w-full h-full object-cover object-center -z-20 opacity-50'
 					/>
 				</Layout.Container>
 				<Layout.Container>
@@ -54,7 +54,7 @@ export default function Home() {
 						src='/images/bg_tech_03.webp'
 						alt='Hero image'
 						fill
-						className='w-full h-full object-cover object-center -z-20'
+						className='w-full h-full object-cover object-center -z-20 opacity-50'
 					/>
 				</Layout.Container>
 				<Layout.Container>
