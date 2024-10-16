@@ -2,12 +2,17 @@
 
 import HeroHeadingArea from './hero-heading-area';
 import HeroCtaArea from './hero-cta-area';
+import {
+	HeroMotivationalTextAreaSkeleton,
+	HeroMotivationalImageAreaSkeleton,
+	HeroCtaAreaSkeleton,
+} from '@/components/ui/loader';
 import { Layout } from '@/components/ui/custom-container-structure';
 import { useQuery } from '@tanstack/react-query';
 import { getStaticFilesHandler } from '@/app/(root)/hero/actions/actions';
-import Loading from './loading';
 import HeroMotivationalTextArea from './hero-motivational-text-area';
 import HeroMotivationalImageArea from './hero-motivational-image-area';
+
 export default function HeroSection() {
 	const { data: files, isLoading } = useQuery({
 		queryKey: ['static-files'],
@@ -15,8 +20,6 @@ export default function HeroSection() {
 	});
 
 	const { ctaFileUrls, introFileUrls } = files || {};
-
-	console.log('From HeroSection', isLoading);
 
 	return (
 		<>
@@ -27,16 +30,20 @@ export default function HeroSection() {
 			<Layout.Grid columns={{ sm: 1, md: 6, xl: 12 }} gap={8}>
 				<Layout.GridItem colSpan={{ sm: 1, md: 3, xl: 4 }}>
 					{isLoading ? (
-						<Loading />
+						<HeroCtaAreaSkeleton />
 					) : (
 						ctaFileUrls && <HeroCtaArea files={ctaFileUrls} />
 					)}
 				</Layout.GridItem>
 				<Layout.GridItem colSpan={{ sm: 1, md: 3, xl: 8 }}>
 					<div className='space-y-6'>
-						<HeroMotivationalTextArea />
 						{isLoading ? (
-							<Loading />
+							<HeroMotivationalTextAreaSkeleton />
+						) : (
+							<HeroMotivationalTextArea />
+						)}
+						{isLoading ? (
+							<HeroMotivationalImageAreaSkeleton />
 						) : (
 							introFileUrls && (
 								<HeroMotivationalImageArea
