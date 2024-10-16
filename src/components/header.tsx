@@ -74,10 +74,24 @@ export default function Header() {
 				<div className='flex justify-center items-center'>
 					<Link href='/'>
 						<div className='flex gap-x-6 justify-center items-center'>
-							<div className='bg-gradient-to-r from-primary to-secondary p-1 w-[50px] text-center skew-y-[20deg] skew-x-12 scale-[1.05] text-[#1b1918] font-semibold text-sm'>
+							<div
+								className={cn(
+									'p-1 text-center w-[50px] skew-y-[20deg] skew-x-12 font-semibold text-sm',
+									hasShadow
+										? 'bg-[#1b1918] text-secondary'
+										: 'bg-gradient-to-r from-primary to-secondary text-background',
+								)}
+							>
 								me
 							</div>
-							<div className='bg-gradient-to-r from-secondary to-primary p-1 w-[100px] text-center -skew-y-[8deg] skew-x-6 text-[#1b1918] font-semibold text-sm'>
+							<div
+								className={cn(
+									'p-1 w-[100px] text-center -skew-y-[8deg] skew-x-6 scale-[1.05]  font-semibold text-sm',
+									hasShadow
+										? 'bg-[#1b1918] text-secondary'
+										: 'bg-gradient-to-r from-secondary to-primary text-background',
+								)}
+							>
 								codetechify
 							</div>
 						</div>
@@ -89,12 +103,13 @@ export default function Header() {
 							<li
 								key={href}
 								className={cn(
-									'flex items-center relative  text-base font-semibold',
+									'flex items-center relative text-base font-semibold',
 									{
-										'text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary':
+										'text-transparent bg-clip-text bg-gradient-to-r':
 											activePathname === href,
 										'text-primary': activePathname !== href,
 									},
+									hasShadow ? 'text-background' : 'from-primary to-secondary',
 								)}
 							>
 								<Link href={href} className='block'>
@@ -104,7 +119,10 @@ export default function Header() {
 								{activePathname === href && (
 									<motion.div
 										layoutId='header-active-link'
-										className='bg-primary h-1 w-full absolute top-8'
+										className={cn(
+											'bg-primary h-1 w-full absolute top-8',
+											hasShadow && 'bg-background',
+										)}
 									></motion.div>
 								)}
 							</li>
@@ -113,12 +131,17 @@ export default function Header() {
 				</ul>
 				<Separator
 					orientation='vertical'
-					className='hidden md:block bg-secondaryLightTransparent ml-3'
+					className='hidden md:block bg-secondaryLightTransparent dark:bg-secondaryDarkTransparent ml-3'
 				/>
 				<div className='ml-3 py-3'>
 					<SignedOut>
 						<SignInButton>
-							<span className='flex items-center relative  text-base font-semibold text-primary'>
+							<span
+								className={cn(
+									'flex items-center relative text-base font-semibold ',
+									hasShadow ? 'text-background' : 'text-primary',
+								)}
+							>
 								<LogIn className='w-6 h-6' />
 							</span>
 						</SignInButton>
@@ -132,7 +155,7 @@ export default function Header() {
 					</SignedIn>
 				</div>
 				<div className='hidden md:block ml-3 py-3'>
-					<ThemeToggler />
+					<ThemeToggler hasShadow={hasShadow} />
 				</div>
 				<div className='ml-auto md:hidden'>
 					<Sheet>
@@ -151,7 +174,7 @@ export default function Header() {
 							side='left'
 						>
 							<div className='block md:hidden absolute top-4 left-4'>
-								<ThemeToggler />
+								<ThemeToggler hasShadow={hasShadow} />
 							</div>
 							<ul className='flex flex-col gap-y-12 justify-center items-center w-full mt-12'>
 								{NAVIGATION_DATA.map((item, index) => (
