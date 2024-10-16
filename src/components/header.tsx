@@ -64,9 +64,9 @@ export default function Header() {
 	return (
 		<motion.nav
 			className={cn(
-				'sticky z-[80] h-16 inset-x-0 top-0 w-full bg-[rgb(217, 217, 217,0.2)]',
+				'sticky z-[80] h-16 inset-x-0 top-0 w-full bg-[rgb(217, 217, 217,0.2)] dark:bg-[rgb(27, 25, 24,0.2)]',
 				hasShadow
-					? 'bg-gradient-to-r from-primaryLightTransparent to-secondaryLightTransparent backdrop-blur-xl border-b border-primary transition-all shadow-md shadow-[#1b1918]/15 dark:shadow-[#e6e6e6]]/15 duration-200'
+					? 'bg-gradient-to-r from-primaryLightTransparent dark:from-primaryDarkTransparent to-secondaryLightTransparent dark:bg-secondaryDarkTransparent backdrop-blur-xl border-b border-primary transition-all shadow-md shadow-[#1b1918]/15 dark:shadow-[#e6e6e6]]/15 duration-200'
 					: '',
 			)}
 		>

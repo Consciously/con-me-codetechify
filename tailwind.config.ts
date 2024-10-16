@@ -66,6 +66,12 @@ const config = {
 				secondaryLightTransparent: {
 					DEFAULT: 'rgba(122, 0, 65, 0.5)',
 				},
+				primaryDarkTransparent: {
+					DEFAULT: 'rgba(255, 69, 0, 0.5)',
+				},
+				secondaryDarkTransparent: {
+					DEFAULT: 'rgba(255, 140, 0, 0.5)',
+				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
