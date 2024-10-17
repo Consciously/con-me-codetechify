@@ -27,7 +27,10 @@ export default function HeroSection() {
 				<HeroHeadingArea />
 			</Layout.Flex>
 
-			<Layout.Grid columns={{ sm: 1, md: 6, xl: 12 }} gap={8}>
+			<Layout.Grid
+				columns={{ sm: 1, md: 6, xl: 12 }}
+				className='gap-8 md:gap-16'
+			>
 				<Layout.GridItem colSpan={{ sm: 1, md: 3, xl: 4 }}>
 					{isLoading ? (
 						<HeroCtaAreaSkeleton />
@@ -36,7 +39,7 @@ export default function HeroSection() {
 					)}
 				</Layout.GridItem>
 				<Layout.GridItem colSpan={{ sm: 1, md: 3, xl: 8 }}>
-					<div className='space-y-6'>
+					<div className='space-y-6 md:space-y-12'>
 						{isLoading ? (
 							<HeroMotivationalTextAreaSkeleton />
 						) : (
