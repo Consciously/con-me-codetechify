@@ -12,16 +12,19 @@ type ProjectDataProps = {
 	isHomepage?: boolean;
 };
 
-export default function ProjectData({ isHomepage = false }: ProjectDataProps) {
+export default function ProjectData({ isHomepage }: ProjectDataProps) {
 	const pathname = usePathname();
 
-	const { data, isLoading, error } = useQuery({
+	const {
+		data: projects,
+		isLoading,
+		error,
+	} = useQuery({
 		queryKey: ['projects'],
-		queryFn: async () => await getProjectsHandler(isHomepage),
+		queryFn: async () => await getProjectsHandler(isHomepage ?? false),
 	});
 
-	const projects = data || [];
-	const projectSize = getProjectSize(data || []);
+	const projectSize = getProjectSize(projects || []);
 
 	if (isLoading)
 		return (
@@ -37,9 +40,10 @@ export default function ProjectData({ isHomepage = false }: ProjectDataProps) {
 
 	return (
 		<>
-			{projects.length > 0 ? (
+			{projects ? (
 				projects.map((project, index) => {
-					const isLarge = isHomepage && project.importance === 5 && index === 0;
+					const isLarge =
+						isHomepage && projectSize(project) === 'large' && index === 0;
 					return (
 						<Layout.GridItem
 							key={project.id}

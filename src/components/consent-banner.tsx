@@ -17,7 +17,7 @@ import {
 import { useRouter } from 'next/navigation';
 import { setConsent, getConsentStatus } from '@/app/actions/actions';
 import { type ConsentTypeValues, consentSchema } from '@/lib/validation';
-import Block from './ui/custom-block-structure';
+import { Layout } from '@/components/ui/custom-container-structure';
 
 export default function ConsentBanner() {
 	const [isVisible, setIsVisible] = useState<boolean>(true);
@@ -74,8 +74,8 @@ export default function ConsentBanner() {
 	}
 
 	return (
-		<Block className='fixed bottom-0 left-0 right-0 p-4 bg-background text-white z-50 mb-0'>
-			<Block.Item>
+		<Layout.Grid className='fixed bottom-0 left-0 right-0 p-4 bg-background text-white z-50 mb-0'>
+			<Layout.GridItem>
 				<p className='mb-4'>
 					We use cookies to enhance your experience. You can accept or reject
 					all cookies, or customize your preferences.
@@ -167,7 +167,7 @@ export default function ConsentBanner() {
 						)}
 					</form>
 				</Form>
-			</Block.Item>
-		</Block>
+			</Layout.GridItem>
+		</Layout.Grid>
 	);
 }

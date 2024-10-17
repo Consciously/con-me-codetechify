@@ -11,7 +11,7 @@ import { Project } from '@prisma/client';
 
 type ProjectClean = Omit<Project, 'id' | 'createdAt' | 'updatedAt'>;
 
-export const getProjectsHandler = async (isHomepage: boolean = false) => {
+export const getProjectsHandler = async (isHomepage: boolean) => {
 	return getProjects(isHomepage);
 };
 
