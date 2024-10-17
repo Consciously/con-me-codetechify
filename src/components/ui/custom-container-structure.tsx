@@ -7,9 +7,7 @@ type BaseProps = React.HTMLAttributes<HTMLElement> & {
 	as?: React.ElementType;
 };
 
-type SectionProps = BaseProps & {
-	spacing?: 'none' | 'sm' | 'md' | 'lg';
-};
+type SectionProps = BaseProps;
 
 type ContainerProps = BaseProps & {
 	size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full';
@@ -40,15 +38,22 @@ type FlexItemProps = BaseProps & {
 	basis?: string;
 };
 
+const cache = new Map<string, string>();
+
 const getResponsiveClasses = (
 	prefix: string,
 	value: ResponsiveValue<number | string>,
 ) => {
-	if (typeof value === 'number' || typeof value === 'string') {
-		return `${prefix}-${value}`;
+	const cacheKey = `${prefix}-${JSON.stringify(value)}`;
+	if (cache.has(cacheKey)) {
+		return cache.get(cacheKey)!;
 	}
-	if (typeof value === 'object') {
-		return Object.entries(value)
+
+	let result = '';
+	if (typeof value === 'number' || typeof value === 'string') {
+		result = `${prefix}-${value}`;
+	} else if (typeof value === 'object') {
+		result = Object.entries(value)
 			.map(([breakpoint, val]) => {
 				if (val === undefined) return ''; // Ignore undefined values
 				return breakpoint === 'sm'
@@ -57,22 +62,25 @@ const getResponsiveClasses = (
 			})
 			.join(' ');
 	}
-	return ''; // Return empty string if value doesn't match expected types
+
+	cache.set(cacheKey, result);
+	return result;
 };
 
-const Section = React.forwardRef<HTMLElement, SectionProps>(
-	({ as: Component = 'section', className, spacing = 'md', ...props }, ref) => {
-		const spacingClasses = {
-			none: '',
-			sm: 'py-4 sm:py-6',
-			md: 'py-8 sm:py-12',
-			lg: 'py-12 sm:py-16 md:py-20',
-		};
+const sectionSpacingClasses = 'py-8 sm:py-10 md:py-12 lg:py-16 xl:py-20';
+const containerSpacingClasses = 'py-6 sm:py-8 md:py-10 lg:py-14 xl:py-18';
+const gridSpacingClasses = 'py-4 sm:py-6 md:py-8 lg:py-10 xl:py-12';
+const flexSpacingClasses = 'py-5 sm:py-7 md:py-9 lg:py-11 xl:py-13';
+const gridItemSpacingClasses = 'py-3 sm:py-5 md:py-7 lg:py-9 xl:py-11';
+const flexItemSpacingClasses = 'py-2 sm:py-4 md:py-6 lg:py-8 xl:py-10';
+const centeredPaddingClasses = 'mx-auto px-4 sm:px-6 lg:px-8';
 
+const Section = React.forwardRef<HTMLDivElement, SectionProps>(
+	({ as: Component = 'section', className, ...props }, ref) => {
 		return (
 			<Component
 				ref={ref}
-				className={cn('w-full', spacingClasses[spacing], className)}
+				className={cn('w-full', sectionSpacingClasses, className)}
 				{...props}
 			/>
 		);
@@ -80,7 +88,7 @@ const Section = React.forwardRef<HTMLElement, SectionProps>(
 );
 Section.displayName = 'Layout.Section';
 
-const Container = React.forwardRef<HTMLElement, ContainerProps>(
+const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
 	(
 		{
 			as: Component = 'div',
@@ -105,8 +113,9 @@ const Container = React.forwardRef<HTMLElement, ContainerProps>(
 				ref={ref}
 				className={cn(
 					'w-full',
+					containerSpacingClasses,
 					sizeClasses[size],
-					isCentered && 'mx-auto px-4 sm:px-6 lg:px-8',
+					isCentered && centeredPaddingClasses,
 					className,
 				)}
 				{...props}
@@ -116,7 +125,7 @@ const Container = React.forwardRef<HTMLElement, ContainerProps>(
 );
 Container.displayName = 'Layout.Container';
 
-const Grid = React.forwardRef<HTMLElement, GridProps>(
+const Grid = React.forwardRef<HTMLDivElement, GridProps>(
 	(
 		{ as: Component = 'div', className, columns = 12, gap = 4, ...props },
 		ref,
@@ -127,7 +136,13 @@ const Grid = React.forwardRef<HTMLElement, GridProps>(
 		return (
 			<Component
 				ref={ref}
-				className={cn('grid', gridColumns, gridGap, className)}
+				className={cn(
+					'grid',
+					gridSpacingClasses,
+					gridColumns,
+					gridGap,
+					className,
+				)}
 				{...props}
 			/>
 		);
@@ -135,7 +150,7 @@ const Grid = React.forwardRef<HTMLElement, GridProps>(
 );
 Grid.displayName = 'Layout.Grid';
 
-const Flex = React.forwardRef<HTMLElement, FlexProps>(
+const Flex = React.forwardRef<HTMLDivElement, FlexProps>(
 	(
 		{
 			as: Component = 'div',
@@ -153,6 +168,7 @@ const Flex = React.forwardRef<HTMLElement, FlexProps>(
 				ref={ref}
 				className={cn(
 					'flex',
+					flexSpacingClasses,
 					`flex-${direction}`,
 					`flex-${wrap}`,
 					`justify-${justify}`,
@@ -166,7 +182,7 @@ const Flex = React.forwardRef<HTMLElement, FlexProps>(
 );
 Flex.displayName = 'Layout.Flex';
 
-const GridItem = React.forwardRef<HTMLElement, GridItemProps>(
+const GridItem = React.forwardRef<HTMLDivElement, GridItemProps>(
 	(
 		{
 			as: Component = 'div',
@@ -190,7 +206,12 @@ const GridItem = React.forwardRef<HTMLElement, GridItemProps>(
 		return (
 			<Component
 				ref={ref}
-				className={cn(colSpanClasses, rowSpanClasses, className)}
+				className={cn(
+					gridItemSpacingClasses,
+					colSpanClasses,
+					rowSpanClasses,
+					className,
+				)}
 				{...props}
 			/>
 		);
@@ -198,7 +219,7 @@ const GridItem = React.forwardRef<HTMLElement, GridItemProps>(
 );
 GridItem.displayName = 'Layout.GridItem';
 
-const FlexItem = React.forwardRef<HTMLElement, FlexItemProps>(
+const FlexItem = React.forwardRef<HTMLDivElement, FlexItemProps>(
 	(
 		{ as: Component = 'div', className, grow, shrink, basis, ...props },
 		ref,
@@ -207,6 +228,7 @@ const FlexItem = React.forwardRef<HTMLElement, FlexItemProps>(
 			<Component
 				ref={ref}
 				className={cn(
+					flexItemSpacingClasses,
 					grow && 'flex-grow',
 					shrink && 'flex-shrink',
 					basis && `flex-basis-${basis}`,

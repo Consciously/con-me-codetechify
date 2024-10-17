@@ -33,6 +33,10 @@ const NAVIGATION_DATA = [
 		href: '/admin/uploads/json',
 		requiredAuth: true,
 	},
+	{
+		name: 'Test',
+		href: '/test',
+	},
 ];
 
 export default function Header() {

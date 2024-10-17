@@ -46,7 +46,6 @@ export default function ProjectData({ isHomepage = false }: ProjectDataProps) {
 							className={cn('col-span-full', {
 								'md:col-span-6 lg:col-span-4 xl:col-span-3':
 									projectSize(project) === 'small' || pathname === '/projects',
-								'col-span-full lg:col-span-full xl:col-span-full': isLarge,
 							})}
 						>
 							<ProjectItem
