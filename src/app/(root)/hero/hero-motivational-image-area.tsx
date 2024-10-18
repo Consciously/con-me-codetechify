@@ -26,7 +26,7 @@ export default function MotivationalImageArea({
 			<div className='flex w-max gap-6'>
 				{heroDataWithUrls.map(item => (
 					<div key={item.id} className='flex-1 w-full'>
-						<Card className='bg-[#1B1918]/25 dark:bg-[#1B1918]/50 border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60'>
+						<Card className='border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60'>
 							<CardHeader className='flex justify-center items-center h-[50px]'>
 								<p className='text-clamp text-balance text-center font-semibold'>
 									{item.title}

@@ -37,7 +37,7 @@ export default function ProjectItem({
 					/>
 					<ProjectContent>
 						<Layout.Grid>
-							<Layout.GridItem colSpan={{ sm: 12, md: 6 }}>
+							<Layout.GridItem colSpan={{ sm: 12, md: 6, lg: 4 }}>
 								<ProjectImagesContainer
 									project={project}
 									className='rounded-lg'
@@ -46,9 +46,9 @@ export default function ProjectItem({
 								<ProjectStack project={project} />
 							</Layout.GridItem>
 
-							<Layout.GridItem colSpan={{ sm: 12, md: 6 }}>
-								<div className='relative top-8'>
-									<Layout.Container className='w-1/2 ml-auto'>
+							<Layout.GridItem colSpan={{ sm: 12, md: 6, lg: 8 }}>
+								<Layout.Grid noSpacing>
+									<Layout.GridItem colSpan={{ sm: 12, lg: 6 }}>
 										<Card className='bg-transparent border-primary'>
 											<CardHeader>
 												<CardTitle className='text-primary'>
@@ -61,7 +61,7 @@ export default function ProjectItem({
 													passHref
 													className={cn(
 														buttonVariants(),
-														'w-full hover:bg-secondary hover:text-background',
+														'w-full text-background hover:bg-primary hover:text-white',
 													)}
 													target='_blank'
 													rel='noopener noreferrer'
@@ -73,7 +73,7 @@ export default function ProjectItem({
 													passHref
 													className={cn(
 														buttonVariants({ variant: 'outline' }),
-														'w-full bg-transparent border-primary hover:border-secondary hover:bg-transparent hover:text-primary-foreground',
+														'w-full bg-transparent border-secondary hover:bg-transparent hover:text-primary-foreground',
 													)}
 													target='_blank'
 													rel='noopener noreferrer'
@@ -82,8 +82,8 @@ export default function ProjectItem({
 												</Links>
 											</CardContent>
 										</Card>
-									</Layout.Container>
-									<Layout.Container className='w-1/2 ml-auto'>
+									</Layout.GridItem>
+									<Layout.GridItem colSpan={{ sm: 12, lg: 6 }}>
 										<Card className='bg-transparent border-primary'>
 											<CardHeader>
 												<CardTitle className='text-primary'>
@@ -96,8 +96,8 @@ export default function ProjectItem({
 												</p>
 											</CardContent>
 										</Card>
-									</Layout.Container>
-								</div>
+									</Layout.GridItem>
+								</Layout.Grid>
 							</Layout.GridItem>
 						</Layout.Grid>
 					</ProjectContent>

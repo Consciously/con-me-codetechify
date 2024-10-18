@@ -6,7 +6,7 @@ export default function HeroMotivationalTextArea() {
 	return (
 		<>
 			<H4>My Developer Journey and Core Values</H4>
-			<Card className='bg-[#1B1918]/25 dark:bg-[#1B1918]/50 border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60'>
+			<Card className='border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60'>
 				<CardContent>
 					<p className='text-clamp leading-relaxed text-balance max-w-prose mx-auto pt-3'>
 						As a web developer, I work with real passion and motivation. I am

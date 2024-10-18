@@ -1,4 +1,5 @@
 import { Badge } from '../badge';
+import { Layout } from '../custom-container-structure';
 import ProjectStruct from '../custom-project-structure';
 import { Project } from '@prisma/client';
 
@@ -9,16 +10,19 @@ export default function ProjectStack({ project }: { project: Project }) {
 				<h4 className='text-xl/relaxed md:text-2xl/relaxed font-semibold tracking-tight text-balance text-center'>
 					Key Features
 				</h4>
-				<ul className='grid grid-cols-12 gap-3 xl:gap-6 mt-8'>
+				<Layout.Grid as='ul' gap={{ sm: 4, md: 8 }} className='mt-8' noSpacing>
 					{project.features.map((feature, featureIndex) => (
-						<li
+						<Layout.GridItem
+							colSpan={{ sm: 12, md: 6 }}
+							noSpacing
+							as='li'
 							key={`${project.id}-${featureIndex}`}
-							className='flex justify-center items-center text-primary-foreground bg-gradient-to-r from-primary to-secondary p-px text-center rounded-md col-span-full @sm:col-span-6'
+							className='text-white bg-primary p-px text-center rounded-md'
 						>
 							{feature}
-						</li>
+						</Layout.GridItem>
 					))}
-				</ul>
+				</Layout.Grid>
 			</ProjectStruct.Stack>
 			<ProjectStruct.Stack>
 				<h4 className='text-xl/relaxed md:text-2xl/relaxed font-semibold tracking-tight text-balance text-center mt-8'>
