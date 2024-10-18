@@ -1,6 +1,5 @@
 import ConsentBanner from './consent-banner';
 import { getConsentStatus } from '@/app/actions/actions';
-import Section from './ui/custom-section-structure';
 
 export default async function ConsentProvider({
 	children,
