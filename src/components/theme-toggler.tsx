@@ -11,13 +11,8 @@ import {
 	DropdownMenuItem,
 	DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { cn } from '@/lib/utils';
 
-type ThemeTogglerType = {
-	hasShadow: boolean;
-};
-
-export function ThemeToggler({ hasShadow }: ThemeTogglerType) {
+export function ThemeToggler() {
 	const { setTheme } = useTheme();
 
 	return (
@@ -28,18 +23,8 @@ export function ThemeToggler({ hasShadow }: ThemeTogglerType) {
 					className='hover:bg-transparent hover:text-secondary focus-visible:text-secondary focus-visible:bg-transparent'
 					size='icon'
 				>
-					<Sun
-						className={cn(
-							'absolute h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0',
-							hasShadow ? 'text-background' : 'text-primary',
-						)}
-					/>
-					<Moon
-						className={cn(
-							'absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100',
-							hasShadow ? 'text-background' : 'text-primary',
-						)}
-					/>
+					<Sun className='absolute h-6 w-6 text-primary rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0' />
+					<Moon className='absolute h-6 w-6 text-primary rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100' />
 					<span className='sr-only'>Toggle theme</span>
 				</Button>
 			</DropdownMenuTrigger>

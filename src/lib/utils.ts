@@ -29,10 +29,7 @@ export const separateWords = (text: string) => {
 export const getProjectSize = (
 	projects: Project[],
 ): ((project: Project) => 'large' | 'small') => {
-	if (!Array.isArray(projects) || projects.length === 0) {
-		return () => 'small';
-	}
-	// Find the project with the highest importance and latest date
+	// Sort projects by importance and creation date
 	const latestImportantProject = projects.sort((a, b) => {
 		if (b.importance !== a.importance) {
 			return b.importance - a.importance;
@@ -40,6 +37,7 @@ export const getProjectSize = (
 		return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
 	})[0];
 
+	// Return a function that compares project IDs
 	return (project: Project) =>
 		project.id === latestImportantProject?.id ? 'large' : 'small';
 };

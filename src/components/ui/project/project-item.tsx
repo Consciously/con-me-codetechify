@@ -1,16 +1,19 @@
 'use client';
 
+import Links from 'next/link';
 import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import ProjectHeader from './project-header';
 import ProjectDescription from './project-description';
 import ProjectImagesContainer from './project-images-container';
 import ProjectStack from './project-stack';
-import ProjectContainer from './project-container';
+// import ProjectContainer from './project-container';
 import ProjectContent from './project-content';
 import ProjectFooter from './project-footer';
 import { Project } from '@prisma/client';
 import ProjectStruct from '../custom-project-structure';
+import { Layout } from '../custom-container-structure';
+import { Card, CardContent, CardHeader, CardTitle } from '../card';
 
 type ProjectItemPropsType = {
 	project: Project;
@@ -21,7 +24,7 @@ type ProjectItemPropsType = {
 export default function ProjectItem({
 	project,
 	projectSize,
-	isLarge = false,
+	isLarge,
 }: ProjectItemPropsType) {
 	return (
 		<>
@@ -33,48 +36,71 @@ export default function ProjectItem({
 						className='w-full md:w-auto'
 					/>
 					<ProjectContent>
-						<div className='grid grid-cols-12 gap-2 md:gap-4 xl:gap-8'>
-							<div className='col-span-full'>
-								<ProjectDescription
+						<Layout.Grid>
+							<Layout.GridItem colSpan={{ sm: 12, md: 6, lg: 4 }}>
+								<ProjectImagesContainer
 									project={project}
-									className='col-span-full'
+									className='rounded-lg'
 								/>
-							</div>
-							<div className='col-span-full grid grid-cols-12 gap-2 sm:gap-x-4 sm:gap-y-2 md:gap-x-8 md:gap-y-4 xl:gap-x-16 xl:gap-y-8 @container'>
-								<div className='col-span-full md:col-span-6 @sm:max-w-[28rem] @sm:mx-auto'>
-									<ProjectImagesContainer project={project} />
-								</div>
-								<div className='col-span-full md:col-span-6'>
-									<ProjectStack project={project} />
-								</div>
-							</div>
-						</div>
-					</ProjectContent>
 
-					<ProjectFooter className='w-full @xl/container:w-2/3 flex-row items-center justify-center gap-6 mx-auto'>
-						<a
-							href={project.liveDemo}
-							className={cn(
-								buttonVariants({
-									size: 'sm',
-								}),
-								'flex justify-center items-center w-full bg-transparent bg-gradient-to-tr from-primary to-secondary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60 text-center',
-							)}
-						>
-							Live Demo
-						</a>
-						<a
-							href={project.githubRepo}
-							className={cn(
-								buttonVariants({
-									size: 'sm',
-								}),
-								'flex justify-center items-center w-full bg-transparent bg-gradient-to-tr from-secondary to-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60 text-center',
-							)}
-						>
-							GitHub Repo
-						</a>
-					</ProjectFooter>
+								<ProjectStack project={project} />
+							</Layout.GridItem>
+
+							<Layout.GridItem colSpan={{ sm: 12, md: 6, lg: 8 }}>
+								<Layout.Grid noSpacing>
+									<Layout.GridItem colSpan={{ sm: 12, lg: 6 }}>
+										<Card className='bg-transparent border-primary'>
+											<CardHeader>
+												<CardTitle className='text-primary'>
+													Project Links
+												</CardTitle>
+											</CardHeader>
+											<CardContent className='space-y-4'>
+												<Links
+													href={project.githubRepo}
+													passHref
+													className={cn(
+														buttonVariants(),
+														'w-full text-background hover:bg-primary hover:text-white',
+													)}
+													target='_blank'
+													rel='noopener noreferrer'
+												>
+													View on GitHub
+												</Links>
+												<Links
+													href={project.liveDemo}
+													passHref
+													className={cn(
+														buttonVariants({ variant: 'outline' }),
+														'w-full bg-transparent border-secondary hover:bg-transparent hover:text-primary-foreground',
+													)}
+													target='_blank'
+													rel='noopener noreferrer'
+												>
+													Live Demo
+												</Links>
+											</CardContent>
+										</Card>
+									</Layout.GridItem>
+									<Layout.GridItem colSpan={{ sm: 12, lg: 6 }}>
+										<Card className='bg-transparent border-primary'>
+											<CardHeader>
+												<CardTitle className='text-primary'>
+													Project Description
+												</CardTitle>
+											</CardHeader>
+											<CardContent>
+												<p className='text-primary-foreground'>
+													{project.description}
+												</p>
+											</CardContent>
+										</Card>
+									</Layout.GridItem>
+								</Layout.Grid>
+							</Layout.GridItem>
+						</Layout.Grid>
+					</ProjectContent>
 				</ProjectStruct.Container>
 			) : (
 				<ProjectStruct.Container>
