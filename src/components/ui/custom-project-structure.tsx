@@ -26,7 +26,7 @@ ProjectStruct.Container = function ProjectStructContainer({
 	return (
 		<Card
 			className={cn(
-				'bg-transparent border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60 relative',
+				'bg-[rgba(217,217,217,0.7)] backdrop-blur-lg border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60 relative',
 				className,
 			)}
 		>

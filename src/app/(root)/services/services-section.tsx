@@ -2,7 +2,6 @@
 
 import ServicesHeadingArea from './services-heading-area';
 import ServiceOfferArea from './service-offer-area';
-import Section from '@/components/ui/custom-section-structure';
 import { Layout } from '@/components/ui/custom-container-structure';
 
 export default function ServicesSection() {
