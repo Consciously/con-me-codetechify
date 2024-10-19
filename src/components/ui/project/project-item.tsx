@@ -29,81 +29,77 @@ export default function ProjectItem({
 	return (
 		<>
 			{isLarge ? (
-				<ProjectStruct.Container className='p-0 @container/container'>
-					<ProjectHeader
-						project={project}
-						projectSize={projectSize}
-						className='w-full md:w-auto'
-					/>
-					<ProjectContent>
-						<Layout.Grid>
-							<Layout.GridItem colSpan={{ sm: 12, md: 6, lg: 4 }}>
-								<ProjectImagesContainer
-									project={project}
-									className='rounded-lg'
-								/>
+				<Layout.Container
+					isCentered
+					size='lg'
+					noSpacing
+					className='bg-[rgba(217,217,217,0.7)] dark:bg-[rgba(27,25,24,0.7)] backdrop-blur-lg border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60 rounded-lg @container/container'
+				>
+					<Layout.Grid gap={{ sm: 4, md: 8 }}>
+						<Layout.GridItem colSpan={{ sm: 12, md: 6 }}>
+							<ProjectHeader
+								project={project}
+								projectSize={projectSize}
+								className='w-full md:w-auto'
+							/>
+							<ProjectImagesContainer
+								project={project}
+								className='rounded-lg'
+							/>
 
-								<ProjectStack project={project} />
-							</Layout.GridItem>
+							<ProjectStack project={project} />
+						</Layout.GridItem>
 
-							<Layout.GridItem colSpan={{ sm: 12, md: 6, lg: 8 }}>
-								<Layout.Grid noSpacing>
-									<Layout.GridItem colSpan={{ sm: 12, lg: 6 }}>
-										<Card className='bg-transparent border-primary'>
-											<CardHeader>
-												<CardTitle className='text-primary'>
-													Project Links
-												</CardTitle>
-											</CardHeader>
-											<CardContent className='space-y-4'>
-												<Links
-													href={project.githubRepo}
-													passHref
-													className={cn(
-														buttonVariants(),
-														'w-full text-background hover:bg-primary hover:text-white',
-													)}
-													target='_blank'
-													rel='noopener noreferrer'
-												>
-													View on GitHub
-												</Links>
-												<Links
-													href={project.liveDemo}
-													passHref
-													className={cn(
-														buttonVariants({ variant: 'outline' }),
-														'w-full bg-transparent border-secondary hover:bg-transparent hover:text-primary-foreground',
-													)}
-													target='_blank'
-													rel='noopener noreferrer'
-												>
-													Live Demo
-												</Links>
-											</CardContent>
-										</Card>
-									</Layout.GridItem>
-									<Layout.GridItem colSpan={{ sm: 12, lg: 6 }}>
-										<Card className='bg-transparent border-primary'>
-											<CardHeader>
-												<CardTitle className='text-primary'>
-													Project Description
-												</CardTitle>
-											</CardHeader>
-											<CardContent>
-												<p className='text-primary-foreground'>
-													{project.description}
-												</p>
-											</CardContent>
-										</Card>
-									</Layout.GridItem>
-								</Layout.Grid>
-							</Layout.GridItem>
-						</Layout.Grid>
-					</ProjectContent>
-				</ProjectStruct.Container>
+						<Layout.GridItem colSpan={{ sm: 12, md: 6 }}>
+							<Card className='bg-transparent border-primary mb-4 md:mb-8'>
+								<CardHeader>
+									<CardTitle className='text-primary'>Project Links</CardTitle>
+								</CardHeader>
+								<CardContent className='space-y-4'>
+									<Links
+										href={project.githubRepo}
+										passHref
+										className={cn(
+											buttonVariants(),
+											'w-full text-background hover:bg-primary hover:text-white',
+										)}
+										target='_blank'
+										rel='noopener noreferrer'
+									>
+										View on GitHub
+									</Links>
+									<Links
+										href={project.liveDemo}
+										passHref
+										className={cn(
+											buttonVariants({ variant: 'outline' }),
+											'w-full bg-transparent border-primary hover:bg-transparent hover:text-primary',
+										)}
+										target='_blank'
+										rel='noopener noreferrer'
+									>
+										Live Demo
+									</Links>
+								</CardContent>
+							</Card>
+
+							<Card className='bg-transparent border-primary'>
+								<CardHeader>
+									<CardTitle className='text-primary'>
+										Project Description
+									</CardTitle>
+								</CardHeader>
+								<CardContent>
+									<p className='text-primary-foreground'>
+										{project.description}
+									</p>
+								</CardContent>
+							</Card>
+						</Layout.GridItem>
+					</Layout.Grid>
+				</Layout.Container>
 			) : (
-				<ProjectStruct.Container>
+				<Card className='bg-[rgba(217,217,217,0.7)] dark:bg-[rgba(27,25,24,0.7)] backdrop-blur-lg border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60 rounded-lg @container/container'>
 					<ProjectHeader
 						project={project}
 						className='w-full mb-6 md:mb-12 p-0'
@@ -118,7 +114,7 @@ export default function ProjectItem({
 							<ProjectImagesContainer project={project} />
 						</div>
 					</ProjectContent>
-				</ProjectStruct.Container>
+				</Card>
 			)}
 		</>
 	);
