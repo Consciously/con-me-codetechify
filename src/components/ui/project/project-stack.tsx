@@ -32,7 +32,7 @@ export default function ProjectStack({ project }: { project: Project }) {
 					{project.technologies.map(tech => (
 						<Badge
 							key={tech}
-							className='text-sm py-1 px-3 rounded-full bg-gradient-to-r from-primary to-secondary text-primary-foreground font-semibold'
+							className='text-sm py-1 px-3 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-semibold'
 						>
 							{tech}
 						</Badge>

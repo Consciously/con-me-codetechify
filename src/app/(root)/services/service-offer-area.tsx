@@ -19,7 +19,7 @@ export default function ServiceOfferArea() {
 					key={services.id}
 					className='flex flex-col justify-center items-center p-1 md:p-2 lg:p-4 min-h-48'
 				>
-					<Card className='bg-[rgba(217,217,217,0.7)] backdrop-blur-lg flex-1 w-full border-2 border-primary'>
+					<Card className='bg-[rgba(217,217,217,0.7)] dark:bg-[rgba(27,25,24,0.7)] backdrop-blur-lg flex-1 w-full border-2 border-primary'>
 						<CardHeader>
 							<CardTitle className='text-clamp-md leading-relaxed text-center text-balance font-semibold text-primary'>
 								{services.title}
