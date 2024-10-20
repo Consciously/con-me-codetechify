@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import MaxWidthWrapper from './max-width-wrapper';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, useScroll } from 'framer-motion';
@@ -66,23 +65,30 @@ export default function Header() {
 	return (
 		<motion.nav
 			className={cn(
-				'sticky z-20 h-20 inset-x-0 top-0 w-full',
+				'sticky z-20 h-16 inset-x-0 top-0 w-full',
 				hasShadow
 					? 'bg-[rgba(217,217,217,0.7)] dark:bg-[rgba(27,25,24,0.7)] backdrop-blur-lg border-b border-primary transition-all shadow-md shadow-[#1b1918]/15 duration-200'
 					: 'bg-transparent',
 			)}
 		>
-			<Layout.Flex noSpacingY justify='between' items='center'>
-				<Link href='/' className='pt-5 md:pt-0'>
-					<div className='flex gap-x-6 justify-center items-center'>
-						<div className='p-1 text-center w-[50px] skew-y-[20deg] skew-x-12 font-semibold text-sm bg-gradient-to-r from-primary to-secondary text-background'>
-							me
+			<Layout.Flex
+				noSpacing
+				justify='between'
+				items='center'
+				className='px-3 sm:px-5 md:px-7 lg:px-9 xl:px-11'
+			>
+				<div className='flex justify-center items-center'>
+					<Link href='/'>
+						<div className='flex gap-x-6 justify-center items-center'>
+							<div className='p-1 text-center w-[50px] skew-y-[20deg] skew-x-12 font-semibold text-sm bg-gradient-to-r from-primary to-secondary text-background'>
+								me
+							</div>
+							<div className='p-1 w-[100px] text-center -skew-y-[8deg] skew-x-6 scale-[1.05]  font-semibold text-sm bg-gradient-to-r from-secondary to-primary text-background'>
+								codetechify
+							</div>
 						</div>
-						<div className='p-1 w-[100px] text-center -skew-y-[8deg] skew-x-6 scale-[1.05] font-semibold text-sm bg-gradient-to-r from-secondary to-primary text-background'>
-							codetechify
-						</div>
-					</div>
-				</Link>
+					</Link>
+				</div>
 				<ul className='hidden md:flex gap-x-6 items-center ml-auto h-full'>
 					{filteredNavigation.map(({ href, name }) => {
 						return (
@@ -142,7 +148,7 @@ export default function Header() {
 				<div className='hidden md:block ml-3 py-3'>
 					<ThemeToggler />
 				</div>
-				<div className='ml-auto md:hidden pt-5 md:pt-0'>
+				<div className='ml-auto md:hidden'>
 					<Sheet>
 						<SheetTrigger asChild>
 							<Button
