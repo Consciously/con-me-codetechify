@@ -48,7 +48,7 @@ export default function ProjectData({ isHomepage }: ProjectDataProps) {
 						<Layout.GridItem
 							key={project.id}
 							className={cn('col-span-full', {
-								'md:col-span-6 lg:col-span-4 xl:col-span-3':
+								'md:col-span-6 lg:col-span-4':
 									projectSize(project) === 'small' || pathname === '/projects',
 							})}
 						>

@@ -31,8 +31,8 @@ export default function ProjectItem({
 			{isLarge ? (
 				<Layout.Container
 					isCentered
-					size='lg'
-					noSpacing
+					size='xl'
+					noSpacingY
 					className='bg-[rgba(217,217,217,0.7)] dark:bg-[rgba(27,25,24,0.7)] backdrop-blur-lg border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60 rounded-lg @container/container'
 				>
 					<Layout.Grid gap={{ sm: 4, md: 8 }}>

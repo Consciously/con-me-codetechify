@@ -10,11 +10,12 @@ export default function ProjectStack({ project }: { project: Project }) {
 				<h4 className='text-xl/relaxed md:text-2xl/relaxed font-semibold tracking-tight text-balance text-center'>
 					Key Features
 				</h4>
-				<Layout.Grid as='ul' gap={{ sm: 4, md: 8 }} className='mt-8' noSpacing>
+				<Layout.Grid as='ul' gap={{ sm: 4, md: 8 }} className='mt-8' noSpacingY>
 					{project.features.map((feature, featureIndex) => (
 						<Layout.GridItem
 							colSpan={{ sm: 12, md: 6 }}
-							noSpacing
+							noSpacingY
+							noSpacingX
 							as='li'
 							key={`${project.id}-${featureIndex}`}
 							className='text-white bg-primary p-px text-center rounded-md'
