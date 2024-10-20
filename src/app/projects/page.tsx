@@ -7,13 +7,13 @@ export default function ProjectsPage() {
 		<Layout.Section className='relative block lg:min-h-screen overflow-clip'>
 			<Layout.Container
 				size='full'
-				noSpacing
+				noSpacingY
 				className='fixed inset-0 bg-cover bg-no-repeat w-full -z-20'
 				style={{
 					backgroundImage: "url('/images/bg_tech_03.webp')",
 				}}
 			/>
-			<Layout.Container noSpacing>
+			<Layout.Container noSpacingY>
 				<div className='fixed inset-0 bg-background opacity-85 -z-10'></div>
 			</Layout.Container>
 			<Layout.Container isCentered>

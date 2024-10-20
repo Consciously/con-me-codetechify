@@ -34,7 +34,7 @@ export default function RootLayout({
 						<ConsentProvider>
 							<ClerkProvider>
 								<Header />
-								<main className='flex flex-col min-h-[calc(100vh-4rem-1px)]'>
+								<main className='flex flex-col min-h-[calc(100vh-5rem-1px)]'>
 									<div className='flex-1 flex flex-col h-full'>{children}</div>
 								</main>
 								<Toaster />
