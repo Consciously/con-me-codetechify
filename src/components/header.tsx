@@ -18,6 +18,7 @@ import {
 	SignOutButton,
 } from '@clerk/nextjs';
 import { useUser } from '@clerk/clerk-react';
+import { Layout } from './ui/custom-container-structure';
 
 const NAVIGATION_DATA = [
 	{
@@ -38,6 +39,7 @@ const NAVIGATION_DATA = [
 export default function Header() {
 	const { scrollY } = useScroll();
 	const [hasShadow, setHasShadow] = useState<boolean>(false);
+	const [clicked, setClicked] = useState<boolean>(false);
 
 	const { isSignedIn } = useUser();
 
@@ -70,7 +72,13 @@ export default function Header() {
 					: 'bg-transparent',
 			)}
 		>
-			<MaxWidthWrapper className='flex items-center'>
+			<Layout.Flex
+				noSpacingX
+				noSpacingY
+				justify='between'
+				items='center'
+				className='px-3 sm:px-5 md:px-7 lg:px-9 xl:px-11'
+			>
 				<div className='flex justify-center items-center'>
 					<Link href='/'>
 						<div className='flex gap-x-6 justify-center items-center'>
@@ -118,7 +126,7 @@ export default function Header() {
 						hasShadow ? 'bg-secondary' : 'bg-primary',
 					)}
 				/>
-				<div className='ml-3 py-3'>
+				<div className='hidden md:block ml-3 py-3'>
 					<SignedOut>
 						<SignInButton>
 							<span className='flex items-center relative text-base font-semibold text-primary'>
@@ -128,7 +136,12 @@ export default function Header() {
 					</SignedOut>
 					<SignedIn>
 						<SignOutButton>
-							<span className='flex items-center relative  text-base font-semibold text-primary'>
+							<span
+								className={cn(
+									'items-center relative  text-base font-semibold text-primary',
+									clicked ? 'flex md:hidden' : 'hidden md:flex',
+								)}
+							>
 								<LogOut className='w-6 h-6' />
 							</span>
 						</SignOutButton>
@@ -141,6 +154,7 @@ export default function Header() {
 					<Sheet>
 						<SheetTrigger asChild>
 							<Button
+								onClick={() => setClicked(prevState => !prevState)}
 								size='icon'
 								variant='outline'
 								className='text-primary border-primary hover:text-secondary hover:border-secondary hover:bg-transparent'
@@ -155,6 +169,27 @@ export default function Header() {
 						>
 							<div className='block md:hidden absolute top-4 left-4'>
 								<ThemeToggler />
+							</div>
+							<div className='block md:hidden absolute top-6 left-16'>
+								<SignedOut>
+									<SignInButton>
+										<span className='flex items-center relative text-base font-semibold text-primary'>
+											<LogIn className='w-6 h-6' />
+										</span>
+									</SignInButton>
+								</SignedOut>
+								<SignedIn>
+									<SignOutButton>
+										<span
+											className={cn(
+												'items-center relative  text-base font-semibold text-primary',
+												clicked ? 'flex md:hidden' : 'hidden md:flex',
+											)}
+										>
+											<LogOut className='w-6 h-6' />
+										</span>
+									</SignOutButton>
+								</SignedIn>
 							</div>
 							<ul className='flex flex-col gap-y-12 justify-center items-center w-full mt-12'>
 								{NAVIGATION_DATA.map((item, index) => (
@@ -184,7 +219,7 @@ export default function Header() {
 						</SheetContent>
 					</Sheet>
 				</div>
-			</MaxWidthWrapper>
+			</Layout.Flex>
 		</motion.nav>
 	);
 }
