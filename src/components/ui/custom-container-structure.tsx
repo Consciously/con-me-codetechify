@@ -5,7 +5,7 @@ type ResponsiveValue<T> = T | { sm?: T; md?: T; lg?: T; xl?: T; '2xl'?: T };
 
 type BaseProps = React.HTMLAttributes<HTMLElement> & {
 	as?: React.ElementType;
-	noSpacing: boolean;
+	noSpacing?: boolean;
 };
 
 type SectionProps = BaseProps;
