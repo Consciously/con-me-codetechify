@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import MaxWidthWrapper from './max-width-wrapper';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, useScroll } from 'framer-motion';
@@ -73,8 +72,7 @@ export default function Header() {
 			)}
 		>
 			<Layout.Flex
-				noSpacingX
-				noSpacingY
+				noSpacing
 				justify='between'
 				items='center'
 				className='px-3 sm:px-5 md:px-7 lg:px-9 xl:px-11'
