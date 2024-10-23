@@ -3,15 +3,16 @@ import ProjectDetails from './project-details';
 import { Layout } from '@/components/ui/custom-container-structure';
 
 type ProjectDetailPageProps = {
-	params: {
+	params: Promise<{
 		projectId: string;
-	};
+	}>;
 };
 
-export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
-	const projectId = params.projectId;
+export default async function ProjectDetailPage(props: ProjectDetailPageProps) {
+    const params = await props.params;
+    const projectId = params.projectId;
 
-	return (
+    return (
 		<>
 			<Layout.Section className='relative block lg:min-h-screen overflow-clip'>
 				<Layout.Container

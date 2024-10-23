@@ -3,21 +3,20 @@ import SummaryUploadData from './summary-upload-data';
 import { notFound } from 'next/navigation';
 
 type SummaryUploadPageProps = {
-	searchParams: {
+	searchParams: Promise<{
 		[key: string]: string | string[] | undefined;
-	};
+	}>;
 };
 
-export default function SummaryUploadPage({
-	searchParams,
-}: SummaryUploadPageProps) {
-	const { id } = searchParams;
+export default async function SummaryUploadPage(props: SummaryUploadPageProps) {
+    const searchParams = await props.searchParams;
+    const { id } = searchParams;
 
-	if (!id || typeof id !== 'string') {
+    if (!id || typeof id !== 'string') {
 		return notFound();
 	}
 
-	return (
+    return (
 		<Layout.Section>
 			<Layout.Container isCentered>
 				<SummaryUploadData projectId={id} />
