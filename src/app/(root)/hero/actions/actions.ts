@@ -20,14 +20,13 @@ export const getStaticFilesHandler = async () => {
 		});
 
 		// Fetch URLs for both sets of files in parallel
-		const [ctaFileUrls, introFileUrls] = await Promise.all([
-			utapi.getFileUrls(ctaFiles),
-			utapi.getFileUrls(introFiles),
-		]);
+		// Construct URLs for both sets of files
+		const ctaFileUrls = ctaFiles.map(key => `https://utfs.io/f/${key}`);
+		const introFileUrls = introFiles.map(key => `https://utfs.io/f/${key}`);
 
 		return {
-			ctaFileUrls: ctaFileUrls.data.map(file => file.url),
-			introFileUrls: introFileUrls.data.map(file => file.url),
+			ctaFileUrls,
+			introFileUrls,
 		};
 	} catch (error) {
 		console.error('Error fetching and sorting files:', error);

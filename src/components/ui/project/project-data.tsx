@@ -38,31 +38,31 @@ export default function ProjectData({ isHomepage }: ProjectDataProps) {
 	if (error)
 		return <Layout.GridItem fullSpan>Error: {error.message}</Layout.GridItem>;
 
+	if (!projects || projects.length === 0) {
+		return <Layout.GridItem fullSpan>No projects found</Layout.GridItem>;
+	}
+
 	return (
 		<>
-			{projects ? (
-				projects.map((project, index) => {
-					const isLarge =
-						isHomepage && projectSize(project) === 'large' && index === 0;
-					return (
-						<Layout.GridItem
-							key={project.id}
-							className={cn('col-span-full', {
-								'md:col-span-6 lg:col-span-4':
-									projectSize(project) === 'small' || pathname === '/projects',
-							})}
-						>
-							<ProjectItem
-								project={project}
-								projectSize={projectSize}
-								isLarge={isLarge}
-							/>
-						</Layout.GridItem>
-					);
-				})
-			) : (
-				<Layout.GridItem fullSpan>No projects found</Layout.GridItem>
-			)}
+			{projects.map((project, index) => {
+				const isLarge =
+					isHomepage && projectSize(project) === 'large' && index === 0;
+				return (
+					<Layout.GridItem
+						key={project.id}
+						className={cn('col-span-full', {
+							'md:col-span-6 lg:col-span-4':
+								projectSize(project) === 'small' || pathname === '/projects',
+						})}
+					>
+						<ProjectItem
+							project={project}
+							projectSize={projectSize}
+							isLarge={isLarge}
+						/>
+					</Layout.GridItem>
+				);
+			})}
 		</>
 	);
 }
