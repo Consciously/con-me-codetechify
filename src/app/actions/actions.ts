@@ -12,7 +12,7 @@ export const setConsent = async (data: unknown) => {
 
 	const { necessary, analytics, marketing } = result.data;
 
-	const consentCookies = cookies();
+	const consentCookies = await cookies();
 
 	consentCookies.set('consent_necessary', necessary ? 'true' : 'false', {
 		httpOnly: true,
@@ -34,7 +34,7 @@ export const setConsent = async (data: unknown) => {
 };
 
 export const getConsentStatus = async () => {
-	const consentCookies = cookies();
+	const consentCookies = await cookies();
 	const consentGiven = consentCookies.get('consent_given');
 
 	return consentGiven?.value === 'true';
