@@ -1,6 +1,5 @@
 'use server';
-import { utapi } from '@/lib/server-utils';
-import { getStaticFiles } from '@/lib/dal/static-dal';
+import { getStaticFiles, type StaticFile } from '@/lib/dal/static-dal';
 
 export const getStaticFilesHandler = async () => {
 	try {
@@ -11,7 +10,7 @@ export const getStaticFilesHandler = async () => {
 		const ctaFiles: string[] = [];
 		const introFiles: string[] = [];
 
-		files.forEach(file => {
+		files.forEach((file: StaticFile) => {
 			if (file.name.includes('_cta_')) {
 				ctaFiles.push(file.key);
 			} else if (file.name.includes('_illustration_')) {
@@ -30,6 +29,6 @@ export const getStaticFilesHandler = async () => {
 		};
 	} catch (error) {
 		console.error('Error fetching and sorting files:', error);
-		throw new Error('Failed to fetch and sort files');
+		return { ctaFileUrls: [], introFileUrls: [] };
 	}
 };

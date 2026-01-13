@@ -1,13 +1,16 @@
 import type { Config } from 'tailwindcss';
 import { withUt } from 'uploadthing/tw';
+import tailwindcssAnimate from 'tailwindcss-animate';
+import containerQueries from '@tailwindcss/container-queries';
 
 const config = {
-	darkMode: ['class'],
+	darkMode: 'class',
 	content: [
 		'./pages/**/*.{ts,tsx}',
 		'./components/**/*.{ts,tsx}',
 		'./app/**/*.{ts,tsx}',
 		'./src/**/*.{ts,tsx}',
+		'./node_modules/@uploadthing/react/dist**',
 	],
 	prefix: '',
 	theme: {
@@ -107,23 +110,8 @@ const config = {
 		},
 	},
 	plugins: [
-		require('tailwindcss-animate'),
-		require('@tailwindcss/container-queries'),
-	],
-	// Safelist dynamically generated classes
-	safelist: [
-		{
-			pattern: /grid-cols-.*/,
-			variants: ['sm', 'md', 'lg', 'xl', '2xl'], // Add your breakpoints
-		},
-		{
-			pattern: /gap-.*/,
-			variants: ['sm', 'md', 'lg', 'xl', '2xl'],
-		},
-		{
-			pattern: /col-span-.*/,
-			variants: ['sm', 'md', 'lg', 'xl', '2xl'],
-		},
+		tailwindcssAnimate,
+		containerQueries,
 	],
 } satisfies Config;
 

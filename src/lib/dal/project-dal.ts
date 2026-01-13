@@ -6,6 +6,8 @@ import { Project } from '@prisma/client';
 type ProjectClean = Omit<Project, 'id' | 'createdAt' | 'updatedAt'>;
 
 export const getProjects = async (home: boolean): Promise<Project[]> => {
+	if (!process.env.DATABASE_URL) return [];
+
 	const projects = await db.project.findMany({
 		orderBy: [{ importance: 'desc' }, { createdAt: 'desc' }],
 		// If we are on the home page, we only want to show 5 projects
@@ -15,6 +17,8 @@ export const getProjects = async (home: boolean): Promise<Project[]> => {
 };
 
 export const getProjectById = async (id: string): Promise<Project> => {
+	if (!process.env.DATABASE_URL) throw new Error('Database not configured');
+
 	const project = await db.project.findUnique({
 		where: {
 			id: id,
@@ -29,6 +33,8 @@ export const getProjectById = async (id: string): Promise<Project> => {
 };
 
 export const createProject = async (project: ProjectClean) => {
+	if (!process.env.DATABASE_URL) throw new Error('Database not configured');
+
 	const newProject = await db.project.create({
 		data: project,
 	});
@@ -39,6 +45,8 @@ export const updateProject = async (
 	id: string,
 	imageUrls: string[],
 ): Promise<Project> => {
+	if (!process.env.DATABASE_URL) throw new Error('Database not configured');
+
 	const updatedProject = await db.project.update({
 		where: { id },
 		data: {
