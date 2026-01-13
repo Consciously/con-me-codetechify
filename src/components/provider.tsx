@@ -12,10 +12,10 @@ const convex = new ConvexReactClient(
 
 export default function Provider({ children }: { children: React.ReactNode }) {
 	return (
-		<QueryClientProvider client={queryClient}>
-			<ConvexProviderWithClerk client={convex} useAuth={useAuth}>
+		<ConvexProviderWithClerk client={convex} useAuth={useAuth}>
+			<QueryClientProvider client={queryClient}>
 				{children}
-			</ConvexProviderWithClerk>
-		</QueryClientProvider>
+			</QueryClientProvider>
+		</ConvexProviderWithClerk>
 	);
 }
