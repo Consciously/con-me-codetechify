@@ -1,6 +1,9 @@
 import ProjectHeaderArea from '@/components/ui/project/project-header-area';
 import ProjectDetails from './project-details';
 import { Layout } from '@/components/ui/custom-container-structure';
+import Link from 'next/link';
+import { buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 type ProjectDetailPageProps = {
 	params: Promise<{
@@ -9,10 +12,10 @@ type ProjectDetailPageProps = {
 };
 
 export default async function ProjectDetailPage(props: ProjectDetailPageProps) {
-    const params = await props.params;
-    const projectId = params.projectId;
+	const params = await props.params;
+	const projectId = params.projectId;
 
-    return (
+	return (
 		<>
 			<Layout.Section className='relative block lg:min-h-screen overflow-clip'>
 				<Layout.Container
@@ -27,6 +30,17 @@ export default async function ProjectDetailPage(props: ProjectDetailPageProps) {
 					<div className='fixed inset-0 bg-background opacity-85 -z-10'></div>
 				</Layout.Container>
 				<Layout.Container isCentered>
+					<div className='mb-4'>
+						<Link
+							href='/projects'
+							className={cn(
+								buttonVariants({ variant: 'outline', size: 'sm' }),
+								'border-primary bg-transparent hover:bg-transparent hover:text-primary',
+							)}
+						>
+							Back to projects
+						</Link>
+					</div>
 					<ProjectHeaderArea title='My projects' />
 					<ProjectDetails projectId={projectId} />
 				</Layout.Container>

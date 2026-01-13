@@ -16,7 +16,7 @@ type CustomProjectLayoutProps = {
 };
 
 export default function ProjectStruct({ children }: CustomProjectLayoutProps) {
-	<>{children}</>;
+	return <>{children}</>;
 }
 
 ProjectStruct.Container = function ProjectStructContainer({
@@ -26,7 +26,9 @@ ProjectStruct.Container = function ProjectStructContainer({
 	return (
 		<Card
 			className={cn(
-				'bg-[rgba(217,217,217,0.7)] backdrop-blur-lg border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60 relative',
+				'rounded-xl border-2 border-primary bg-[rgba(217,217,217,0.7)] dark:bg-[rgba(27,25,24,0.7)] backdrop-blur-lg shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60 relative overflow-hidden',
+				'transition-shadow hover:shadow-md hover:shadow-zinc-900/60 dark:hover:shadow-zinc-100/60',
+				'focus-within:outline-none focus-within:ring-2 focus-within:ring-primary/40',
 				className,
 			)}
 		>

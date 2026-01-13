@@ -35,7 +35,7 @@ export default function HeroSection() {
 					{isLoading ? (
 						<HeroCtaAreaSkeleton />
 					) : (
-						ctaFileUrls && <HeroCtaArea files={ctaFileUrls} />
+						<HeroCtaArea files={ctaFileUrls ?? []} />
 					)}
 				</Layout.GridItem>
 				<Layout.GridItem colSpan={{ sm: 1, md: 3, xl: 8 }}>
@@ -51,7 +51,6 @@ export default function HeroSection() {
 							introFileUrls && (
 								<HeroMotivationalImageArea
 									files={introFileUrls}
-									isLoading={isLoading}
 								/>
 							)
 						)}

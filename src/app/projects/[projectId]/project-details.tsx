@@ -1,6 +1,5 @@
 'use client';
 
-import { Button, buttonVariants } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
 import ProjectStruct from '@/components/ui/custom-project-structure';
 import ProjectHeader from '@/components/ui/project/project-header';
@@ -12,6 +11,9 @@ import ProjectFooter from '@/components/ui/project/project-footer';
 import { cn } from '@/lib/utils';
 import { useQuery } from '@tanstack/react-query';
 import { getProjectHandler } from '@/app/projects/actions/actions';
+import { Skeleton } from '@/components/ui/skeleton';
+import Link from 'next/link';
+import { buttonVariants } from '@/components/ui/button';
 
 export default function ProjectDetails({ projectId }: { projectId: string }) {
 	const router = useRouter();
@@ -21,7 +23,7 @@ export default function ProjectDetails({ projectId }: { projectId: string }) {
 		isLoading,
 		error,
 	} = useQuery({
-		queryKey: ['project'],
+		queryKey: ['project', projectId],
 		queryFn: async () => {
 			try {
 				return await getProjectHandler(projectId);
@@ -39,15 +41,67 @@ export default function ProjectDetails({ projectId }: { projectId: string }) {
 	});
 
 	if (isLoading) {
-		return <div>Loading...</div>;
+		return (
+			<ProjectStruct.Container className='p-6 md:p-8'>
+				<div className='space-y-6'>
+					<div className='space-y-3'>
+						<Skeleton className='h-8 w-2/3 mx-auto' />
+						<Skeleton className='h-4 w-1/2 mx-auto' />
+					</div>
+					<Skeleton className='h-24 w-full' />
+					<div className='grid grid-cols-12 gap-4'>
+						<div className='col-span-full md:col-span-6'>
+							<Skeleton className='aspect-square w-full' />
+						</div>
+						<div className='col-span-full md:col-span-6 space-y-3'>
+							<Skeleton className='h-6 w-1/3' />
+							<Skeleton className='h-20 w-full' />
+							<Skeleton className='h-6 w-1/2' />
+							<Skeleton className='h-16 w-full' />
+						</div>
+					</div>
+				</div>
+			</ProjectStruct.Container>
+		);
 	}
 
 	if (error) {
-		return <div>Error loading project details</div>;
+		return (
+			<ProjectStruct.Container className='p-6 md:p-8'>
+				<div className='text-center space-y-4'>
+					<p className='text-sm text-destructive'>Failed to load project.</p>
+					<button
+						type='button'
+						onClick={() => router.push('/projects')}
+						className={cn(
+							buttonVariants({ variant: 'outline', size: 'sm' }),
+							'border-primary bg-transparent hover:bg-transparent hover:text-primary',
+						)}
+					>
+						Back to projects
+					</button>
+				</div>
+			</ProjectStruct.Container>
+		);
 	}
 
 	if (!project) {
-		return <div>No project found</div>;
+		return (
+			<ProjectStruct.Container className='p-6 md:p-8'>
+				<div className='text-center space-y-4'>
+					<p className='text-sm text-muted-foreground'>Project not found.</p>
+					<Link
+						href='/projects'
+						className={cn(
+							buttonVariants({ variant: 'outline', size: 'sm' }),
+							'border-primary bg-transparent hover:bg-transparent hover:text-primary',
+						)}
+					>
+						Back to projects
+					</Link>
+				</div>
+			</ProjectStruct.Container>
+		);
 	}
 
 	return (
@@ -79,6 +133,8 @@ export default function ProjectDetails({ projectId }: { projectId: string }) {
 							}),
 							'flex justify-center items-center w-full bg-transparent bg-gradient-to-tr from-primary to-secondary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60 text-center',
 						)}
+						target='_blank'
+						rel='noopener noreferrer'
 					>
 						Live Demo
 					</a>
@@ -90,18 +146,13 @@ export default function ProjectDetails({ projectId }: { projectId: string }) {
 							}),
 							'flex justify-center items-center w-full bg-transparent bg-gradient-to-tr from-secondary to-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60 text-center',
 						)}
+						target='_blank'
+						rel='noopener noreferrer'
 					>
 						GitHub Repo
 					</a>
 				</ProjectFooter>
 			</ProjectStruct.Container>
-
-			<Button
-				className='w-full bg-transparent bg-gradient-to-tr from-primary to-secondary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60'
-				onClick={() => router.push(`/admin/${projectId}`)}
-			>
-				Redirect...
-			</Button>
 		</>
 	);
 }

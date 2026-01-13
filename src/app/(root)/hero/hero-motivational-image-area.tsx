@@ -4,21 +4,21 @@ import { ScrollArea, ScrollBar } from '@/components/ui/scroll-area';
 import { HERO_DATA } from '@/constants/constants';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import Image from 'next/image';
-import Loading from './loading';
 
 type HeroIntroAreaProps = {
 	files: string[];
-	isLoading: boolean;
 };
 
 export default function MotivationalImageArea({
 	files,
-	isLoading,
 }: HeroIntroAreaProps) {
+	const isRemote = (src: string) => src.startsWith('http://') || src.startsWith('https://');
+
 	const heroDataWithUrls = HERO_DATA.map((item, index) => ({
 		id: item.id,
 		title: item.title,
-		url: files?.[index] || item.url, // Fallback to the original URL if files[index] is undefined
+		// Avoid empty-string URLs from remote sources.
+		url: files?.[index]?.trim() ? files[index] : item.url,
 	}));
 
 	return (
@@ -34,13 +34,18 @@ export default function MotivationalImageArea({
 							</CardHeader>
 							<CardContent className='relative overflow-hidden p-0'>
 								<figure className='h-32 w-full'>
-									<Image
-										src={item.url}
-										alt={item.title}
-										width={1024}
-										height={1024}
-										className='aspect-square w-full h-full object-cover'
-									/>
+									{item.url ? (
+										<Image
+											src={item.url}
+											alt={item.title}
+											width={1024}
+											height={1024}
+											unoptimized={isRemote(item.url)}
+											className='aspect-square w-full h-full object-cover'
+										/>
+									) : (
+										<div className='h-full w-full bg-background/40' />
+									)}
 								</figure>
 							</CardContent>
 						</Card>
