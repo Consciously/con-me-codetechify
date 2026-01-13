@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import {
@@ -26,12 +25,9 @@ export default function ConsentBanner() {
 	useEffect(() => {
 		const checkConsentStatus = async () => {
 			const consentGiven = await getConsentStatus();
-			if (consentGiven) {
-				setIsVisible(false);
-			}
-
-			checkConsentStatus();
+			if (consentGiven) setIsVisible(false);
 		};
+		void checkConsentStatus();
 	}, []);
 
 	const form = useForm<ConsentTypeValues>({

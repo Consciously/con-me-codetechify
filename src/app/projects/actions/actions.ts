@@ -12,7 +12,12 @@ import { Project } from '@prisma/client';
 type ProjectClean = Omit<Project, 'id' | 'createdAt' | 'updatedAt'>;
 
 export const getProjectsHandler = async (isHomepage: boolean) => {
-	return getProjects(isHomepage);
+	try {
+		return await getProjects(isHomepage);
+	} catch (error) {
+		console.error('Error fetching projects', error);
+		return [];
+	}
 };
 
 export const getProjectHandler = async (id: string) => {
