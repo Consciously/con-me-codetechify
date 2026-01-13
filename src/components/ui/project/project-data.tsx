@@ -20,7 +20,7 @@ export default function ProjectData({ isHomepage }: ProjectDataProps) {
 	const projects = useQuery(
 		anyApi.projects.list as FunctionReference<'query'>,
 		{ home: isHome },
-	) as unknown[] | undefined;
+	);
 	const isLoading = projects === undefined;
 
 	if (isLoading)
@@ -71,17 +71,13 @@ export default function ProjectData({ isHomepage }: ProjectDataProps) {
 			<div className='grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4'>
 				{projects.map((project, index) => {
 					const isFeatured = showFeatured && index === 0;
-					const key =
-						typeof project === 'object' && project !== null && '_id' in project
-							? String((project as { _id: unknown })._id)
-							: String(index);
 					return (
 						<div
-							key={key}
+							key={project._id}
 							className={isFeatured ? 'md:col-span-2 lg:col-span-2' : undefined}
 						>
 							<ProjectItem
-								project={project as unknown as ProjectDoc}
+								project={project}
 								isLarge={isFeatured}
 							/>
 						</div>

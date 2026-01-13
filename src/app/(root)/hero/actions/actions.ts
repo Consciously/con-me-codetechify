@@ -28,7 +28,12 @@ export const getStaticFilesHandler = async () => {
 			introFileUrls,
 		};
 	} catch (error) {
+		// Log errors more prominently to help identify configuration issues
 		console.error('Error fetching and sorting files:', error);
+		if (process.env.NODE_ENV === 'production') {
+			// In production, provide more context about the error
+			console.error('Static file fetch failed. Check UploadThing configuration.');
+		}
 		return { ctaFileUrls: [], introFileUrls: [] };
 	}
 };
