@@ -1,15 +1,5 @@
 import { cn } from '@/lib/utils';
 
-const defaultMarginValues = {
-	default: { top: 12, bottom: 12 },
-	md: { top: 24, bottom: 24 },
-	xl: { top: 48, bottom: 48 },
-};
-
-const marginClass = (margin: { top: number; bottom: number }) => {
-	return `mt-${margin.top} mb-${margin.bottom}`;
-};
-
 export default function Spacer({
 	children,
 	className,

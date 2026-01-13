@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, Albert_Sans } from 'next/font/google';
+import { Albert_Sans } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
