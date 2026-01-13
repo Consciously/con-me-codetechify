@@ -23,7 +23,7 @@ export default function SummaryUploadData({
 	const projectSummary = useQuery(
 		anyApi.projects.getById as FunctionReference<'query'>,
 		{ id: projectId as Id<'projects'> },
-	) as ProjectDoc | null | undefined;
+	);
 	const isLoading = projectSummary === undefined;
 
 	const handleConfirm = () => {

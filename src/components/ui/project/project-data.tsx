@@ -20,7 +20,7 @@ export default function ProjectData({ isHomepage }: ProjectDataProps) {
 	const projects = useQuery(
 		anyApi.projects.list as FunctionReference<'query'>,
 		{ home: isHome },
-	) as ProjectDoc[] | undefined;
+	);
 	const isLoading = projects === undefined;
 
 	if (isLoading)
