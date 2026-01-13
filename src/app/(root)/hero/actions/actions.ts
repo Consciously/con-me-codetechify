@@ -29,6 +29,8 @@ export const getStaticFilesHandler = async () => {
 		};
 	} catch (error) {
 		console.error('Error fetching and sorting files:', error);
+		// In development, return empty arrays for graceful degradation
+		// In production, this could mask configuration issues - monitor logs
 		return { ctaFileUrls: [], introFileUrls: [] };
 	}
 };

@@ -1,5 +1,7 @@
+import type { Id } from '../../convex/_generated/dataModel';
+
 export type ProjectDoc = {
-	_id: string;
+	_id: Id<'projects'>;
 	_creationTime: number;
 	title: string;
 	description: string;
