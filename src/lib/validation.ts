@@ -15,9 +15,9 @@ export const projectSchema = z.object({
 });
 
 export const consentSchema = z.object({
-	necessary: z.boolean().default(true),
-	analytics: z.boolean().default(false),
-	marketing: z.boolean().default(false),
+	necessary: z.boolean(),
+	analytics: z.boolean(),
+	marketing: z.boolean(),
 });
 
 export type ConsentTypeValues = z.infer<typeof consentSchema>;
