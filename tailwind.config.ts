@@ -3,7 +3,7 @@ import tailwindcssAnimate from 'tailwindcss-animate';
 import containerQueries from '@tailwindcss/container-queries';
 
 const config = {
-	darkMode: 'class',
+	darkMode: ['class'],
 	content: [
 		'./pages/**/*.{ts,tsx}',
 		'./components/**/*.{ts,tsx}',
