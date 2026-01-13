@@ -7,8 +7,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { useQuery } from 'convex/react';
-import { anyApi, type FunctionReference } from 'convex/server';
-import type { ProjectDoc } from '@/types/project';
+import { api } from '../../../../../convex/_generated/api';
+import type { Id } from '../../../../../convex/_generated/dataModel';
 
 type SummaryUploadDataProps = {
 	projectId: string;
@@ -20,9 +20,9 @@ export default function SummaryUploadData({
 	const router = useRouter();
 
 	const projectSummary = useQuery(
-		anyApi.projects.getById as FunctionReference<'query'>,
-		{ id: projectId as unknown as string },
-	) as ProjectDoc | null | undefined;
+		api.projects.getById,
+		{ id: projectId as Id<'projects'> },
+	);
 	const isLoading = projectSummary === undefined;
 
 	const handleConfirm = () => {

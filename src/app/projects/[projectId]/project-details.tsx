@@ -9,17 +9,17 @@ import ProjectStack from '@/components/ui/project/project-stack';
 import ProjectFooter from '@/components/ui/project/project-footer';
 import { cn } from '@/lib/utils';
 import { useQuery } from 'convex/react';
-import { anyApi, type FunctionReference } from 'convex/server';
+import { api } from '../../../../convex/_generated/api';
 import { Skeleton } from '@/components/ui/skeleton';
 import Link from 'next/link';
 import { buttonVariants } from '@/components/ui/button';
-import type { ProjectDoc } from '@/types/project';
+import type { Id } from '../../../../convex/_generated/dataModel';
 
 export default function ProjectDetails({ projectId }: { projectId: string }) {
 	const project = useQuery(
-		anyApi.projects.getById as FunctionReference<'query'>,
-		{ id: projectId as unknown as string },
-	) as ProjectDoc | null | undefined;
+		api.projects.getById,
+		{ id: projectId as Id<'projects'> },
+	);
 	const isLoading = project === undefined;
 
 	if (isLoading) {
@@ -47,8 +47,8 @@ export default function ProjectDetails({ projectId }: { projectId: string }) {
 		);
 	}
 
-	// Convex hook doesn't surface thrown errors in the same shape here;
-	// treat null as "not found" and rely on dev console for config issues.
+	// Note: Convex useQuery hook returns undefined during loading and null when not found,
+	// rather than throwing errors.
 	if (project === null) {
 		return (
 			<ProjectStruct.Container className='p-6 md:p-8'>
