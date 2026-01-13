@@ -1,10 +1,8 @@
 'use client';
 
 import { Project } from '@prisma/client';
-import { useRouter } from 'next/navigation';
 import { cn, formatDate, separateWords } from '@/lib/utils';
 import ProjectStruct from '../custom-project-structure';
-import { Button } from '../button';
 import Link from 'next/link';
 
 type ProjectHeaderPropsType = {
@@ -17,25 +15,24 @@ type ProjectHeaderPropsType = {
 export default function ProjectHeader({
 	project,
 	className,
-	projectSize,
 }: ProjectHeaderPropsType & { project: Project }) {
-	const router = useRouter();
-
 	return (
 		<ProjectStruct.Header className={cn(className)}>
 			<Link
 				href={`/projects/${project.id}`}
-				className='border border-transparent hover:border-dotted hover:border-primary hover:rounded-md transition m-2 md:m-4'
+				className={cn(
+					'group rounded-lg border border-transparent p-2 md:p-3',
+					'hover:border-dotted hover:border-primary/70',
+					'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50',
+				)}
 			>
-				<ProjectStruct.Title>{project.title}</ProjectStruct.Title>
-				<ProjectStruct.Meta>
-					<p className='flex gap-3 justify-center items-center'>
-						<span className='text-primary'>
-							{separateWords(project.clientName)}
-						</span>
-						<span className='text-secondary'>
-							{formatDate(project.createdAt)}
-						</span>
+				<ProjectStruct.Title className='group-hover:from-primary group-hover:to-secondary'>
+					{project.title}
+				</ProjectStruct.Title>
+				<ProjectStruct.Meta className='mt-1'>
+					<p className='flex flex-wrap gap-x-3 gap-y-1 justify-center items-center text-sm/relaxed'>
+						<span className='text-primary'>{separateWords(project.clientName)}</span>
+						<span className='text-secondary'>{formatDate(project.createdAt)}</span>
 					</p>
 				</ProjectStruct.Meta>
 			</Link>

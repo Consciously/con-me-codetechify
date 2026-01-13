@@ -35,6 +35,8 @@ const range = generateRange(0, 2);
 
 export default function HeroCtaArea({ files }: HeroCtaAreaProps) {
 	const [isHovered, setIsHovered] = useState(false);
+	const src = files?.[0];
+	const isRemote = !!src && (src.startsWith('http://') || src.startsWith('https://'));
 
 	return (
 		<div className='w-full h-full flex items-center justify-center'>
@@ -43,13 +45,18 @@ export default function HeroCtaArea({ files }: HeroCtaAreaProps) {
 				onMouseEnter={() => setIsHovered(true)}
 				onMouseLeave={() => setIsHovered(false)}
 			>
-				<Image
-					src={files[0]}
-					alt='Profile image from Stefan Ihle'
-					width={552}
-					height={736}
-					className='aspect-auto h-[420px] w-auto rounded-3xl object-cover object-center border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60'
-				/>
+				{src ? (
+					<Image
+						src={src}
+						alt='Profile image from Stefan Ihle'
+						width={552}
+						height={736}
+						unoptimized={isRemote}
+						className='aspect-auto h-[420px] w-auto rounded-3xl object-cover object-center border-2 border-primary shadow-sm shadow-zinc-900/60 dark:shadow-zinc-100/60'
+					/>
+				) : (
+					<div className='h-[420px] w-[315px] rounded-3xl border-2 border-dashed border-primary/50 bg-background/40' />
+				)}
 				<AnimatePresence>
 					{isHovered && (
 						<>

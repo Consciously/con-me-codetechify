@@ -6,7 +6,8 @@ import { getProjectsHandler } from '@/app/projects/actions/actions';
 import ProjectItem from '@/components/ui/project/project-item';
 import { cn, getProjectSize } from '@/lib/utils';
 import { Layout } from '@/components/ui/custom-container-structure';
-import { Loader2 } from 'lucide-react';
+import { Skeleton } from '@/components/ui/skeleton';
+import ProjectStruct from '@/components/ui/custom-project-structure';
 
 type ProjectDataProps = {
 	isHomepage?: boolean;
@@ -14,14 +15,15 @@ type ProjectDataProps = {
 
 export default function ProjectData({ isHomepage }: ProjectDataProps) {
 	const pathname = usePathname();
+	const isHome = isHomepage ?? false;
 
 	const {
 		data: projects,
 		isLoading,
 		error,
 	} = useQuery({
-		queryKey: ['projects'],
-		queryFn: async () => await getProjectsHandler(isHomepage ?? false),
+		queryKey: ['projects', { isHome }],
+		queryFn: async () => await getProjectsHandler(isHome),
 	});
 
 	const projectSize = getProjectSize(projects || []);
@@ -29,24 +31,45 @@ export default function ProjectData({ isHomepage }: ProjectDataProps) {
 	if (isLoading)
 		return (
 			<Layout.GridItem fullSpan>
-				<div className='flex justify-center items-center'>
-					<Loader2 className='w-6 h-6 text-primary animate-spin' />
+				<div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6'>
+					{Array.from({ length: isHome ? 5 : 6 }).map((_, idx) => (
+						<ProjectStruct.Container key={idx} className='p-6'>
+							<div className='space-y-4'>
+								<Skeleton className='h-7 w-3/4 mx-auto' />
+								<Skeleton className='h-4 w-1/2 mx-auto' />
+								<Skeleton className='h-20 w-full' />
+								<Skeleton className='aspect-square w-full' />
+							</div>
+						</ProjectStruct.Container>
+					))}
 				</div>
 			</Layout.GridItem>
 		);
 
 	if (error)
-		return <Layout.GridItem fullSpan>Error: {error.message}</Layout.GridItem>;
+		return (
+			<Layout.GridItem fullSpan>
+				<div className='text-center text-sm text-destructive'>
+					Failed to load projects.
+				</div>
+			</Layout.GridItem>
+		);
 
 	if (!projects || projects.length === 0) {
-		return <Layout.GridItem fullSpan>No projects found</Layout.GridItem>;
+		return (
+			<Layout.GridItem fullSpan>
+				<div className='text-center text-sm text-muted-foreground'>
+					No projects yet.
+				</div>
+			</Layout.GridItem>
+		);
 	}
 
 	return (
 		<>
 			{projects.map((project, index) => {
 				const isLarge =
-					isHomepage && projectSize(project) === 'large' && index === 0;
+					isHome && projectSize(project) === 'large' && index === 0;
 				return (
 					<Layout.GridItem
 						key={project.id}
