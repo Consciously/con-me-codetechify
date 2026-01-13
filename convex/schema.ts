@@ -15,6 +15,6 @@ export default defineSchema({
 		updatedAt: v.optional(v.number()),
 	})
 		.index('by_importance', ['importance'])
-		.index('by_creation_time', ['_creationTime']),
+		,
 });
 
