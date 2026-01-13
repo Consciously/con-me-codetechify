@@ -17,7 +17,7 @@ export default function MotivationalImageArea({
 	const heroDataWithUrls = HERO_DATA.map((item, index) => ({
 		id: item.id,
 		title: item.title,
-		// Avoid empty-string URLs from remote sources.
+		// Filter out falsy values (undefined, null, empty strings) from remote sources
 		url: files?.[index]?.trim() ? files[index] : item.url,
 	}));
 
