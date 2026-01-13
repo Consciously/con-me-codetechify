@@ -4,10 +4,10 @@ import Image from 'next/image';
 import ProjectStruct from '../custom-project-structure';
 import { useMemo, useState } from 'react';
 import { cn } from '@/lib/utils';
-import { Project } from '@prisma/client';
+import type { ProjectDoc } from '@/types/project';
 
 type ProjectDescriptionPropsType = {
-	project: Project;
+	project: ProjectDoc;
 	className?: string;
 	variant?: 'gallery' | 'preview';
 };

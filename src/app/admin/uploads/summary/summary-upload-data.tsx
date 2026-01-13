@@ -1,14 +1,14 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import PageHeader from '@/components/page-header';
 import { Layout } from '@/components/ui/custom-container-structure';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-import { getProjectHandler } from '@/app/projects/actions/actions';
-import { Project } from '@prisma/client';
+import { useQuery } from 'convex/react';
+import { anyApi, type FunctionReference } from 'convex/server';
+import type { ProjectDoc } from '@/types/project';
 
 type SummaryUploadDataProps = {
 	projectId: string;
@@ -19,21 +19,11 @@ export default function SummaryUploadData({
 }: SummaryUploadDataProps) {
 	const router = useRouter();
 
-	const {
-		data: projectSummary,
-		isLoading,
-		error,
-	} = useQuery<Project, Error>({
-		queryKey: ['projectSummary', projectId],
-		queryFn: async () => {
-			try {
-				const projectSummary = await getProjectHandler(projectId);
-				return projectSummary;
-			} catch (error) {
-				throw new Error('Failed to fetch project summary');
-			}
-		},
-	});
+	const projectSummary = useQuery(
+		anyApi.projects.getById as FunctionReference<'query'>,
+		{ id: projectId as unknown as string },
+	) as ProjectDoc | null | undefined;
+	const isLoading = projectSummary === undefined;
 
 	const handleConfirm = () => {
 		router.push('/projects');
@@ -41,10 +31,6 @@ export default function SummaryUploadData({
 
 	if (isLoading) {
 		return <div>Loading project summary...</div>;
-	}
-
-	if (error) {
-		return <div>Error loading project summary: {error.message}</div>;
 	}
 
 	if (!projectSummary) {
@@ -70,6 +56,7 @@ export default function SummaryUploadData({
 										alt={`Project image ${index + 1}`}
 										width={300}
 										height={300}
+										unoptimized={url.startsWith('http')}
 										className='rounded-lg object-cover'
 									/>
 								))}

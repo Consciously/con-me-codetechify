@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { useToast } from '@/components/ui/use-toast';
 import { Layout } from '@/components/ui/custom-container-structure';
 import { useRouter } from 'next/navigation';
-import H1 from '@/components/ui/h1';
 import Dropzone from 'react-dropzone';
 import {
 	Image as ImageIcon,
@@ -18,6 +17,8 @@ import { useUploadThing } from '@/lib/uploadthing';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import PageHeader from '@/components/page-header';
+import { useMutation } from 'convex/react';
+import { anyApi, type FunctionReference } from 'convex/server';
 
 type ImagesUploadDataProps = {
 	projectId: string;
@@ -36,6 +37,10 @@ export default function ImagesUploadData({ projectId }: ImagesUploadDataProps) {
 	const [uploadedImages, setUploadedImages] = useState<UploadedImage[]>([]);
 	const { toast } = useToast();
 
+	const appendImages = useMutation(
+		anyApi.projects.appendImages as FunctionReference<'mutation'>,
+	);
+
 	const MAX_IMAGES = 4;
 	const uploadedImagesLength = uploadedImages.length;
 
@@ -43,11 +48,22 @@ export default function ImagesUploadData({ projectId }: ImagesUploadDataProps) {
 	const isUploadReady = uploadedImagesLength === MAX_IMAGES;
 
 	const { startUpload, isUploading } = useUploadThing('imageUploader', {
-		onClientUploadComplete: () => {
-			// After uploading, redirect to a summary or confirmation page
-			startTransition(() => {
-				router.push(`/admin/uploads/summary?id=${projectId}`);
-			});
+		onClientUploadComplete: async (files) => {
+			try {
+				const urls = files.map(f => f.url);
+				await appendImages({ id: projectId, imageUrls: urls });
+
+				startTransition(() => {
+					router.push(`/admin/uploads/summary?id=${projectId}`);
+				});
+			} catch (error) {
+				toast({
+					title: 'Failed to save images',
+					description:
+						error instanceof Error ? error.message : 'Unknown error occurred',
+					variant: 'destructive',
+				});
+			}
 		},
 		onUploadProgress(p) {
 			setUploadProgress(p);
@@ -77,7 +93,7 @@ export default function ImagesUploadData({ projectId }: ImagesUploadDataProps) {
 		// Only upload if all images are ready
 		if (isUploadReady) {
 			const filesToUpload = uploadedImages.map(image => image.file);
-			startUpload(filesToUpload, { projectId }); // Trigger the upload process to the imageUploader route
+			startUpload(filesToUpload, {}); // Upload files, then persist URLs to Convex
 			setIsDragOver(false);
 
 			// console.log('Uploading images1:', filesToUpload);
@@ -114,6 +130,7 @@ export default function ImagesUploadData({ projectId }: ImagesUploadDataProps) {
 								width={300}
 								height={300}
 								alt='Uploaded image'
+								unoptimized
 								className='aspect-square w-full h-full object-cover rounded-lg'
 							/>
 							{/* Hover effect for darkening the image */}

@@ -1,13 +1,13 @@
 'use client';
 
 import { usePathname } from 'next/navigation';
-import { useQuery } from '@tanstack/react-query';
-import { getProjectsHandler } from '@/app/projects/actions/actions';
+import { useQuery } from 'convex/react';
+import { anyApi, type FunctionReference } from 'convex/server';
 import ProjectItem from '@/components/ui/project/project-item';
-import { cn, getProjectSize } from '@/lib/utils';
 import { Layout } from '@/components/ui/custom-container-structure';
 import { Skeleton } from '@/components/ui/skeleton';
 import ProjectStruct from '@/components/ui/custom-project-structure';
+import type { ProjectDoc } from '@/types/project';
 
 type ProjectDataProps = {
 	isHomepage?: boolean;
@@ -17,16 +17,11 @@ export default function ProjectData({ isHomepage }: ProjectDataProps) {
 	const pathname = usePathname();
 	const isHome = isHomepage ?? false;
 
-	const {
-		data: projects,
-		isLoading,
-		error,
-	} = useQuery({
-		queryKey: ['projects', { isHome }],
-		queryFn: async () => await getProjectsHandler(isHome),
-	});
-
-	const projectSize = getProjectSize(projects || []);
+	const projects = useQuery(
+		anyApi.projects.list as FunctionReference<'query'>,
+		{ home: isHome },
+	) as unknown[] | undefined;
+	const isLoading = projects === undefined;
 
 	if (isLoading)
 		return (
@@ -46,46 +41,53 @@ export default function ProjectData({ isHomepage }: ProjectDataProps) {
 			</Layout.GridItem>
 		);
 
-	if (error)
-		return (
-			<Layout.GridItem fullSpan>
-				<div className='text-center text-sm text-destructive'>
-					Failed to load projects.
-				</div>
-			</Layout.GridItem>
-		);
-
 	if (!projects || projects.length === 0) {
 		return (
 			<Layout.GridItem fullSpan>
-				<div className='text-center text-sm text-muted-foreground'>
-					No projects yet.
+				<div className='mx-auto w-full max-w-xl'>
+					<div className='rounded-xl border border-primary/40 bg-background/40 p-6 text-center'>
+						<p className='text-base font-semibold text-foreground'>
+							No projects yet.
+						</p>
+						<p className='mt-1 text-sm text-foreground/70'>
+							Add your first project and it will show up here.
+						</p>
+					</div>
 				</div>
 			</Layout.GridItem>
 		);
 	}
 
+	const showFeatured = isHome && pathname !== '/projects';
+
 	return (
-		<>
-			{projects.map((project, index) => {
-				const isLarge =
-					isHome && projectSize(project) === 'large' && index === 0;
-				return (
-					<Layout.GridItem
-						key={project.id}
-						className={cn('col-span-full', {
-							'md:col-span-6 lg:col-span-4':
-								projectSize(project) === 'small' || pathname === '/projects',
-						})}
-					>
-						<ProjectItem
-							project={project}
-							projectSize={projectSize}
-							isLarge={isLarge}
-						/>
-					</Layout.GridItem>
-				);
-			})}
-		</>
+		<Layout.GridItem fullSpan>
+			{/* Modern responsive grid:
+          - mobile: 1 column
+          - tablet: 2 columns
+          - desktop: 3 columns
+          - large desktop: 4 columns
+      */}
+			<div className='grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4'>
+				{projects.map((project, index) => {
+					const isFeatured = showFeatured && index === 0;
+					const key =
+						typeof project === 'object' && project !== null && '_id' in project
+							? String((project as { _id: unknown })._id)
+							: String(index);
+					return (
+						<div
+							key={key}
+							className={isFeatured ? 'md:col-span-2 lg:col-span-2' : undefined}
+						>
+							<ProjectItem
+								project={project as unknown as ProjectDoc}
+								isLarge={isFeatured}
+							/>
+						</div>
+					);
+				})}
+			</div>
+		</Layout.GridItem>
 	);
 }

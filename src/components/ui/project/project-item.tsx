@@ -8,61 +8,56 @@ import ProjectDescription from './project-description';
 import ProjectImagesContainer from './project-images-container';
 import ProjectStack from './project-stack';
 import ProjectContent from './project-content';
-import { Project } from '@prisma/client';
 import ProjectStruct from '../custom-project-structure';
-import { Layout } from '../custom-container-structure';
 import { Card, CardContent, CardHeader, CardTitle } from '../card';
+import type { ProjectDoc } from '@/types/project';
 
 type ProjectItemPropsType = {
-	project: Project;
-	projectSize?: (project: Project) => 'large' | 'small';
+	project: ProjectDoc;
 	isLarge?: boolean;
 };
 
 export default function ProjectItem({
 	project,
-	projectSize,
 	isLarge,
 }: ProjectItemPropsType) {
 	return (
 		<>
 			{isLarge ? (
-				<Layout.Container isCentered size='xl' noSpacing>
-					<ProjectStruct.Container className='@container/container p-6 md:p-8'>
-						<Layout.Grid gap={{ sm: 4, md: 8 }} noSpacing>
-							<Layout.GridItem colSpan={{ sm: 12, md: 6 }} noSpacing>
-							<ProjectHeader
-								project={project}
-								projectSize={projectSize}
-								className='w-full md:w-auto'
-							/>
-							<ProjectImagesContainer
-								project={project}
-								className='rounded-lg'
-							/>
+				<ProjectStruct.Container className='@container/container p-6 md:p-8'>
+					{/* Featured layout:
+            - mobile: stacked
+            - tablet: 2-column
+            - desktop: 7/5 split with stronger hierarchy
+          */}
+					<div className='grid grid-cols-1 gap-8 md:grid-cols-12 md:gap-10'>
+						<div className='md:col-span-7'>
+							<ProjectHeader project={project} className='p-0' />
+							<div className='mt-4 space-y-4'>
+								<ProjectDescription project={project} className='p-0' />
+								<ProjectImagesContainer project={project} className='rounded-lg' />
+							</div>
+						</div>
 
-							<ProjectStack project={project} />
-							</Layout.GridItem>
-
-							<Layout.GridItem colSpan={{ sm: 12, md: 6 }} noSpacing>
-							<Card className='bg-transparent border-primary mb-4 md:mb-8'>
+						<aside className='md:col-span-5 space-y-4'>
+							<Card className='bg-transparent border-primary'>
 								<CardHeader>
-									<CardTitle className='text-primary'>Project Links</CardTitle>
+									<CardTitle className='text-primary'>Links</CardTitle>
 								</CardHeader>
-								<CardContent className='space-y-4'>
+								<CardContent className='space-y-3'>
 									<a
-										href={project.githubRepo}
+										href={project.liveDemo}
 										className={cn(
 											buttonVariants(),
-											'w-full text-background hover:bg-primary hover:text-white',
+											'w-full bg-transparent bg-gradient-to-tr from-primary to-secondary shadow-sm shadow-zinc-900/40 dark:shadow-zinc-100/10 text-center',
 										)}
 										target='_blank'
 										rel='noopener noreferrer'
 									>
-										View on GitHub
+										Live Demo
 									</a>
 									<a
-										href={project.liveDemo}
+										href={project.githubRepo}
 										className={cn(
 											buttonVariants({ variant: 'outline' }),
 											'w-full bg-transparent border-primary hover:bg-transparent hover:text-primary',
@@ -70,52 +65,49 @@ export default function ProjectItem({
 										target='_blank'
 										rel='noopener noreferrer'
 									>
-										Live Demo
+										GitHub Repo
 									</a>
 								</CardContent>
 							</Card>
 
-							<Card className='bg-transparent border-primary'>
-								<CardHeader>
-									<CardTitle className='text-primary'>
-										Project Description
-									</CardTitle>
-								</CardHeader>
-								<CardContent>
-									<p className='text-primary-foreground'>
-										{project.description}
-									</p>
-								</CardContent>
-							</Card>
-							</Layout.GridItem>
-						</Layout.Grid>
-					</ProjectStruct.Container>
-				</Layout.Container>
+							<div className='rounded-xl border border-primary/20 bg-background/30 p-4'>
+								<ProjectStack project={project} />
+							</div>
+						</aside>
+					</div>
+				</ProjectStruct.Container>
 			) : (
-				<ProjectStruct.Container className='@container/container p-6'>
-					<div className='space-y-4'>
-						<ProjectHeader project={project} className='p-0' />
+				<ProjectStruct.Container className='@container/container p-5 sm:p-6'>
+					{/* Card layout:
+            - mobile: stacked
+            - tablet: horizontal card (image left, text right)
+            - desktop: roomier spacing + clamp changes
+          */}
+					<div className='grid grid-cols-1 gap-4 md:grid-cols-12 md:gap-6'>
+						<div className='md:col-span-5'>
+							<ProjectImagesContainer project={project} variant='preview' />
+						</div>
+						<div className='md:col-span-7 flex flex-col'>
+							<ProjectHeader project={project} className='p-0' />
 
-						<ProjectContent className='grid grid-cols-1 p-0'>
-							<div className='col-span-full space-y-4'>
+							<ProjectContent className='p-0'>
 								<ProjectDescription
 									project={project}
-									className='p-0 line-clamp-6'
+									className='p-0 line-clamp-4 md:line-clamp-5 lg:line-clamp-6'
 								/>
-								<ProjectImagesContainer project={project} variant='preview' />
-							</div>
-						</ProjectContent>
+							</ProjectContent>
 
-						<div className='pt-2'>
-							<Link
-								href={`/projects/${project.id}`}
-								className={cn(
-									buttonVariants({ variant: 'outline', size: 'sm' }),
-									'w-full border-primary bg-transparent hover:bg-transparent hover:text-primary',
-								)}
-							>
-								View project
-							</Link>
+							<div className='mt-4'>
+								<Link
+										href={`/projects/${project._id}`}
+									className={cn(
+										buttonVariants({ variant: 'outline', size: 'sm' }),
+										'w-full md:w-fit border-primary bg-transparent hover:bg-transparent hover:text-primary',
+									)}
+								>
+									View project
+								</Link>
+							</div>
 						</div>
 					</div>
 				</ProjectStruct.Container>

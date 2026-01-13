@@ -1,9 +1,9 @@
 import { Badge } from '../badge';
 import { Layout } from '../custom-container-structure';
 import ProjectStruct from '../custom-project-structure';
-import { Project } from '@prisma/client';
+import type { ProjectDoc } from '@/types/project';
 
-export default function ProjectStack({ project }: { project: Project }) {
+export default function ProjectStack({ project }: { project: ProjectDoc }) {
 	return (
 		<div className='my-3 md:my-6 xl:my-12'>
 			<ProjectStruct.Stack>
@@ -16,7 +16,7 @@ export default function ProjectStack({ project }: { project: Project }) {
 							colSpan={{ sm: 12, md: 6 }}
 							noSpacing
 							as='li'
-							key={`${project.id}-${featureIndex}`}
+							key={`${project._id}-${featureIndex}`}
 							className='text-white bg-primary p-px text-center rounded-md'
 						>
 							{feature}
