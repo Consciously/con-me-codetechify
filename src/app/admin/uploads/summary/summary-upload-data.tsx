@@ -9,6 +9,7 @@ import Image from 'next/image';
 import { useQuery } from 'convex/react';
 import { anyApi, type FunctionReference } from 'convex/server';
 import type { ProjectDoc } from '@/types/project';
+import type { Id } from '../../../../../convex/_generated/dataModel';
 
 type SummaryUploadDataProps = {
 	projectId: string;
@@ -21,7 +22,7 @@ export default function SummaryUploadData({
 
 	const projectSummary = useQuery(
 		anyApi.projects.getById as FunctionReference<'query'>,
-		{ id: projectId as unknown as string },
+		{ id: projectId as Id<'projects'> },
 	) as ProjectDoc | null | undefined;
 	const isLoading = projectSummary === undefined;
 
