@@ -28,7 +28,12 @@ export const getStaticFilesHandler = async () => {
 			introFileUrls,
 		};
 	} catch (error) {
-		console.error('Error fetching and sorting files:', error);
+		// Log with more detail in development, simpler in production
+		if (process.env.NODE_ENV === 'development') {
+			console.error('Error fetching and sorting files:', error);
+		} else {
+			console.error('Failed to fetch static files');
+		}
 		return { ctaFileUrls: [], introFileUrls: [] };
 	}
 };

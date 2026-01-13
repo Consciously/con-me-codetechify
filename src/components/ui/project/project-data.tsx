@@ -2,12 +2,11 @@
 
 import { usePathname } from 'next/navigation';
 import { useQuery } from 'convex/react';
-import { anyApi, type FunctionReference } from 'convex/server';
+import { api } from '../../../../convex/_generated/api';
 import ProjectItem from '@/components/ui/project/project-item';
 import { Layout } from '@/components/ui/custom-container-structure';
 import { Skeleton } from '@/components/ui/skeleton';
 import ProjectStruct from '@/components/ui/custom-project-structure';
-import type { ProjectDoc } from '@/types/project';
 
 type ProjectDataProps = {
 	isHomepage?: boolean;
@@ -18,9 +17,9 @@ export default function ProjectData({ isHomepage }: ProjectDataProps) {
 	const isHome = isHomepage ?? false;
 
 	const projects = useQuery(
-		anyApi.projects.list as FunctionReference<'query'>,
+		api.projects.list,
 		{ home: isHome },
-	) as unknown[] | undefined;
+	);
 	const isLoading = projects === undefined;
 
 	if (isLoading)

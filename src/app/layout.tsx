@@ -30,6 +30,10 @@ export default function RootLayout({
 					enableSystem
 					disableTransitionOnChange
 				>
+					{/* Provider nesting order is critical:
+					    1. ClerkProvider must wrap Provider (which contains ConvexProviderWithClerk)
+					    2. ConvexProviderWithClerk (inside Provider) uses useAuth from Clerk context
+					    3. This order ensures Clerk context is available when ConvexProviderWithClerk initializes */}
 					<ClerkProvider>
 						<Provider>
 							<ConsentProvider>
